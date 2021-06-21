@@ -1,3 +1,5 @@
+import { resolve } from 'path'
+
 const config = {
   projectName: 'GFLMiniProgram',
   date: '2021-6-21',
@@ -10,6 +12,12 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: [],
+  alias: {
+    '@/assets/images': resolve(__dirname, '..', 'src/assets/images'),
+    '@/components': resolve(__dirname, '..', 'src/components'),
+  },
+
+
   defineConstants: {
   },
   copy: {
@@ -62,7 +70,7 @@ const config = {
   }
 }
 
-module.exports = function (merge) {
+export default function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }
