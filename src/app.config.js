@@ -4,6 +4,7 @@ export default {
     'pages/home/index',
     'pages/category/index',
     'pages/task/index',
+    'pages/task_detail/index',
     'pages/mine/index',
   ],
   window: {

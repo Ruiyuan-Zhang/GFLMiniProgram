@@ -1,32 +1,29 @@
-import { Component } from 'react'
-import { View, Text } from '@tarojs/components'
-import { AtButton } from 'taro-ui'
+import { View } from '@tarojs/components'
+import { AtTabs, AtTabsPane } from 'taro-ui'
+import { useState } from 'react'
+import TabBar from '@/components/TabBar'
 
-import "taro-ui/dist/style/components/button.scss" // 按需引入
+import Doing from './components/doing'
 import './index.less'
 
-export default class Task extends Component {
-
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
-    return (
-      <View className='task'>
-        <Text>Hello world!</Text>
-        <AtButton type='primary'>I need Taro UI</AtButton>
-        <Text>Taro UI 支持 Vue 了吗？</Text>
-        <AtButton type='primary' circle={true}>支持</AtButton>
-        <Text>共建？</Text>
-        <AtButton type='secondary' circle={true}>来</AtButton>
-      </View>
-    )
-  }
+export default () => {
+  const tabList = [{ title: '进行中' }, { title: '已完成' }, { title: '已取消' }]
+  const [current, setCurrent] = useState(0)
+  return (
+    <View className='task'>
+      <AtTabs current={current} tabList={tabList} onClick={setCurrent}>
+        <AtTabsPane current={current} index={0} >
+          <Doing></Doing>
+          {/* <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;' >标签页一的内容</View> */}
+        </AtTabsPane>
+        <AtTabsPane current={current} index={1}>
+          <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页二的内容</View>
+        </AtTabsPane>
+        <AtTabsPane current={current} index={2}>
+          <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页三的内容</View>
+        </AtTabsPane>
+      </AtTabs>
+      <TabBar current={2} />
+    </View>
+  )
 }

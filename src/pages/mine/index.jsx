@@ -17,11 +17,11 @@ export default () => {
   return (
     <View className='mine'>
       <AtAvatar circle size='large' image={user_img} />
-      <Text > 张瑞元的大大大世界 </Text>
-      <AtInput title='训练服务器' type='text' value={ts} onChange={setTs} />
-      <AtInput title='端口号' type='text' value={tp} onChange={setTp} />
-      <AtInput title='聚合服务器' type='text' value={as} onChange={setAs} />
-      <AtInput title='端口号' type='text' value={ap} onChange={setAp} />
+      <Text className='name'> 张瑞元的大大大世界 </Text>
+      <AtInput name='train_server' title='训练服务器' type='text' value={ts} onChange={setTs} />
+      <AtInput name='train_port' title='端口号' type='text' value={tp} onChange={setTp} />
+      <AtInput name='aggregation_server' title='聚合服务器' type='text' value={as} onChange={setAs} />
+      <AtInput name='aggregation_port' title='端口号' type='text' value={ap} onChange={setAp} />
       <TabBar current={3}></TabBar>
     </View>
   )

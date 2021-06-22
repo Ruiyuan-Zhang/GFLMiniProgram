@@ -45,7 +45,8 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "taro-ui": "^3.0.0-alpha.3"
+    "taro-ui": "^3.0.0-alpha.3",
+    "taro3-table": "^1.0.27"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",

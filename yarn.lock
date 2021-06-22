@@ -1072,7 +1072,7 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.14.6"
   resolved "https://registry.nlark.com/@babel/runtime/download/@babel/runtime-7.14.6.tgz?cache=0&sync_timestamp=1623708311372&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.14.6.tgz#535203bc0892efc7dec60bdc27b2ecf6e409062d"
   integrity sha1-U1IDvAiS78fexgvcJ7Ls9uQJBi0=
@@ -1798,7 +1798,7 @@
   resolved "https://registry.nlark.com/@types/prop-types/download/@types/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha1-KrDV2i5YFflLC51LldHl8kOrLKc=
 
-"@types/react@^17.0.2":
+"@types/react@^17.0.0", "@types/react@^17.0.2":
   version "17.0.11"
   resolved "https://registry.nlark.com/@types/react/download/@types/react-17.0.11.tgz?cache=0&sync_timestamp=1623247414072&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-17.0.11.tgz#67fcd0ddbf5a0b083a0f94e926c7d63f3b836451"
   integrity sha1-Z/zQ3b9aCwg6D5TpJsfWPzuDZFE=
@@ -4762,6 +4762,11 @@ deps-regex@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npm.taobao.org/deps-regex/download/deps-regex-0.1.4.tgz#518667b7691460a5e7e0a341be76eb7ce8090184"
   integrity sha1-UYZnt2kUYKXn4KNBvnbrfOgJAYQ=
+
+dequal@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npm.taobao.org/dequal/download/dequal-2.0.2.tgz#85ca22025e3a87e65ef75a7a437b35284a7e319d"
+  integrity sha1-hcoiAl46h+Ze91p6Q3s1KEp+MZ0=
 
 des.js@^1.0.0:
   version "1.0.1"
@@ -12667,6 +12672,14 @@ taro-ui@^3.0.0-alpha.3:
     lodash "^4.17.10"
     prop-types "^15.7.2"
 
+taro3-table@^1.0.27:
+  version "1.0.27"
+  resolved "https://registry.nlark.com/taro3-table/download/taro3-table-1.0.27.tgz#76b1467b46068d3f940a26e4c2c219ca5d6d452a"
+  integrity sha1-drFGe0YGjT+UCibkwsIZyl1tRSo=
+  dependencies:
+    classnames "^2.2.6"
+    use-deep-compare-effect "^1.6.1"
+
 term-size@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/term-size/download/term-size-1.2.0.tgz#458b83887f288fc56d6fffbfad262e26638efa69"
@@ -13374,6 +13387,15 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-deep-compare-effect@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.npm.taobao.org/use-deep-compare-effect/download/use-deep-compare-effect-1.6.1.tgz#061a0ac5400aa0461e33dddfaa2a98bca873182a"
+  integrity sha1-BhoKxUAKoEYeM93fqiqYvKhzGCo=
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    "@types/react" "^17.0.0"
+    dequal "^2.0.2"
 
 use@^3.1.0:
   version "3.1.1"

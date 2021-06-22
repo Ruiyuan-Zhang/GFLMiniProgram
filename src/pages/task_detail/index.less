@@ -1,0 +1,61 @@
+.task-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 24rpx;
+    .task{
+        width: 100% ;
+        margin-top: 40rpx;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .title{
+            // 对齐弹性元素内的某个项
+            align-self: start;
+        }
+    }
+    // 任务一
+    .task:nth-child(2){
+        .image{
+            width: 240rpx;
+            margin: 20rpx;
+        }
+    }
+    // 任务二
+    .task:nth-child(3){
+        display: flex;
+        flex-direction: column;
+
+        .content{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .handle{
+                display: flex;
+                font-size: 24rpx;
+                color: blue;
+            }
+        }
+    }
+    .tip{
+        display: flex;
+        align-items: center;
+        .tip_btn{
+            font-size: small;
+            margin-right: 10rpx;
+        } 
+        .tip_info{
+            display: flex;
+            font-size: 24rpx;
+        }  
+    }
+    .btn{
+        display: flex;  
+        margin: 40rpx 0;
+        width: 90vw;
+        justify-content: space-between;
+        .at-button{
+            width: 180rpx;
+        }
+    }
+}
