@@ -1,4 +1,5 @@
 import { View, Image, Radio } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import { AtButton } from 'taro-ui'
 import Table from 'taro3-table'
 import user_img from '@/assets/images/user.png'
@@ -71,7 +72,9 @@ export default () => {
             </View>
             <View className='btn'>
                 <AtButton size='small' type='secondary'>取消</AtButton>
-                <AtButton size='small' type='primary'>加入任务</AtButton>
+                <AtButton size='small' type='primary' onClick={
+                    ()=> Taro.navigateTo({url:'/pages/get_data/index'})
+                }>加入任务</AtButton>
             </View>
         </View>
     )

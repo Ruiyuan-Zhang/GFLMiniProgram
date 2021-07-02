@@ -18,7 +18,6 @@
     "scopeDataCheck": false,
     "uglifyFileName": false,
     "checkInvalidKey": true,
-    "【注释】开启/关闭页面收录功能": "https://blog.csdn.net/qq_30750609/article/details/99290020",
     "checkSiteMap": false,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,

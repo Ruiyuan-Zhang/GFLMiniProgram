@@ -1,0 +1,33 @@
+.item{
+    border: 2rpx solid rgba(187, 187, 187, 100);
+    // margin: 24rpx 0;
+    padding: 20rpx 16rpx;
+    display: flex;
+    align-items: center;
+    .img{
+       width: 240rpx;
+       // 解决挤压问题 https://www.runoob.com/cssref/css3-pr-flex-shrink.html
+       flex-shrink:0;
+    }   
+    .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding: 0 20rpx;
+        .title{
+            font-size: 28rpx;
+            font-weight: bold;
+        }
+        .content{
+            margin-top: 10rpx;
+            font-size: 24rpx;
+        }
+        .footer{
+            margin-top: 10rpx;
+            font-size: 16rpx;
+            color: rgba(16, 16, 16, 100);
+            display: flex;
+            justify-content: space-between;
+        }   
+    }
+}

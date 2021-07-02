@@ -2,6 +2,7 @@ import {View} from '@tarojs/components'
 import {AtImagePicker, AtButton} from 'taro-ui'
 import {useState} from 'react'
 import Taro from '@tarojs/taro'
+import Title from '@/components/TitleHandleData'
 import './index.less'
 
 const Index = () => {
@@ -12,12 +13,7 @@ const Index = () => {
     }
     return (
         <View className='get_data'>
-            <View className='title'>
-                基于机器学习的刀具表面缺陷检测及分类方法
-            </View>
-            <View className='subtitle'>
-                数据提交
-            </View>
+            <Title title='基于机器学习的刀具表面缺陷检测及分类方法' subtitle='选择数据'/>
             <View className='files'>
                 <AtImagePicker multiple="multiple" files={files} onChange={onChange}/>
             </View>
@@ -27,7 +23,7 @@ const Index = () => {
                     Taro传递参数，文档写的真的不咋地！！！
                     最终我用的这个 https://www.cnblogs.com/qqcc1388/p/13541154.html
                     */
-                    Taro.navigateTo({
+                    Taro.redirectTo({
                         url:'/pages/add_data/index?files='+JSON.stringify(files.map(f=>f.url)),
                     })
                 }}>提交数据</AtButton>

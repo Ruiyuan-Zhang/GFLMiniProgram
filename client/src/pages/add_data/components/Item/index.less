@@ -1,0 +1,87 @@
+
+.item{
+    border: 2rpx solid rgba(187, 187, 187, 100);
+    margin: 30rpx 20rpx;
+    padding: 20rpx 28rpx;
+    position: relative;
+    display: flex;
+    min-height: 100rpx;
+    .index{
+        position: absolute;
+        left: 10rpx;
+        top: 10rpx;
+        font-size: small;
+    }
+    .icon{
+        position: absolute;
+        right: 10rpx;
+        top: 10rpx;
+    }
+    .img{
+        width: 100rpx;
+        height: 100rpx;
+        left: 30rpx;
+        top: 20rpx;
+        position: absolute;
+    }
+    .no-input{
+        margin-left: 120rpx;
+    }
+}
+
+// 动画效果，图片
+@keyframes transformImage{
+    from {
+        width: 100rpx;
+        height: 100rpx;
+        left: 30rpx;
+        top: 20rpx;
+    }
+    to {
+        width: 200rpx;
+        height: 200rpx;
+        left: 255rpx;
+        top: 20rpx;
+    }
+}
+@keyframes transformImageBack{
+    from {
+        width: 200rpx;
+        height: 200rpx;
+        left: 255rpx;
+        top: 20rpx;
+    }
+    to {
+        width: 100rpx;
+        height: 100rpx;
+        left: 30rpx;
+        top: 20rpx;
+    }
+}
+
+// 展开后的样式
+.item-transform{
+    .img{
+        animation-name: transformImage;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    .input{
+        width: 600rpx;
+        margin-top: 220rpx;
+        
+    }
+}
+
+
+
+// 展开后缩小时用的样式
+.item-transform-back{
+    .img{
+        animation-name: transformImageBack;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+}

@@ -13,3 +13,5 @@ taro api https://taro-docs.jd.com/taro/docs/apis/about/desc
 taro ui https://taro-ui.jd.com/#/docs/introduction
 react https://react.docschina.org/docs/getting-started.html
 微信小程序开发文档 https://developers.weixin.qq.com/miniprogram/dev/framework/
+
+<!-- LowDB 我想用这个作为我微信小程序的数据库，但是用不了，取消了 -->

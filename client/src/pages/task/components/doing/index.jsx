@@ -1,4 +1,5 @@
 import { View, Image } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import { AtProgress, AtDivider } from 'taro-ui'
 
 import user_img from '@/assets/images/test.png'
@@ -6,7 +7,11 @@ import user_img from '@/assets/images/test.png'
 import './index.less'
 
 const Item = ({e}) =>(
-    <View className='item'>
+    <View className='item' onClick={()=>{
+        Taro.navigateTo({
+            url:'/pages/task_schedule/index'
+        })
+    }}>
         <Image className='image' mode='widthFix' src={e.image}></Image>
         <View className='content'>
             <View className='name'>{e.name}</View>
