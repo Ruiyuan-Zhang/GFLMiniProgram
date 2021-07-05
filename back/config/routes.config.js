@@ -7,6 +7,10 @@ const routes = [
         path: '/',
         name: '首页',
         component: './Index'
+      },{
+        path: '/category',
+        name: '分类',
+        component: './Category'
       }
     ],
   },
