@@ -2,9 +2,9 @@
   "miniprogramRoot": "dist/",
   "projectname": "GFLMiniProgram",
   "description": "GFL小程序",
-  "appid": "wx6fc1463a3f114b47",
+  "appid": "wxa8da2aa9ce5f587d",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "enhance": false,
     "postcss": false,
@@ -23,7 +23,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": false,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],

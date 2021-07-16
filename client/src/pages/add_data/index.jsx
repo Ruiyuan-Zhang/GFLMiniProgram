@@ -1,4 +1,4 @@
-import {View} from '@tarojs/components'
+import {View,Canvas} from '@tarojs/components'
 import Taro, { getCurrentInstance } from '@tarojs/taro'
 import { AtDivider, AtButton } from 'taro-ui'
 import Title from '@/components/TitleHandleData'
@@ -6,6 +6,7 @@ import {local_data_path} from '@/config'
 
 import Item from './components/Item'
 import './index.less'
+import test from './test/index'
 import { useState } from 'react'
   
 
@@ -82,15 +83,16 @@ const Index = p => {
         // ) 
         fs.writeFileSync(
             `${Taro.env.USER_DATA_PATH}/hello.json`,
-            "JSON.stringify(list)",
+            JSON.stringify(list),
             'utf-8'
         ) 
         // 读取操作如下
-        // let text = fs.readFileSync(`${Taro.env.USER_DATA_PATH}/hello.json`,'utf8')
-        // console.log(text)
-        Taro.redirectTo({
-            url:'/pages/task/index'
-        })
+        let text = fs.readFileSync(`${Taro.env.USER_DATA_PATH}/hello.json`,'utf8')
+        console.log(text)
+        // Taro.redirectTo({
+        //     url:'/pages/task/index'
+        // })
+
     }
 
     return (
@@ -99,6 +101,10 @@ const Index = p => {
             {files.map((f, i)=><Item key={f} index={i} img={f} objs={objs} handleLocalDataChange={handleLocalDataChange}/>)}
             <AtButton type='primary' className='btn' onClick={save_local_data_list}>加入任务</AtButton>
             <AtDivider content='没有更多了' />
+            <AtButton onClick={()=>{
+                test()
+            }}>测试呀</AtButton>
+            <Canvas style='width: 300px; height: 200px;' canvasId='myCanvas' />
         </View>
     ) 
 }

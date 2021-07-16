@@ -1,8 +1,23 @@
 import { View,Text } from '@tarojs/components'
 import { AtButton, AtProgress } from 'taro-ui'
+// import TaroScript from "taro-script"
 import Title from '@/components/TitleHandleData'
 import TaskItem from '@/components/TaskItem'
 import styles from './index.module.less'
+// import main from './TensorFlow/main'
+// import fit from './fit/index'
+import layer from './layer'
+import seq from './sequential'
+import load_model from './load_model'
+
+
+const train = ()=>{
+    // main()
+    // fit()
+    // layer()
+    // seq() 
+    load_model()
+}
 
 const Line = ({name,children,tail,mode='start'})=>{
     return (
@@ -18,6 +33,9 @@ const Line = ({name,children,tail,mode='start'})=>{
 const Index = () =>{
     return (
         <View className={styles.index}>
+            <script>
+                console.log(123)
+            </script>
             <Title title='基于机器学习的刀具表面缺陷检测及分类方法' subtitle='任务进展详情'/>
             <View className={styles.section}>
                 <View className={styles.h2}>一、任务介绍</View>
@@ -47,14 +65,15 @@ const Index = () =>{
                     <Line name='第2轮训练' mode='end'>查看</Line>
                     <Line name='第3轮训练' mode='end'>查看</Line>
                     <Line name='第11轮训练' mode='end'>查看</Line>
-                    <AtButton className={styles.btn} type='secondary'>参与训练</AtButton>
+                    {/* 点击参与训练，就能完成训练的任务 */}
+                    <AtButton className={styles.btn} onClick={train} type='secondary'>参与训练</AtButton>
                 </View>
                 <View className={styles.h3}>2. 贡献测试数据情况</View>
                 <View className={styles.content}>
                     <Line name='已上传 138份' mode='end'>查看</Line>
                     <Line name='已提交 11份' mode='end'>查看</Line>
                     <Line name='已拒绝 11份' mode='end'>查看</Line>
-                    <AtButton className={styles.btn} type='secondary'>提交测试数据</AtButton>
+                    <AtButton className={styles.btn}  type='secondary'>提交测试数据</AtButton>
                 </View>
             </View>
         </View>
