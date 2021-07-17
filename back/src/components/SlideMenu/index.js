@@ -1,4 +1,5 @@
 import React from 'react';
+import {history} from 'umi'
 import { Layout, Menu } from 'antd';
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -7,18 +8,58 @@ const { SubMenu } = Menu;
 import styles from './index.less';
 
 const index = () => {
+
+  const menu = [
+    {
+      key: 'rwgl',
+      title: '任务管理',
+      ks: [
+        {
+          key: 'fbxrw',
+          title: '发布新任务',
+          url: '/taskSubmit'
+        },{
+          key: 'flgl',
+          title: '分类管理',
+          url: '/Category'
+        },{
+          key: 'jxz',
+          title: '进行中',
+          url: '/'
+        },{
+          key: 'ywc',
+          title: '已完成',
+          url: '/'
+        }
+      ]
+    },{
+      key: 'xtgl',
+      title: '系统管理',
+      ks:[]
+    },{
+      key: 'yhgl',
+      title: '用户管理',
+      ks:[]
+    }
+  ]
+
+  const handleRoute = ({keyPath}) =>{
+    const pathname = menu.filter(x=>x.key===keyPath[1])[0].ks
+                    .filter(x=>x.key===keyPath[0])[0].url
+    history.push({pathname})
+  }
+  
   return (
   <Sider className={styles.sider} width={200} >
     <div className={styles.logo} />
-    <Menu defaultOpenKeys={['rwgl','xtgl','yhgl']} mode="inline" theme="dark">
-        <SubMenu key="rwgl" title="任务管理">
-            <Menu.Item key="fbxrw">发布新任务</Menu.Item>
-            <Menu.Item key="flgl">分类管理</Menu.Item>
-            <Menu.Item key="jxz">进行中</Menu.Item>
-            <Menu.Item key="ywc">已完成</Menu.Item>
-        </SubMenu>
-        <SubMenu key="xtgl" title="系统管理"></SubMenu>
-        <SubMenu key="yhgl" title="用户管理"></SubMenu>
+    <Menu defaultOpenKeys={menu.map(({key})=>key)} mode="inline" theme="dark" onClick={handleRoute}>
+      {
+        menu.map(({key,title,ks})=>
+        <SubMenu key={key} title={title}>
+            { ks.map(({key,title})=><Menu.Item key={key}>{title}</Menu.Item>)}
+          </SubMenu>
+        )
+      }
       </Menu>
   </Sider>
   );

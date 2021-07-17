@@ -11,7 +11,11 @@ const routes = [
         path: '/category',
         name: '分类',
         component: './Category'
-      }
+      },{
+        path: '/taskSubmit',
+        name: '发布新任务',
+        component: './TaskSubmit'
+      },
     ],
   },
 ]
