@@ -1,0 +1,45 @@
+
+.index{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login{
+        height: 419px;
+        background-color: white;
+        padding: 90px 50px;
+        h1{
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    }
+    :global(.ant-btn){
+        width: 100%;
+    }
+    .reg{
+        height: 419px;
+        color: #ffffff;
+        // background: url(../img/bg-login.png) no-repeat;
+        background-color: rgba(64, 143, 246, 0.8);
+        background-size: cover;
+        padding: 100px 50px;
+        p{
+            margin-bottom: 50px;
+        }
+        a{
+            color: #f3f3f3;
+            text-decoration: none; 
+            &:hover{
+                color: #ffffff;
+            }
+            svg{
+                height: 28px;
+                width: 28px;
+                position: relative;
+                top: 8px;
+                left: 4px;
+            }
+        }
+    
+    }
+}

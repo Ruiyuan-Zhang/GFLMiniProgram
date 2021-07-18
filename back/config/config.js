@@ -6,15 +6,20 @@ const Config = defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  routes:routes,
+  routes: routes,
   fastRefresh: {},
   proxy: {
     '/v1': {
-      target: 'https://baidu.com/',
+      target: 'http://localhost:20201/',
       changeOrigin: true,
-      pathRewrite: { '^/v1': '/' }
+      pathRewrite: { '^/v1': '' },
     },
+    '/file':{
+      target: 'http://10.192.73.20:3000/',
+      changeOrigin:true,
+      pathRewrite: { '^/file': '' },
+    }
   },
-})
+});
 
 export default Config;

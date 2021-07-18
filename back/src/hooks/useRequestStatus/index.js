@@ -1,6 +1,5 @@
-const { useState } = require("react")
+const { useState } = require('react');
 
-const index = ()=>{
-    const [requestStatus,setRequestStatus] = useState(false)
-    
-}
+const index = () => {
+  const [requestStatus, setRequestStatus] = useState(false);
+};

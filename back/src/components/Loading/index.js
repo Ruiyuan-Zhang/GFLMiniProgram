@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './index.less'
+import React from 'react';
+import styles from './index.less';
 
 export default function Loading({ loading }) {
   return (
@@ -15,5 +15,5 @@ export default function Loading({ loading }) {
         </div>
       </div>
     )
-  )
+  );
 }
