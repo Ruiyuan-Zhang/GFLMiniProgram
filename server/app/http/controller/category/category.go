@@ -35,7 +35,7 @@ func (c *Category) List(context *gin.Context)  {
 	list := category.CreatCategoryFactory("").List(int(limitStart),int(limit))
 	if list != nil{
 		response.Success(context, consts.CurdStatusOkMsg, gin.H{
-			"data": list,
+			"list": list,
 		})
 	}else {
 		response.Fail(context,consts.CurdSelectFailCode, consts.CurdSelectFailMsg,"")

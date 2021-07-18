@@ -3,19 +3,20 @@
  * @author: zhangruiyuan
  * @date:2021/7/18
 **/
-package model
+package category
 
 import (
-"go.uber.org/zap"
+	"go.uber.org/zap"
 "goskeleton/app/global/variable"
+	"goskeleton/app/model"
 )
 
-func CreatCategoryFactory(sqlType string) * CategoryModel {
-	return &CategoryModel{BaseModel:BaseModel{DB:UseDbConn(sqlType)}}
+func CreatCategoryFactory(sqlType string) *CategoryModel {
+	return &CategoryModel{BaseModel: model.BaseModel{DB: model.UseDbConn(sqlType)}}
 }
 
 type CategoryModel struct {
-	BaseModel
+	model.BaseModel
 	Id  uint `json:"id"`
 	Name string `json:"name"`
 	Description string `json:"description"`
@@ -23,13 +24,13 @@ type CategoryModel struct {
 }
 
 // 表名
-func (c * CategoryModel) TableName() string {
+func (c *CategoryModel) TableName() string {
 	return "tb_category"
 }
 
 
 // 查询列表
-func (c * CategoryModel) List(limitStart,limit int) (list []CategoryView) {
+func (c *CategoryModel) List(limitStart,limit int) (list []CategoryView) {
 
 	sql := `
 		select * from tb_category limit ? , ?;

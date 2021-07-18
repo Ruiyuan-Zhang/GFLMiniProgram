@@ -5,6 +5,7 @@ import (
 	"goskeleton/app/global/consts"
 	"goskeleton/app/http/validator/common/upload_files"
 	"goskeleton/app/http/validator/common/websocket"
+	"goskeleton/app/http/validator/web/category"
 	"goskeleton/app/http/validator/web/users"
 )
 
@@ -40,4 +41,10 @@ func WebRegisterValidator() {
 	// Websocket 连接验证器
 	key = consts.ValidatorPrefix + "WebsocketConnect"
 	containers.Set(key, websocket.Connect{})
+
+	// 任务分类管理
+	{
+		key = consts.ValidatorPrefix + "CategoryList"
+		containers.Set(key,category.List{})
+	}
 }

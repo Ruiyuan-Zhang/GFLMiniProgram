@@ -101,6 +101,9 @@ func InitWebRouter() *gin.Engine {
 			{
 				uploadFiles.POST("files", validatorFactory.Create(consts.ValidatorPrefix+"UploadFiles"))
 			}
+
+			// 获取分类列表
+			backend.GET("category", validatorFactory.Create(consts.ValidatorPrefix+"CategoryList") )
 		}
 	}
 	return router
