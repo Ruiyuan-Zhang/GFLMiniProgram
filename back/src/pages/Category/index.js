@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { requestWrap } from '@/utils/request'
 import Upload from '@/components/Upload';
 import styles from './index.less';
-import request from 'umi-request';
 
 /**
  * 分类界面的话
@@ -17,7 +16,7 @@ const Index = () => {
 
 
   useEffect(async()=>{
-    let res = await requestWrap({}).get('/v1/admin/category?page=1&limit=5')
+    let res = await requestWrap({}).get('/v1/admin/category/list?page=1&limit=5')
     setData(res.data.list)
   },[])
 

@@ -15,7 +15,7 @@ const Config = defineConfig({
       pathRewrite: { '^/v1': '' },
     },
     '/file':{
-      target: 'http://10.192.73.20:3000/',
+      target: 'http://localhost:3000/',
       changeOrigin:true,
       pathRewrite: { '^/file': '' },
     }

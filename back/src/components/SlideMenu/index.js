@@ -26,7 +26,7 @@ const index = () => {
         {
           key: 'jxz',
           title: '进行中',
-          url: '/',
+          url: '/training',
         },
         {
           key: 'ywc',
