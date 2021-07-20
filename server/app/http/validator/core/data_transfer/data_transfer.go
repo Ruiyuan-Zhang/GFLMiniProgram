@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"goskeleton/app/global/variable"
 	"goskeleton/app/http/validator/core/interf"
+	"strconv"
 	"time"
 )
 
@@ -29,6 +30,26 @@ func DataAddContext(validatorInterface interf.ValidatorInterface, extraAddDataPr
 				context.Set(extraAddDataPrefix+"created_at", curDateTime)
 				context.Set(extraAddDataPrefix+"updated_at", curDateTime)
 				context.Set(extraAddDataPrefix+"deleted_at", curDateTime)
+				return context
+			}
+		}
+	}
+	return nil
+}
+
+func DataArrayAddContext(index int,validatorInterface interf.ValidatorInterface, extraAddDataPrefix string, context *gin.Context) *gin.Context {
+	var tempJson interface{}
+	if tmpBytes, err1 := json.Marshal(validatorInterface); err1 == nil {
+		if err2 := json.Unmarshal(tmpBytes, &tempJson); err2 == nil {
+			if value, ok := tempJson.(map[string]interface{}); ok {
+				for k, v := range value {
+					context.Set(extraAddDataPrefix+k+"["+strconv.Itoa(index)+"]", v)
+				}
+				// 此外给上下文追加三个键：created_at  、 updated_at  、 deleted_at ，实际根据需要自己选择获取相关键值
+				curDateTime := time.Now().Format(variable.DateFormat)
+				context.Set(extraAddDataPrefix+"created_at"+"["+strconv.Itoa(index)+"]", curDateTime)
+				context.Set(extraAddDataPrefix+"updated_at"+"["+strconv.Itoa(index)+"]", curDateTime)
+				context.Set(extraAddDataPrefix+"deleted_at"+"["+strconv.Itoa(index)+"]", curDateTime)
 				return context
 			}
 		}

@@ -102,8 +102,26 @@ func InitWebRouter() *gin.Engine {
 				uploadFiles.POST("files", validatorFactory.Create(consts.ValidatorPrefix+"UploadFiles"))
 			}
 
-			// 获取分类列表
-			backend.GET("category", validatorFactory.Create(consts.ValidatorPrefix+"CategoryList") )
+			// 联邦学习任务分类管理
+			category := backend.Group("category/")
+			{
+				// 获取分类列表
+				category.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"CategoryList") )
+			}
+
+			// 联邦学习任务管理
+			task := backend.Group("task/")
+			{
+				// 添加任务
+				task.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"TaskAdd") )
+			}
+
+			// 数据格式管理
+			dataFormat:= backend.Group("dataFormat/")
+			{
+				// 添加数据格式
+				dataFormat.POST("add",validatorFactory.Create(consts.ValidatorPrefix+"DataFormatAdd"))
+			}
 		}
 	}
 	return router

@@ -12,18 +12,19 @@ import (
 	"goskeleton/app/global/variable"
 	"goskeleton/app/model/category"
 	"goskeleton/app/utils/response"
+	"strconv"
 )
 
 type Category struct {
-	Id           uint          `json:"id"`
+	Id           string        `json:"id"`
 	Name         string        `json:"name"`
 	Description  string        `json:"description"`
 	File         string        `json:"file"`
 }
 
-// 添加一项
+// 添加一项「未使用」
 func (c *Category) AddCategory(context *gin.Context) {
-	c.Id = uint(variable.SnowFlake.GetId())
+	c.Id = strconv.FormatInt(variable.SnowFlake.GetId(),10)
 	response.Success(context, "验信息", c)
 }
 

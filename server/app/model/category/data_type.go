@@ -6,7 +6,7 @@
 package category
 
 type CategoryView struct {
-	Id  uint `json:"id"`
+	Id   string `json:"id"`
 	Name string `json:"name"`
 	Description string `json:"description"`
 	File string `json:"file"`

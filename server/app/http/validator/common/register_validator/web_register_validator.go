@@ -6,6 +6,8 @@ import (
 	"goskeleton/app/http/validator/common/upload_files"
 	"goskeleton/app/http/validator/common/websocket"
 	"goskeleton/app/http/validator/web/category"
+	"goskeleton/app/http/validator/web/data_format"
+	"goskeleton/app/http/validator/web/task"
 	"goskeleton/app/http/validator/web/users"
 )
 
@@ -45,6 +47,18 @@ func WebRegisterValidator() {
 	// 任务分类管理
 	{
 		key = consts.ValidatorPrefix + "CategoryList"
-		containers.Set(key,category.List{})
+		containers.Set(key, category.List{})
+	}
+
+	// 任务管理
+	{
+		key = consts.ValidatorPrefix + "TaskAdd"
+		containers.Set(key, task.Add{})
+	}
+
+	// 数据格式管理
+	{
+		key = consts.ValidatorPrefix + "DataFormatAdd"
+		containers.Set(key, data_format.Add{})
 	}
 }

@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"goskeleton/app/global/consts"
 	"reflect"
+	"strconv"
 )
 
 const (
@@ -23,38 +24,64 @@ func ShouldBindFormDataToModel(c *gin.Context, modelStruct interface{}) error {
 	mValueOf := reflect.ValueOf(modelStruct)
 
 	//分析 modelStruct 字段
+	//  Elem() 通过反射获取指针指向的元素类型
 	mValueOfEle := mValueOf.Elem()
 	mtf := mValueOf.Elem().Type()
 	fieldNum := mtf.NumField()
 	for i := 0; i < fieldNum; i++ {
 		if !mtf.Field(i).Anonymous && mtf.Field(i).Type.Kind() != reflect.Struct {
-			fieldSetValue(c, mValueOfEle, mtf, i)
+			fieldSetValue("",c, mValueOfEle, mtf, i)
 		} else if mtf.Field(i).Type.Kind() == reflect.Struct {
 			//处理结构体(有名+匿名)
-			mValueOfEle.Field(i).Set(analysisAnonymousStruct(c, mValueOfEle.Field(i)))
+			mValueOfEle.Field(i).Set(analysisAnonymousStruct("",c, mValueOfEle.Field(i)))
 		}
 	}
 	return nil
 }
 
+// 对某一个对象的转换 没太看懂什么意思
+func ShouldBindFormDataArrayToModel(index int,c *gin.Context, modelStruct interface{}) error {
+	mTypeOf := reflect.TypeOf(modelStruct)
+	if mTypeOf.Kind() != reflect.Ptr {
+		return errors.New(modelStructMustPtr)
+	}
+	mValueOf := reflect.ValueOf(modelStruct)
+
+	//分析 modelStruct 字段
+	//  Elem() 通过反射获取指针指向的元素类型
+	mValueOfEle := mValueOf.Elem()
+	mtf := mValueOf.Elem().Type()
+	fieldNum := mtf.NumField()
+	for i := 0; i < fieldNum; i++ {
+		if !mtf.Field(i).Anonymous && mtf.Field(i).Type.Kind() != reflect.Struct {
+			fieldSetValue("["+strconv.Itoa(index)+"]", c, mValueOfEle, mtf, i)
+		} else if mtf.Field(i).Type.Kind() == reflect.Struct {
+			//处理结构体(有名+匿名)
+			mValueOfEle.Field(i).Set(analysisAnonymousStruct("["+strconv.Itoa(index)+"]",c, mValueOfEle.Field(i)))
+		}
+	}
+	return nil
+}
+
+
 // 分析匿名结构体,并且获取匿名结构体的值
-func analysisAnonymousStruct(c *gin.Context, value reflect.Value) reflect.Value {
+func analysisAnonymousStruct(index string, c *gin.Context, value reflect.Value) reflect.Value {
 
 	typeOf := value.Type()
 	fieldNum := typeOf.NumField()
 	newStruct := reflect.New(typeOf)
 	newStructElem := newStruct.Elem()
 	for i := 0; i < fieldNum; i++ {
-		fieldSetValue(c, newStructElem, typeOf, i)
+		fieldSetValue(index, c, newStructElem, typeOf, i)
 	}
 	return newStructElem
 }
 
 // 为结构体字段赋值
-func fieldSetValue(c *gin.Context, valueOf reflect.Value, typeOf reflect.Type, colIndex int) {
+func fieldSetValue(index string,c *gin.Context, valueOf reflect.Value, typeOf reflect.Type, colIndex int) {
 	relaKey := typeOf.Field(colIndex).Tag.Get("json")
 	if relaKey != "-" {
-		relaKey = consts.ValidatorPrefix + typeOf.Field(colIndex).Tag.Get("json")
+		relaKey = consts.ValidatorPrefix + typeOf.Field(colIndex).Tag.Get("json")+index
 		switch typeOf.Field(colIndex).Type.Kind() {
 		case reflect.Int, reflect.Int16, reflect.Int32, reflect.Int64:
 			valueOf.Field(colIndex).SetInt(int64(c.GetFloat64(relaKey)))

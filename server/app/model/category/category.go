@@ -17,7 +17,7 @@ func CreatCategoryFactory(sqlType string) *CategoryModel {
 
 type CategoryModel struct {
 	model.BaseModel
-	Id  uint `json:"id"`
+	Id  string `json:"id"`
 	Name string `json:"name"`
 	Description string `json:"description"`
 	File string `json:"file"`
