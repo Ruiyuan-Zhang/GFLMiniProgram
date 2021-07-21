@@ -1,5 +1,6 @@
 import { Result, Button } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
+import { history } from 'umi'
 import {request, requestWrap, addLoading, deleteLoading} from '@/utils/request'
 import styles from './index.less'
 
@@ -35,7 +36,6 @@ const index = ({basicInfo,dataFormat})=>{
         })
         let res = await requestWrap({}).post('/v1/admin/dataFormat/add',{data})
         if (res instanceof Error)return
-        console.log(res)
     }
 
     return(

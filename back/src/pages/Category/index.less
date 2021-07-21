@@ -3,7 +3,11 @@
   padding: 24px 16px;
   height: 100%;
   background-color: #ffffff;
+  // 两个盒子嵌套，如果给里面的盒子设置margin-top的话，
+  // 这个margin-top会传递到外层盒子上，使得外层盒子具有margin-top
+  // 而里面盒子没有margin-top：
   position: relative;
+
   .add {
     position: absolute;
     right: 24px;

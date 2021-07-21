@@ -56,7 +56,8 @@ func (t *TaskModel) InsertData(c *gin.Context) (bool, TaskModel) {
 // 查询任务列表
 func (c *TaskModel) List(limitStart,limit int) (list []TaskModelView) {
 	sql := `
-		select * from tb_task limit ? , ?;
+		SELECT  c.name as category_name, t.*
+		FROM tb_task as t, tb_category as c where t.category_id =c.id LIMIT ?, ?;
 	`
 	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil{
 		variable.ZapLog.Error("TaskModel 查询出错", zap.Error(res.Error))

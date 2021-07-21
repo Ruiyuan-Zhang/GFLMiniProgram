@@ -8,10 +8,10 @@ const { Header, Footer, Sider, Content } = Layout;
 const Index = ({ children }) => {
   return (
     <Layout className={styles.index}>
-      <SlideMenu />
+      <SlideMenu/>
       <Layout className={styles.layout}>
         <Header className={styles.header}>GFL移动设备训练「管理系统」</Header>
-        <Content>{children}</Content>
+        <Content className={styles.content}>{children}</Content>
         <Footer className={styles.footer}>
           Ant Design ©2021 Created by Zhang Ruiyuan
         </Footer>

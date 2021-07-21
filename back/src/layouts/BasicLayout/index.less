@@ -1,11 +1,25 @@
 .index {
-  .header {
-    background: #ffffff;
-    color: black;
-    text-align: center;
-  }
   .layout {
-    height: 100vh;
+    // height: 100vh;
+    margin-left: 200px;
+    margin-top: 60px;
+    .header {
+      background: #ffffff;
+      color: black;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin-left: 200px;
+      width: calc(100vw - 200px);
+      z-index: 100;
+      box-shadow:2px 2px 3px #aaaaaa;
+    }
+    .content{
+      box-shadow:2px 2px 3px #aaaaaa;
+      overflow: hidden;
+      min-height: calc(100vh - 150px);
+    }
     .footer {
       text-align: center;
     }

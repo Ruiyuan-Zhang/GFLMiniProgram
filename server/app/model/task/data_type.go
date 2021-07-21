@@ -7,6 +7,7 @@ package task
 
 type TaskModelView struct {
 	Id  string `json:"id"`
+	CategoryName  string `json:"categoryName"`
 	CategoryId  string `json:"categoryId"`
 	Name string `json:"name"`
 	Description string `json:"description"`
@@ -14,4 +15,5 @@ type TaskModelView struct {
 	InitModelFile string `json:"initModelFile"`
 	SuperParams string `json:"superParams"`
 	MaxTimesPerClient int32 `json:"maxTimesPerClient"`
+	CreatedAt string `json:"createAt"`
 }

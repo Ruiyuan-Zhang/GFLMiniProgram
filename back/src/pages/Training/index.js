@@ -10,7 +10,7 @@ const index = () =>{
     const [list,setList] = useState([])
 
     // 请求任务列表
-    useEffect( async()=>{
+    useEffect(async()=>{
         let res = await request({method:'get',url:'/v1/admin/task/list?page=1&limit=100'})
         if (res instanceof Error) return
         setList(res.data.list)
@@ -22,12 +22,9 @@ const index = () =>{
                 itemLayout="vertical"
                 size="large"
             >
-                <Item/>   
-                <Item/>   
-                <Item/>   
-                <Item/>   
-                <Item/>   
-                <Item/>   
+                {
+                    list.map(x=><Item key={x.id} data={x}/>)
+                } 
             </List>
         </div>
     )
