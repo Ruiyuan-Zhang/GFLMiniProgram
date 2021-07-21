@@ -24,7 +24,7 @@ func (t Add) CheckParams (c * gin.Context){
 	//1.先按照验证器提供的基本语法，基本可以校验90%以上的不合格参数
 	if err := c.ShouldBind(&t); err != nil {
 		errs := gin.H{
-			"tips": "TaskAdd参数校验失败，参数不符合规定，name 长度(>=1)、maxTimesPerClient 长度（）、不允许添加",
+			"tips": "TaskAdd参数校验失败，参数不符合规定, 请检查你的参数是否全面",
 			"err":  err.Error(),
 		}
 		response.ErrorParam(c, errs)

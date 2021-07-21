@@ -87,7 +87,7 @@ CREATE TABLE `tb_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-INSERT INTO `tb_users` (id, user_name, pass) VALUES (1, 'zhangruiyuan', 'a53ec42f2a2914067f6309599cae318b');
+INSERT INTO `tb_users` (id, user_name, pass) VALUES (1, 'zhangruiyuan', 'a53ec42f2a2914067f6119599cae318b');
 
 /* oauth 表，主要控制一个用户可以同时拥有几个有效的token，通俗地说就是允许一个账号同时有几个人登录，超过将会导致最前面的人的token失效，而退出登录*/
 DROP TABLE IF EXISTS `tb_oauth_access_tokens`;

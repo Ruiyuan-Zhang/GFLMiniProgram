@@ -24,7 +24,7 @@ func (l List) CheckParams(context *gin.Context)  {
 	// 1. 基本的验证规则
 	if err := context.ShouldBind(&l); err!=nil{
 		errs := gin.H{
-			"tips": "category 参数校验失败，参数不符合规定，page的值(>0)、limits的值(>0)",
+			"tips": "category 参数校验失败，参数不符合规定，page的值(>0)、limit的值(>0)",
 			"err": err.Error(),
 		}
 		response.ErrorParam(context,errs)

@@ -52,8 +52,12 @@ func WebRegisterValidator() {
 
 	// 任务管理
 	{
+		// 任务添加
 		key = consts.ValidatorPrefix + "TaskAdd"
 		containers.Set(key, task.Add{})
+		// 任务列表
+		key = consts.ValidatorPrefix + "TaskList"
+		containers.Set(key, task.List{})
 	}
 
 	// 数据格式管理

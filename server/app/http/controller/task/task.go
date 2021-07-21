@@ -21,12 +21,6 @@ type Task struct {
 // 添加一个任务
 func (t * Task) Add(context *gin.Context){
 
-	//Name string `json:"name"`
-	//Description string `json:"description"`
-	//File string `json:"file"`
-	//iniModelFile string `json:"iniModelFile"`
-	//superParams string `json:"superParams"`
-	//maxTimesPerClient int64 `json:"maxTimesPerClient"`
 	d,tmp :=task.CreatTaskFactory("").InsertData(context)
 	if d {
 		//json,_ := json.Marshal(tmp)string(json)
@@ -36,7 +30,16 @@ func (t * Task) Add(context *gin.Context){
 	}
 }
 
-// 获取任务列表 (未完成)
+// 获取任务列表
 func (t * Task) List(context *gin.Context){
-	response.Success(context, consts.CurdStatusOkMsg, "")
+	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
+	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
+	list := task.CreatTaskFactory("").List(int(limitStart),int(limit))
+	if list != nil{
+		response.Success(context,consts.CurdStatusOkMsg,gin.H{
+			"list":list,
+		})
+	}else {
+		response.Fail(context,consts.CurdSelectFailCode, consts.CurdSelectFailMsg,"")
+	}
 }
