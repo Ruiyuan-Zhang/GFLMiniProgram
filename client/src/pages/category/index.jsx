@@ -8,7 +8,6 @@ import fetch from '@/utils/request'
 import {file_url} from '@/config'
 
 const Item = ({src, children, id}) => {
-    const bg = `background:url(${src}) no-repeat center;`
     return (
       <View 
         className='item' 
