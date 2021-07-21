@@ -7,3 +7,4 @@
  * 更多请看 https://developers.weixin.qq.com/miniprogram/dev/framework/ability/file-system.html
  * */ 
 export const local_data_path = '/local_data'
+export const file_url = 'http://localhost:3000/'

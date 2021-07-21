@@ -1,5 +1,6 @@
 import { View } from '@tarojs/components'
 import { AtDivider } from 'taro-ui'
+import Taro from '@tarojs/taro'
 import TabBar from '@/components/TabBar'
 
 import './index.less'
@@ -7,10 +8,14 @@ import './index.less'
 import Header from './components/header'
 import Search from './components/search'
 import Task from './components/task'
+import { useEffect } from 'react'
 
 
 export default function Home (){
 
+  useEffect(()=>{
+    
+  },[])
   return (
     <View className='home'>
       <Header />

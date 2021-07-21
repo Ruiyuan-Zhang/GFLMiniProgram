@@ -6,9 +6,9 @@ import TaskItem from '@/components/TaskItem'
 import styles from './index.module.less'
 // import main from './TensorFlow/main'
 // import fit from './fit/index'
-import layer from './layer'
-import seq from './sequential'
-import load_model from './load_model'
+// import layer from './layer'
+// import seq from './sequential'
+// import load_model from './load_model'
 
 
 const train = ()=>{
@@ -16,7 +16,7 @@ const train = ()=>{
     // fit()
     // layer()
     // seq() 
-    load_model()
+    // load_model()
 }
 
 const Line = ({name,children,tail,mode='start'})=>{
