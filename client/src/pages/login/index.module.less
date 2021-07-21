@@ -1,0 +1,34 @@
+.index{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: url('https://api.mfstudio.cc/bing/') no-repeat fixed center;
+    background-size: cover;
+    background-size:auto 100vh;
+    :global(.at-avatar){
+        width: 200rpx;
+        height: 200rpx;
+    }
+    .form{
+        :global(.at-input){
+            background-color: rgba(0,0,0,0.2);
+            padding-left: 40rpx;
+            padding-right: 40rpx;
+            margin-bottom: 20rpx;
+            color: white;
+            :global(.at-input__input){
+                color: white;
+            }
+            :global(.at-input__title){
+                width: 120rpx;
+            }
+        }
+        :global(.at-button){
+            margin-top: 150rpx;
+            
+        }
+    }
+    
+}
