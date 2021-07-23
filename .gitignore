@@ -1,3 +1,4 @@
+.DS_Store
 client/dist/
 client/deploy_versions/
 client/.temp/
