@@ -23,7 +23,6 @@ func (t * Task) Add(context *gin.Context){
 
 	d,tmp :=task.CreatTaskFactory("").InsertData(context)
 	if d {
-		//json,_ := json.Marshal(tmp)string(json)
 		response.Success(context, consts.CurdStatusOkMsg,tmp )
 	}else{
 		response.Fail(context, consts.CurdCreatFailCode, consts.CurdCreatFailMsg, tmp)
@@ -43,3 +42,25 @@ func (t * Task) List(context *gin.Context){
 		response.Fail(context,consts.CurdSelectFailCode, consts.CurdSelectFailMsg,"")
 	}
 }
+
+// 获取任务详情信息
+func (t * Task) Detail(context *gin.Context){
+	var id = context.GetString(consts.ValidatorPrefix + "id")
+	if d,err := task.CreatTaskFactory("").Detail(id); err == nil{
+		response.Success(context,consts.CurdStatusOkMsg,gin.H{"data":d,})
+	}else {
+		response.Fail(context,consts.CurdSelectFailCode, consts.CurdSelectFailMsg,"查询不到该任务")
+	}
+}
+
+// 获取任务详情信息 包含数据格式
+func (t * Task) DetailWithFormat(context *gin.Context){
+	var id = context.GetString(consts.ValidatorPrefix + "id")
+	if d,err := task.CreatTaskFactory("").DetailWithFormat(id); err == nil{
+		response.Success(context,consts.CurdStatusOkMsg,gin.H{"data":d,})
+	}else {
+		response.Fail(context,consts.CurdSelectFailCode, consts.CurdSelectFailMsg,"查询不到该任务")
+	}
+}
+
+

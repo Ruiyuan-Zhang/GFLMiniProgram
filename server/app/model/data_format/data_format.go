@@ -22,7 +22,7 @@ func CreatCategoryFactory(sqlType string) *DataFormatModel  {
 type DataFormatModel struct {
 	model.BaseModel
 	Id string `json:"id"`
-	TaskId string `json:"task_id"`
+	TaskId string `json:"taskId"`
 	Type string `json:"type"`
 	Name string `json:"name"`
 	Size string `json:"size"`
