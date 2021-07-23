@@ -64,6 +64,9 @@ func WebRegisterValidator() {
 		// 任务详情 包含格式
 		key = consts.ValidatorPrefix + "TaskDetailWithFormat"
 		containers.Set(key, task.DetailWithFormat{})
+		// 任务用户关系 添加
+		key = consts.ValidatorPrefix + "TaskUserAdd"
+		containers.Set(key, task.TaskUserAdd{})
 	}
 
 	// 数据格式管理

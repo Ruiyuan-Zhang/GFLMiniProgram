@@ -106,28 +106,30 @@ func InitWebRouter() *gin.Engine {
 			category := backend.Group("category/")
 			{
 				// 获取分类列表
-				category.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"CategoryList") )
+				category.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"CategoryList"))
 			}
 
 			// 联邦学习任务管理
 			task := backend.Group("task/")
 			{
 				// 添加任务
-				task.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"TaskAdd") )
+				task.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"TaskAdd"))
 				// 任务列表
 				task.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"TaskList"))
 				// 任务详情
 				task.GET("detail", validatorFactory.Create(consts.ValidatorPrefix+"TaskDetail"))
 				// 任务详情 包含格式
 				task.GET("detailWithFormat", validatorFactory.Create(consts.ValidatorPrefix+"TaskDetailWithFormat"))
+				// 任务用户关系 添加
+				task.POST("taskUserAdd", validatorFactory.Create(consts.ValidatorPrefix+"TaskUserAdd"))
 
 			}
 
 			// 数据格式管理
-			dataFormat:= backend.Group("dataFormat/")
+			dataFormat := backend.Group("dataFormat/")
 			{
 				// 添加数据格式
-				dataFormat.POST("add",validatorFactory.Create(consts.ValidatorPrefix+"DataFormatAdd"))
+				dataFormat.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"DataFormatAdd"))
 			}
 		}
 	}
