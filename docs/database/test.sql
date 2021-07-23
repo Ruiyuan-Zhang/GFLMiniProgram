@@ -68,6 +68,16 @@ CREATE TABLE tb_client_model (
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 )DEFAULT CHARSET=utf8;
 
+CREATE TABLE tb_task_user (
+    id VARCHAR(20) UNIQUE NOT NULL COMMENT '任务-用户关系表编号',
+    task_id VARCHAR(20)  NOT NULL COMMENT '任务编号',
+    task_name VARCHAR(100) DEFAULT '' COMMENT '联邦学习任务名称',
+    user_id VARCHAR(20) NOT NULL COMMENT '用户编号',
+    user_name VARCHAR(100) DEFAULT '' COMMENT '用户名称',
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+)DEFAULT CHARSET=utf8;
+
 
 /*Table structure for table `tb_users` */
 
