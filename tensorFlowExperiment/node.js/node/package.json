@@ -1,0 +1,19 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhangruiyuan@zju.edu.cn",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.8.0",
+    "@tensorflow/tfjs-node": "^3.8.0",
+    "images": "^3.2.3",
+    "node-images": "^2.2.1",
+    "request": "^2.88.2"
+  }
+}
