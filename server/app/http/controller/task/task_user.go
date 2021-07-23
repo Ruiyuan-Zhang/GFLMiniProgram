@@ -19,3 +19,13 @@ func (t *Task) TaskUserAdd(c *gin.Context) {
 		response.Fail(c, consts.CurdCreatFailCode, consts.CurdCreatFailMsg, "")
 	}
 }
+
+func (t *Task) TaskUserHave(c *gin.Context) {
+	user_name := c.GetString(consts.ValidatorPrefix + "userName")
+	task_id := c.GetString(consts.ValidatorPrefix + "taskId")
+	if taskUser := task.CreatTaskUserFactory("").Have(user_name, task_id); taskUser != nil {
+		response.Success(c, consts.CurdStatusOkMsg, gin.H{"data": taskUser})
+	} else {
+		response.Fail(c, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
+	}
+}

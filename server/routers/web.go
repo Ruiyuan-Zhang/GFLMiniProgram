@@ -122,6 +122,8 @@ func InitWebRouter() *gin.Engine {
 				task.GET("detailWithFormat", validatorFactory.Create(consts.ValidatorPrefix+"TaskDetailWithFormat"))
 				// 任务用户关系 添加
 				task.POST("taskUserAdd", validatorFactory.Create(consts.ValidatorPrefix+"TaskUserAdd"))
+				// 任务用户关系 检查是否存在
+				task.POST("taskUserHave", validatorFactory.Create(consts.ValidatorPrefix+"TaskUserHave"))
 
 			}
 

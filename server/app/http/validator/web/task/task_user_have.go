@@ -13,17 +13,15 @@ import (
 	"goskeleton/app/utils/response"
 )
 
-type TaskUserAdd struct {
+type TaskUserHave struct {
 	TaskId   string `json:"taskId" form:"taskId" binding:"required"`
-	TaskName string `json:"taskName" form:"taskName" binding:"required"`
-	UserId   string `json:"userId" form:"userId" binding:"required"`
 	UserName string `json:"userName" form:"userName" binding:"required"`
 }
 
-func (t TaskUserAdd) CheckParams(c *gin.Context) {
+func (t TaskUserHave) CheckParams(c *gin.Context) {
 	if err := c.ShouldBind(&t); err != nil {
 		errs := gin.H{
-			"tips": "TaskUserAdd 参数校验失败，参数不符合规定, 必须上传taskId taskName userId userName",
+			"tips": "TaskUserHave 参数校验失败，参数不符合规定, 必须上传taskId userName",
 			"err":  err.Error(),
 		}
 		response.ErrorParam(c, errs)
@@ -31,8 +29,8 @@ func (t TaskUserAdd) CheckParams(c *gin.Context) {
 	}
 	extraAddBindDataContext := data_transfer.DataAddContext(t, consts.ValidatorPrefix, c)
 	if extraAddBindDataContext == nil {
-		response.ErrorSystem(c, "TaskUserAdd 表单验证器json化失败", "")
+		response.ErrorSystem(c, "TaskUserHave 表单验证器json化失败", "")
 	} else {
-		(&controller.Task{}).TaskUserAdd(extraAddBindDataContext)
+		(&controller.Task{}).TaskUserHave(extraAddBindDataContext)
 	}
 }

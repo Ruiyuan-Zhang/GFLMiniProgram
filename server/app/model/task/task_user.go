@@ -49,3 +49,20 @@ func (t *TaskUserModel) Add(c *gin.Context) error {
 		return err
 	}
 }
+
+func (t *TaskUserModel) Have(user_name, task_id string) *TaskUserModel {
+	sql := `SELECT * FROM tb_task_user  where user_name=? and task_id = ?`
+	var tu TaskUserModel
+	res := t.Raw(sql, user_name, task_id).First(&tu)
+	if res.Error == nil {
+		if res.RowsAffected > 0 {
+			return &tu
+		} else {
+			return nil
+		}
+	} else {
+		variable.ZapLog.Error("TaskUserModel Have查询出错", zap.Error(res.Error))
+		return nil
+	}
+
+}
