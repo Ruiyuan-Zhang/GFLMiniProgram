@@ -17,7 +17,7 @@ const Item = ({src, children, id}) => {
           {children}
       </View>
     )
-}
+} 
 
 const index = () => {
 
@@ -25,6 +25,7 @@ const index = () => {
 
   useEffect(async()=>{
     let res = await fetch({url:'/v1/admin/category/list?page=1&limit=5',method:'get'})
+    if (res instanceof Error)return
     setList(res.list)
   },[])
 

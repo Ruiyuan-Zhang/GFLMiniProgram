@@ -1,16 +1,24 @@
 import {View} from '@tarojs/components'
 import {AtImagePicker, AtButton} from 'taro-ui'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Taro from '@tarojs/taro'
+import { getCurrentInstance } from '@tarojs/taro'
 import Title from '@/components/TitleHandleData'
+import { globalVariables } from '@/common/enum'
 import './index.less'
 
 const Index = () => {
 
+    const [task,setTask] = useState({})
     const [files, setFiles] = useState()
     const onChange = files => {
         setFiles(files)
     }
+    useEffect(()=>{
+        let task = globalVariables.nowAddTask 
+        console.log(task)
+        setTask(task)
+    },[])
     return (
         <View className='get_data'>
             <Title title='基于机器学习的刀具表面缺陷检测及分类方法' subtitle='选择数据'/>

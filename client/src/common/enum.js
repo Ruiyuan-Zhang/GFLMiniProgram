@@ -28,7 +28,12 @@ const consts = {
     // See: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
     "StatusUnauthorized":401,
 
-
 }
 
-export default consts
+let globalVariables = {
+    // 当前用户正在打算加入的任务，由「任务详情界面」通过「加入任务」传递给「获取本地数据界面」
+    nowAddTask: null,
+}
+
+
+export {consts, globalVariables} 

@@ -4,7 +4,7 @@
 import Taro from '@tarojs/taro'
 import { AtIcon } from 'taro-ui'
 import { getToken} from '@/common/token'
-import consts from '@/common/enum'
+import {consts} from '@/common/enum'
 
 /**
  * 简易封装网络请求
@@ -52,26 +52,37 @@ export default async function fetch(options) {
     return Taro
         .request({url, method, data, header})
         .then(async (res) => {
-            const { code, data, msg} = res.data 
-            if (+code === consts.CurdStatusOkCode){
-                return data
-            }
-            // token 相关 
-            if (+code === consts.StatusUnauthorized){
-                await shToast({title:'未鉴权'})
-                Taro.navigateTo({url:'/pages/login/index'})
-            }else if (+code === consts.JwtTokenInvalid){
-                await shToast({title: '无效的token'})
-                Taro.navigateTo({url:'/pages/login/index'})
-            }else if (+code === consts.JwtTokenExpired){
-                await shToast({title: '过期的token'})
-                Taro.navigateTo({url:'/pages/login/index'})
-            }else if (+code === consts.JwtTokenFormatErrCode){
-                await shToast({title: 'token格式错误'})
-                Taro.navigateTo({url:'/pages/login/index'})
+            if (res.data instanceof Object){
+                const { code, data, msg} = res.data 
+                if (+code === consts.CurdStatusOkCode){
+                    return data
+                }
+                // token 相关 
+                if (+code === consts.StatusUnauthorized){
+                    await shToast({title:'未鉴权'})
+                    Taro.navigateTo({url:'/pages/login/index'})
+                }else if (+code === consts.JwtTokenInvalid){
+                    await shToast({title: '无效的token'})
+                    Taro.navigateTo({url:'/pages/login/index'})
+                }else if (+code === consts.JwtTokenExpired){
+                    await shToast({title: '过期的token'})
+                    Taro.navigateTo({url:'/pages/login/index'})
+                }else if (+code === consts.JwtTokenFormatErrCode){
+                    await shToast({title: 'token格式错误'})
+                    Taro.navigateTo({url:'/pages/login/index'})
+                }else{
+                    shToast({title: msg||""})
+                }
+                return new Error()
             }else{
-                shToast({title: msg})
+                const {statusCode, data, errMsg} = res
+                if (statusCode&&statusCode != consts.CurdStatusOkCode){
+                    shToast({title: `${data}`})
+                    return new Error()
+                }
             }
+        }).catch(({errMsg})=>{
+            shToast({title: `${errMsg}`})
             return new Error()
         })
     }

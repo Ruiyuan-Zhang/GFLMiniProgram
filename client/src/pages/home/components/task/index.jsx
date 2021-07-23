@@ -23,11 +23,7 @@ const Index = ({title,more_url}) => {
     },[])
 
     return(
-        <View className='index' onClick={()=>{
-            Taro.navigateTo({
-                url:'/pages/task_detail/index'
-            })
-        }}>
+        <View className='index'>
             <View className='header'>
                 <View>{title}</View>
                 <View className='more' onClick={()=>Taro.navigateTo({url:more_url})}>更多<Image className='icon_more' src={icon_more} mode='widthFix' /></View>
