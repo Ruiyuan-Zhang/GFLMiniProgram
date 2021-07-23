@@ -1,6 +1,6 @@
 import { View, Text, Input } from '@tarojs/components'
 import styles from './index.module.less'
-import {saveToken, getToken, removeToken} from '@/common/token'
+import {saveUser, getUser, removeUser} from '@/common/user'
 import Taro, { pageScrollTo } from '@tarojs/taro'
 import { useEffect, useState } from 'react'
 import { AtAvatar, AtForm, AtInput, AtButton } from 'taro-ui'
@@ -12,8 +12,9 @@ const index = () =>{
     const [pass,setPass] = useState()
     const login = async ()=>{
         if(name&&pass){
-            let {token} = await fetch({url: '/v1/admin/users/login',data: {user_name:name,pass}})
-            saveToken(token)
+            let user = await fetch({url: '/v1/admin/users/login',data: {user_name:name,pass}})
+            if (user instanceof Error)return
+            saveUser(user)
             Taro.navigateTo({url:'/pages/home/index'})
         }
     }

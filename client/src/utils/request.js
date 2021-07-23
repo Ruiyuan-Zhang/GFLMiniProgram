@@ -3,7 +3,7 @@
 */
 import Taro from '@tarojs/taro'
 import { AtIcon } from 'taro-ui'
-import { getToken} from '@/common/token'
+import {saveUser, getUser, removeUser} from '@/common/user'
 import {consts} from '@/common/enum'
 
 /**
@@ -26,7 +26,7 @@ export default async function fetch(options) {
     url = url.replace(/^\/v1/, 'http://localhost:20201')
     url = url.replace(/^\/file/, 'http://localhost:3000')
 
-    const token = getToken()
+    const { token } = getUser()
     const header = token
         ? {
             'Authorization': token

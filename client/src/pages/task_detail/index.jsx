@@ -8,6 +8,7 @@ import request from '@/utils/request'
 import { getCurrentInstance } from '@tarojs/taro'
 import { file_url } from '@/config'
 import { globalVariables } from '@/common/enum'
+import { getUser } from '@/common/user'
 
 
 export default () => {
@@ -31,6 +32,24 @@ export default () => {
         setDataFormats(res.data.dataFormats)
     },[])
 
+    // 加入到任务中
+    const joinTask = async () =>{
+        if (read){
+            let user = getUser()
+            let res = await request({url:`/v1/admin/task/taskUserAdd`,data:{
+                taskId:task.idStr,
+                taskName:task.name,
+                userId:user.userId+'',
+                userName:user.user_name,
+            }})
+            if (res instanceof Error) return
+            // 通过全局变量传递信息
+            globalVariables.nowAddTask = task
+            Taro.navigateTo({url:'/pages/get_data/index'})
+        }else {
+            Taro.showToast({icon:'none', title:'请确认阅读《xxx用户数据隐私保护规范》'})
+        }
+    }
     
     return(
         <View className='task-detail'>
@@ -80,16 +99,7 @@ export default () => {
             </View>
             <View className='btn'>
                 <AtButton size='small' type='secondary'>取消</AtButton>
-                <AtButton size='small' type='primary' onClick={
-                    ()=>{
-                        if (read){
-                            globalVariables.nowAddTask = task
-                            Taro.navigateTo({url:'/pages/get_data/index'})
-                        }else {
-                            Taro.showToast({icon:'none', title:'请确认阅读《xxx用户数据隐私保护规范》'})
-                        }
-                    }
-                }>
+                <AtButton size='small' type='primary' onClick={joinTask}>
                     加入任务
                 </AtButton>
             </View>
