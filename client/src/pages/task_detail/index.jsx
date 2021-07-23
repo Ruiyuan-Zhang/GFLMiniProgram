@@ -21,6 +21,7 @@ export default () => {
 
     const [task,setTask] = useState({})
     const [dataFormats,setDataFormats] = useState([])
+    const [have,setHave] = useState(null)
     const [read, setRead] = useState(false)
     
     // 获取详情页信息
@@ -30,6 +31,17 @@ export default () => {
         if (res instanceof Error)return
         setTask(res.data)
         setDataFormats(res.data.dataFormats)
+    },[])
+
+    // 判断用户是否已经加入了该任务
+    useEffect(async()=>{
+        const id = getCurrentInstance().router.params.id
+        let res = await request({url:`/v1/admin/task/taskUserHave`,showToast:false,data:{
+            userName: getUser().user_name,
+            taskId:id
+        }})
+        if (res instanceof Error) return 
+        setHave(res.data)
     },[])
 
     // 加入到任务中
@@ -50,14 +62,16 @@ export default () => {
             Taro.showToast({icon:'none', title:'请确认阅读《xxx用户数据隐私保护规范》'})
         }
     }
-    
+
     return(
         <View className='task-detail'>
             <View>{task.name}</View>
             {/* 一 */}
             <View className='task'>
                 <View className='title'>一、任务介绍</View>
-                <Image className='image' src={file_url+task.file} mode='widthFix'></Image>
+                <View className='image'>
+                    <Image src={file_url+task.file} mode='widthFix'></Image>
+                </View>
                 <View className='content'>{task.description} </View>
             </View>
             {/* 二 */}
@@ -93,6 +107,16 @@ export default () => {
                   scroll={{ x: '100vw', y: '50vh' }} 
                 />
             </View>
+            
+            {have
+            ?<>
+                <View className='goCheck'>
+                    <AtButton type='primary' size='normal' onClick={()=>{
+                        Taro.navigateTo({url:'/pages/task/index'})
+                    }}>您已加入该任务，立即查看</AtButton>
+                </View>
+            </>
+            :<>
             <View className='tip'>
                 <Radio className='tip_btn' checked={read} onClick={()=>setRead(!read)}></Radio>
                 <View className='tip_info'>我已阅读<View style='color:blue'>《xxx用户数据隐私保护规范》</View></View>
@@ -103,6 +127,9 @@ export default () => {
                     加入任务
                 </AtButton>
             </View>
+            </>
+            }
+            
         </View>
     )
 }
