@@ -31,7 +31,9 @@ export default () => {
     useEffect(async()=>{
         let res = await request({url:'/v1/admin/task/taskJoinList',method:'get',data:{page:1,limit:100,userName:"zhangruiyuan"}})
         if (res instanceof Error)return
-        setTaskList(res.data)
+        let list = res.data
+        console.log(list)
+        setTaskList(list)
     },[])
 
    

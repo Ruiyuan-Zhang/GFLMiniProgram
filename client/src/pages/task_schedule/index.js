@@ -39,7 +39,13 @@ const Index = () =>{
         const id = getCurrentInstance().router.params.id
         let res = await request({url:`/v1/admin/task/detailWithFormat?id=${id}`,method:'get'})
         if (res instanceof Error)return
-        setTask(res.data)
+        let task = res.data
+        task.id = task.idStr
+        task.dataFormats = task.dataFormats.map(td=>{
+            td.dataFormatTaskId = td.dataFormatTaskIdStr
+            return td
+        })
+        setTask(task)
     },[])
     return (
         <View className={styles.index}>
