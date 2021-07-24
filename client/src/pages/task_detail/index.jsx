@@ -57,7 +57,7 @@ export default () => {
             if (res instanceof Error) return
             // 通过全局变量传递信息
             globalVariables.nowAddTask = task
-            Taro.navigateTo({url:'/pages/get_data/index'})
+            Taro.navigateTo({url:'/pages/get_data/index?id='+task.idStr})
         }else {
             Taro.showToast({icon:'none', title:'请确认阅读《xxx用户数据隐私保护规范》'})
         }

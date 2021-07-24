@@ -81,3 +81,15 @@ https://github.com/tensorflow/federated
 tensorflow.js 模型可以转换成 keras模型
 https://github.com/tensorflow/tfjs-converter/tree/master/tfjs-converter
 
+要完成的任务
+
+加入任务之后可以提交数据
+
+1. 收集用户本地数据
+
+2. 补充训练需要的辅助数据
+
+3. 将所有本地数据保存在 任务编号-任务名称命名的文件中 xxx_xxx.json
+
+数据格式为 列表
+

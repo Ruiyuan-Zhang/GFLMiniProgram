@@ -32,7 +32,11 @@ const consts = {
 
 let globalVariables = {
     // 当前用户正在打算加入的任务，由「任务详情界面」通过「加入任务」传递给「获取本地数据界面」
-    nowAddTask: null,
+    // nowAddTask: null, 这样的设计不合理，所以取消。  因为可能用户是从不同的界面进入到收集数据的界面
+
+    // 获取数据界面向补充数据界面传递数据，这个传递是单项的
+    get_data_TO_add_data: {}, 
+    
 }
 
 

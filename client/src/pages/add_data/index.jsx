@@ -3,14 +3,20 @@ import Taro, { getCurrentInstance } from '@tarojs/taro'
 import { AtDivider, AtButton } from 'taro-ui'
 import Title from '@/components/TitleHandleData'
 import {local_data_path} from '@/config'
-
+import {globalVariables} from '@/common/enum'
 import Item from './components/Item'
 import './index.less'
 import test from './test/index'
 import { useState } from 'react'
   
+/**
+ * 补充数据界面
+ * 进入本界面的唯一方式是添加数据界面
+ */
+const Index = () => {
 
-const Index = p => {
+    const { task, files } = globalVariables.get_data_TO_add_data
+
     const objs = [
         {
             name: '长度',
@@ -49,9 +55,7 @@ const Index = p => {
             tips: '请确认该刀具是否有边缘豁口'
         }
     ]
-    let {files} = getCurrentInstance().router.params
-    files = JSON.parse(files)
-
+    
     const [localDataList, setLocalDataList] = useState([])
     const handleLocalDataChange = ({index, data}) => {
         // 这里搞不懂为啥 ...解析之后会出现问题。 

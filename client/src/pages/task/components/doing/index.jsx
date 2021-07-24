@@ -1,65 +1,43 @@
 import { View, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { AtProgress, AtDivider } from 'taro-ui'
-
-import user_img from '@/assets/images/test.png'
-
+import request from '@/utils/request'
+import { file_url } from '@/config'
 import './index.less'
+import { useEffect, useState } from 'react'
 
-const Item = ({e}) =>(
+const Item = ({data}) =>{
+    const {id, file, name} = data
+    return (
     <View className='item' onClick={()=>{
         Taro.navigateTo({
             url:'/pages/task_schedule/index'
         })
     }}>
-        <Image className='image' mode='widthFix' src={e.image}></Image>
+        <Image className='image' mode='widthFix' src={file_url+file}></Image>
         <View className='content'>
-            <View className='name'>{e.name}</View>
-            <View className='progress'>训练进度：<View className='progress_bar'><AtProgress percent={e.progress} status='progress' /></View></View>
-            <View className='train_time'>训练时间：{e.train_time}h</View>
+            <View className='name'>{name}</View>
+            <View className='progress'>训练进度：<View className='progress_bar'><AtProgress percent={40} status='progress' /></View></View>
+            <View className='train_time'>训练时间：{1.0}h</View>
         </View>
     </View>
-)
+    )
+}
 
 export default () => {
-    const res = [
-        {
-            id: 1,
-            image: user_img,
-            name:'刀具表面缺陷检测及分类方法',
-            progress: 47,
-            train_time:1.06,
-        },{
-            id: 2,
-            image: user_img,
-            name:'刀具表面缺陷检测及分类方法',
-            progress: 80,
-            train_time:1.06,
-        },{
-            id: 3,
-            image: user_img,
-            name:'刀具表面缺陷检测及分类方法',
-            progress: 20,
-            train_time:1.06,
-        },
-        {
-            id: 4,
-            image: user_img,
-            name:'刀具表面缺陷检测及分类方法',
-            progress: 48,
-            train_time:1.06,
-        },
-        {
-            id: 5,
-            image: user_img,
-            name:'刀具表面缺陷检测及分类方法',
-            progress: 7,
-            train_time:1.06,
-        },
-    ]
+    const [taskList, setTaskList] = useState([])
+
+    // 请求加入的任务列表
+    useEffect(async()=>{
+        let res = await request({url:'/v1/admin/task/taskJoinList',method:'get',data:{page:1,limit:100,userName:"zhangruiyuan"}})
+        if (res instanceof Error)return
+        setTaskList(res.data)
+    },[])
+
+   
     return(
         <View className='doing'>
-            { res.map(e=><Item key={e.id} e={e} />) }
+            { taskList.map(e=><Item key={e.id} data={e} />) }
             <AtDivider content='没有更多了' />
         </View>
     )
