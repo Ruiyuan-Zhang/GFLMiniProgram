@@ -70,6 +70,9 @@ func WebRegisterValidator() {
 		// 任务用户关系 检查是否存在
 		key = consts.ValidatorPrefix + "TaskUserHave"
 		containers.Set(key, task.TaskUserHave{})
+		// 已经加入的任务列表
+		key = consts.ValidatorPrefix + "TaskJoinList"
+		containers.Set(key, task.TaskJoinList{})
 	}
 
 	// 数据格式管理

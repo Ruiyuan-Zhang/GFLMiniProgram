@@ -124,6 +124,8 @@ func InitWebRouter() *gin.Engine {
 				task.POST("taskUserAdd", validatorFactory.Create(consts.ValidatorPrefix+"TaskUserAdd"))
 				// 任务用户关系 检查是否存在
 				task.POST("taskUserHave", validatorFactory.Create(consts.ValidatorPrefix+"TaskUserHave"))
+				// 查询某个用户已经加入的任务列表
+				task.GET("taskJoinList", validatorFactory.Create(consts.ValidatorPrefix+"TaskJoinList"))
 
 			}
 

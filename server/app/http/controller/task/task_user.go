@@ -29,3 +29,14 @@ func (t *Task) TaskUserHave(c *gin.Context) {
 		response.Fail(c, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
 	}
 }
+
+func (t *Task) TaskJoinList(c *gin.Context) {
+	user_name := c.GetString(consts.ValidatorPrefix + "userName")
+	var limit = c.GetFloat64(consts.ValidatorPrefix + "limit")
+	var limitStart = (c.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
+	if taskUser := task.CreatTaskUserFactory("").JoinList(user_name, int(limitStart), int(limit)); taskUser != nil {
+		response.Success(c, consts.CurdStatusOkMsg, gin.H{"data": taskUser})
+	} else {
+		response.Fail(c, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
+	}
+}
