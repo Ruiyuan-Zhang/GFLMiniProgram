@@ -11,7 +11,7 @@ const Item = ({data}) =>{
     return (
     <View className='item' onClick={()=>{
         Taro.navigateTo({
-            url:'/pages/task_schedule/index'
+            url:'/pages/task_schedule/index?id='+id
         })
     }}>
         <Image className='image' mode='widthFix' src={file_url+file}></Image>

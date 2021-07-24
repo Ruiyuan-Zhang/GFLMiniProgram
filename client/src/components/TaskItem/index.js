@@ -2,7 +2,6 @@ import { View, Image } from '@tarojs/components'
 import {file_url} from '@/config'
 import { AtTag } from 'taro-ui'
 import Taro from '@tarojs/taro'
-
 import styles from './index.module.less'
 import { useEffect } from 'react'
 

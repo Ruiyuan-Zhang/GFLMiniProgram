@@ -1,9 +1,11 @@
 import { View,Text } from '@tarojs/components'
 import { AtButton, AtProgress } from 'taro-ui'
-// import TaroScript from "taro-script"
+import request from '@/utils/request'
 import Title from '@/components/TitleHandleData'
 import TaskItem from '@/components/TaskItem'
 import styles from './index.module.less'
+import { useEffect, useState } from 'react'
+import { getCurrentInstance } from '@tarojs/taro'
 // import main from './TensorFlow/main'
 // import fit from './fit/index'
 // import layer from './layer'
@@ -19,6 +21,7 @@ const train = ()=>{
     // load_model()
 }
 
+
 const Line = ({name,children,tail,mode='start'})=>{
     return (
         <View className={styles.line} >
@@ -31,6 +34,13 @@ const Line = ({name,children,tail,mode='start'})=>{
 }
 
 const Index = () =>{
+    const [task, setTask] = useState(null)
+    useEffect(async()=>{
+        const id = getCurrentInstance().router.params.id
+        let res = await request({url:`/v1/admin/task/detailWithFormat?id=${id}`,method:'get'})
+        if (res instanceof Error)return
+        setTask(res.data)
+    },[])
     return (
         <View className={styles.index}>
             <script>
@@ -39,7 +49,8 @@ const Index = () =>{
             <Title title='基于机器学习的刀具表面缺陷检测及分类方法' subtitle='任务进展详情'/>
             <View className={styles.section}>
                 <View className={styles.h2}>一、任务介绍</View>
-                <TaskItem />
+                {/* 这里需要先查询任务详细信息，然后再补充上 */}
+                {task&&<TaskItem data={task}/>}
             </View>
             <View className={styles.section}>
                 <View className={styles.h2}>二、本轮任务进展（第12轮）</View>
