@@ -45,6 +45,8 @@ CREATE TABLE tb_data_format (
     task_id VARCHAR(30)  NOT NULL COMMENT '任务编号',
     name VARCHAR(100) DEFAULT '' COMMENT '数据名称',
     type VARCHAR(100) DEFAULT '' COMMENT '数据类型',
+    tips VARCHAR(100) DEFAULT '' COMMENT '输入提示信息',
+    english_name VARCHAR(100) DEFAULT '' COMMENT '英文名称（标识符）',
     size VARCHAR(100) DEFAULT '28 28' COMMENT 'image数据尺寸',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
