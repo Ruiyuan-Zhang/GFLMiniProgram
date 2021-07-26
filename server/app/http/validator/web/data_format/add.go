@@ -17,24 +17,24 @@ type Add struct {
 	BaseField
 }
 
-func (a Add)CheckParams(c*gin.Context)  {
-	var as[]Add
-	if err := c.ShouldBind(&as); err != nil{
+func (a Add) CheckParams(c *gin.Context) {
+	var as []Add
+	if err := c.ShouldBind(&as); err != nil {
 		errs := gin.H{
-			"tips": "DataFormatAdd参数校验失败，参数不符合规定，name 长度(>=1)、maxTimesPerClient 长度（）、不允许添加",
+			"tips": "DataFormatAdd参数校验失败，参数不符合规定",
 			"err":  err.Error(),
 		}
-		response.ErrorParam(c,errs)
+		response.ErrorParam(c, errs)
 		return
 	}
 
 	var extraAddBindDataContext *gin.Context
-	for i:=0;i<len(as);i++{
-		extraAddBindDataContext = data_transfer.DataArrayAddContext(i,as[i], consts.ValidatorPrefix, c)
+	for i := 0; i < len(as); i++ {
+		extraAddBindDataContext = data_transfer.DataArrayAddContext(i, as[i], consts.ValidatorPrefix, c)
 		if extraAddBindDataContext == nil {
 			response.ErrorSystem(c, "TaskAdd表单验证器json化失败", as[i])
 		}
 	}
 
-	(&controller.DataFormat{}).Add(len(as),extraAddBindDataContext)
+	(&controller.DataFormat{}).Add(len(as), extraAddBindDataContext)
 }
