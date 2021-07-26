@@ -8,6 +8,8 @@ const index = ({next}) =>{
         {title: 'name', dataIndex: 'name', key:'name'},
         {title: 'type', dataIndex:'type', key:'type'},
         {title: 'size', dataIndex:'size', key:'size'},
+        {title: 'englishName', dataIndex:'englishName', key:'englishName'},
+        {title: 'tips', dataIndex:'tips', key:'tips'},
         {title: 'action', dataIndex:'name', key:'action', render: (text,record,index)=>{
             return(
                 <span onClick={ () =>{
@@ -19,8 +21,8 @@ const index = ({next}) =>{
         }},
     ]
     const dataSource = [
-        {key: 1,name:'图片',type:'image',size:'28 28'},
-        {key: 2,name:'值',type:'number'},
+        {key: 1,name:'图片',englishName:'image', tips:'请输入正确值',type:'image',size:'28 28'},
+        {key: 2,name:'值',englishName:'value',tips:'请输入正确值',type:'number'},
     ]
     const [data, setData] = useState(dataSource)
     const [modal, setModal] = useState(false)
@@ -51,6 +53,7 @@ const index = ({next}) =>{
                     }}
                 >
                     <Form.Item label='name' name='name'><Input placeholder='输入数据项名称'></Input></Form.Item>
+                    <Form.Item label='englishName' name='englishName'><Input placeholder='输入数据项英文名称（数据标识符）'></Input></Form.Item>
                     <Form.Item label='type' name='type'><Select placeholder='选择数据类型'>
                         <Select.Option value='image'>image</Select.Option>
                         <Select.Option value='number'>number</Select.Option>
@@ -58,6 +61,7 @@ const index = ({next}) =>{
                         <Select.Option value='string'>string</Select.Option>
                     </Select></Form.Item>
                     <Form.Item label='size' name='size'><Input placeholder='尺寸只在type为image时有效'></Input></Form.Item>
+                    <Form.Item label='tips' name='tips'><Input placeholder='请输入该数据项提示信息'></Input></Form.Item>
                 </Form>
             </Modal>
             <div className={styles.btn}>

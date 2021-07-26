@@ -3,6 +3,7 @@ import Loading from '@/components/Loading';
 import { extend } from 'umi-request';
 import ReactDOM from 'react-dom';
 import { message } from 'ppfish';
+import { history } from 'umi';
 
 //*********************************************   拦截器部分   *********************************************//
 let retained = 0;
@@ -69,12 +70,19 @@ const iniRequest = request=>{
 // 构造一个request对象
 const requestWrap = ({errorHandler, type='json' })=>{
   
-  if (!errorHandler) errorHandler = e=>{
+  if (!errorHandler) errorHandler = e =>{
     // 处理错误信息
     console.log('请在src/utils/request.js文件中配置：处理出错');
     const { request,response,data } = e;
     if (response && response.status) {
+      console.log(response)
       message.error(data.msg)
+
+      // token过期
+      if(response.status == 401){
+        history.push({pathname:'/user/login'})
+      }
+      
     }
     return new Error();
   }

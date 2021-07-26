@@ -17,6 +17,7 @@ const Index = () => {
 
   useEffect(async()=>{
     let res = await requestWrap({}).get('/v1/admin/category/list?page=1&limit=5')
+    if (res instanceof Error)return 
     setData(res.data.list)
   },[])
 
