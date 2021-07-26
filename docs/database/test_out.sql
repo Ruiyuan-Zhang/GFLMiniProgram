@@ -1,3 +1,8 @@
+CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8;
+
+USE `test`;
+
+
 -- MySQL dump 10.13  Distrib 8.0.22, for osx10.15 (x86_64)
 --
 -- Host: 127.0.0.1    Database: test
@@ -69,7 +74,7 @@ CREATE TABLE `tb_category` (
 
 LOCK TABLES `tb_category` WRITE;
 /*!40000 ALTER TABLE `tb_category` DISABLE KEYS */;
-INSERT INTO `tb_category` VALUES ('1','机器学习','机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。','/images/category/1.webp','2021-07-23 11:23:06','2021-07-23 11:23:06'),('2','计算机视觉','计算机视觉是一门研究如何使机器“看”的科学，更进一步的说，就是是指用摄影机和电脑代替人眼对目标进行识别、跟踪和测量等机器视觉，并进一步做图形处理，使电脑处理成为更适合人眼观察或传送给仪器检测的图像。作为一个科学学科，计算机视觉研究相关的理论和技术，试图建立能够从图像或者多维数据中获取‘信息’的人工智能系统。这里所 指的信息指Shannon定义的，可以用来帮助做一个“决定”的信息。因为感知可以看作是从感官信号中提 取信息，所以计算机视觉也可以看作是研究如何使人工系统从图像或多维数据中“感知”的科学。','/images/category/2.webp','2021-07-23 11:23:06','2021-07-23 11:23:06'),('3','语音识别','语音识别是一门交叉学科。近二十年来，语音识别技术取得显著进步，开始从实验室走向市场。人们预计，未来10年内，语音识别技术将进入工业、家电、通信、汽车电子、医疗、家庭服务、消费电子产品等各个领域。 语音识别听写机在一些领域的应用被美国新闻界评为1997年计算机发展十件大事之一。很多专家都认为语音识别技术是3000年至3010年间信息技术领域十大重要的科技发展技术之一。 语音识别技术所涉及的领域包括：信号处理、模式识别、概率论和信息论、发声机理和听觉机理、人工智能等等。','/images/category/3.webp','2021-07-23 11:23:06','2021-07-23 11:23:06'),('4','自然语言处理','自然语言处理( Natural Language Processing, NLP)是计算机科学领域与人工智能领域中的一个重要方向。它研究能实现人与计算机之间用自然语言进行有效通信的各种理论和方法。自然语言处理是一门融语言学、计算机科学、数学于一体的科学。因此，这一领域的研究将涉及自然语言，即人们日常使用的语言，所以它与语言学的研究有着密切的联系，但又有重要的区别。自然语言处理并不是一般地研究自然语言，而在于研制能有效地实现自然语言通信的计算机系统，特别是其中的软件系统。因而它是计算机科学的一部分 [2]  。','/images/category/4.jpeg','2021-07-23 11:23:06','2021-07-23 11:23:06');
+INSERT INTO `tb_category` VALUES ('1','机器学习','机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。','/images/category/1.webp','2021-07-23 19:46:27','2021-07-23 19:46:27'),('2','计算机视觉','计算机视觉是一门研究如何使机器“看”的科学，更进一步的说，就是是指用摄影机和电脑代替人眼对目标进行识别、跟踪和测量等机器视觉，并进一步做图形处理，使电脑处理成为更适合人眼观察或传送给仪器检测的图像。作为一个科学学科，计算机视觉研究相关的理论和技术，试图建立能够从图像或者多维数据中获取‘信息’的人工智能系统。这里所 指的信息指Shannon定义的，可以用来帮助做一个“决定”的信息。因为感知可以看作是从感官信号中提 取信息，所以计算机视觉也可以看作是研究如何使人工系统从图像或多维数据中“感知”的科学。','/images/category/2.webp','2021-07-23 19:46:27','2021-07-23 19:46:27'),('3','语音识别','语音识别是一门交叉学科。近二十年来，语音识别技术取得显著进步，开始从实验室走向市场。人们预计，未来10年内，语音识别技术将进入工业、家电、通信、汽车电子、医疗、家庭服务、消费电子产品等各个领域。 语音识别听写机在一些领域的应用被美国新闻界评为1997年计算机发展十件大事之一。很多专家都认为语音识别技术是3000年至3010年间信息技术领域十大重要的科技发展技术之一。 语音识别技术所涉及的领域包括：信号处理、模式识别、概率论和信息论、发声机理和听觉机理、人工智能等等。','/images/category/3.webp','2021-07-23 19:46:27','2021-07-23 19:46:27'),('4','自然语言处理','自然语言处理( Natural Language Processing, NLP)是计算机科学领域与人工智能领域中的一个重要方向。它研究能实现人与计算机之间用自然语言进行有效通信的各种理论和方法。自然语言处理是一门融语言学、计算机科学、数学于一体的科学。因此，这一领域的研究将涉及自然语言，即人们日常使用的语言，所以它与语言学的研究有着密切的联系，但又有重要的区别。自然语言处理并不是一般地研究自然语言，而在于研制能有效地实现自然语言通信的计算机系统，特别是其中的软件系统。因而它是计算机科学的一部分 [2]  。','/images/category/4.jpeg','2021-07-23 19:46:27','2021-07-23 19:46:27');
 /*!40000 ALTER TABLE `tb_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,6 +89,7 @@ CREATE TABLE `tb_client_model` (
   `global_model_id` varchar(20) NOT NULL COMMENT '全局模型编号',
   `id` varchar(20) NOT NULL COMMENT '客户端模型编号',
   `task_id` varchar(20) NOT NULL COMMENT '任务编号',
+  `user_id` VARCHAR(20) NOT NULL COMMENT '用户编号',
   `file` varchar(100) DEFAULT '' COMMENT '全局模型地址',
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -124,7 +130,7 @@ CREATE TABLE `tb_data_format` (
 
 LOCK TABLES `tb_data_format` WRITE;
 /*!40000 ALTER TABLE `tb_data_format` DISABLE KEYS */;
-INSERT INTO `tb_data_format` VALUES ('603065426494103552','603065426460549120','图片','image','28 28','2021-07-23 11:26:42','2021-07-23 11:26:42'),('603065426494103553','603065426460549120','值','number','','2021-07-23 11:26:42','2021-07-23 11:26:42');
+INSERT INTO `tb_data_format` VALUES ('603192108907503616','603192108861366272','图片','image','28 28','2021-07-23 19:50:05','2021-07-23 19:50:05'),('603192108907503617','603192108861366272','值','number','','2021-07-23 19:50:05','2021-07-23 19:50:05'),('603192108907503618','603192108861366272','辅助数据1','number','-','2021-07-23 19:50:05','2021-07-23 19:50:05'),('603192108907503619','603192108861366272','辅助数据2','number','-','2021-07-23 19:50:05','2021-07-23 19:50:05'),('603192108907503620','603192108861366272','辅助数据3','number','-','2021-07-23 19:50:05','2021-07-23 19:50:05'),('603192108907503621','603192108861366272','辅助数据4','number','-','2021-07-23 19:50:05','2021-07-23 19:50:05'),('603225433911074816','603225433852354560','图片','image','28 28','2021-07-23 22:02:30','2021-07-23 22:02:30'),('603225433911074817','603225433852354560','值','number','','2021-07-23 22:02:30','2021-07-23 22:02:30'),('603225433911074818','603225433852354560','辅助数据1','string','','2021-07-23 22:02:30','2021-07-23 22:02:30'),('603225433911074819','603225433852354560','辅助数据2','string','','2021-07-23 22:02:30','2021-07-23 22:02:30'),('603225433911074820','603225433852354560','辅助数据3','string','','2021-07-23 22:02:30','2021-07-23 22:02:30'),('603225433911074821','603225433852354560','辅助数据4','string','','2021-07-23 22:02:30','2021-07-23 22:02:30'),('603225433911074822','603225433852354560','辅助数据5','string','','2021-07-23 22:02:30','2021-07-23 22:02:30'),('603808783482757120','603808783403065344','图片','image','28 28','2021-07-25 12:40:32','2021-07-25 12:40:32'),('603808783482757121','603808783403065344','值','number','','2021-07-25 12:40:32','2021-07-25 12:40:32');
 /*!40000 ALTER TABLE `tb_data_format` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,7 +192,7 @@ CREATE TABLE `tb_oauth_access_tokens` (
 
 LOCK TABLES `tb_oauth_access_tokens` WRITE;
 /*!40000 ALTER TABLE `tb_oauth_access_tokens` DISABLE KEYS */;
-INSERT INTO `tb_oauth_access_tokens` VALUES (1,'1',1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJ6aGFuZ3J1aXl1YW4iLCJwaG9uZSI6IiIsImV4cCI6MTYyNzA2NDI1NCwibmJmIjoxNjI3MDM1NDQ0fQ.ZHiqmbug7TuLPs0VHSpMtQ_D6JV31Ngvkigi7yuWVac','login','[*]',0,'::1','2021-07-23 18:17:34','2021-07-23 18:17:34','2021-07-24 02:17:34');
+INSERT INTO `tb_oauth_access_tokens` VALUES (1,'1',1,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJ6aGFuZ3J1aXl1YW4iLCJwaG9uZSI6IiIsImV4cCI6MTYyNzA3MzQzMywibmJmIjoxNjI3MDQ0NjIzfQ.dgfHx075tok__yZpfGd3pqnbkYQWZuQsZBA6MMCAaMI','login','[*]',0,'::1','2021-07-23 20:50:33','2021-07-23 20:50:33','2021-07-24 04:50:33');
 /*!40000 ALTER TABLE `tb_oauth_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,8 +224,37 @@ CREATE TABLE `tb_task` (
 
 LOCK TABLES `tb_task` WRITE;
 /*!40000 ALTER TABLE `tb_task` DISABLE KEYS */;
-INSERT INTO `tb_task` VALUES ('603065426460549120','1','手写数字识别','手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别手写数字识别','/images/back/PzA4lPZf9kkcFuLDjODh.webp','/models/globalModel/YUoazA29uS3n9v1tcwB6.json','lr=0.1','4','2021-07-23 11:26:42','2021-07-23 11:26:42');
+INSERT INTO `tb_task` VALUES ('603192108861366272','1','手写数字识别','描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别描述手写数字识别','/images/back/mStsKM4XXTbuxf1SrRUY.webp','/models/globalModel/0KebwzKLUjXIKu4619UJ.json','lr=0.1','7','2021-07-23 19:50:05','2021-07-23 19:50:05'),('603225433852354560','2','鸢尾花分类','描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类描述鸢尾花分类','/images/back/GveSLN0nRjM2IHs0vsqS.jpeg','/models/globalModel/lh3fOGVq2iLpaunufZDR.json','lr=0.1','4','2021-07-23 22:02:30','2021-07-23 22:02:30'),('603808783403065344','1','波士顿房价预测','波士顿房屋这些数据于1978年开始统计，共506个数据点，涵盖了麻省波士顿不同郊区房屋14种特征的信息。波士顿房屋这些数据于1978年开始统计，共506个数据点，涵盖了麻省波士顿不同郊区房屋14种特征的信息。','/images/back/rDqCtol4JzAJPgNrwqVR.webp','/models/globalModel/7EixkV9ogHXnJgPV5Cnn.json','lr=0.1','3','2021-07-25 12:40:32','2021-07-25 12:40:32');
 /*!40000 ALTER TABLE `tb_task` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_task_user`
+--
+
+DROP TABLE IF EXISTS `tb_task_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_task_user` (
+  `id` varchar(20) NOT NULL COMMENT '任务-用户关系表编号',
+  `task_id` varchar(20) NOT NULL COMMENT '任务编号',
+  `task_name` varchar(100) DEFAULT '' COMMENT '联邦学习任务名称',
+  `user_id` varchar(20) NOT NULL COMMENT '用户编号',
+  `user_name` varchar(100) DEFAULT '' COMMENT '用户名称',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_task_user`
+--
+
+LOCK TABLES `tb_task_user` WRITE;
+/*!40000 ALTER TABLE `tb_task_user` DISABLE KEYS */;
+INSERT INTO `tb_task_user` VALUES ('603211140125696000','603192108861366272','手写数字识别','1','zhangruiyuan','2021-07-23 21:05:42','2021-07-23 21:05:42'),('603594798305124352','603225433852354560','鸢尾花分类','1','zhangruiyuan','2021-07-24 22:30:14','2021-07-24 22:30:14');
+/*!40000 ALTER TABLE `tb_task_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -252,7 +287,7 @@ CREATE TABLE `tb_users` (
 
 LOCK TABLES `tb_users` WRITE;
 /*!40000 ALTER TABLE `tb_users` DISABLE KEYS */;
-INSERT INTO `tb_users` VALUES (1,'zhangruiyuan','a53ec42f2a2914067f6119599cae318b','','',1,'','2021-07-23 11:23:06','','0','2021-07-23 11:23:06','2021-07-23 11:23:06');
+INSERT INTO `tb_users` VALUES (1,'zhangruiyuan','a53ec42f2a2914067f6119599cae318b','','',1,'','2021-07-23 19:46:27','','0','2021-07-23 19:46:27','2021-07-23 19:46:27');
 /*!40000 ALTER TABLE `tb_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -265,4 +300,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-23 19:38:27
+-- Dump completed on 2021-07-25 17:38:06

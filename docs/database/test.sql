@@ -8,12 +8,13 @@ USE `test`;
 
 DROP TABLE IF EXISTS tb_category;
 DROP TABLE IF EXISTS tb_task;
+DROP TABLE IF EXISTS tb_task_user;
 DROP TABLE IF EXISTS tb_data_format;
 DROP TABLE IF EXISTS tb_global_model;
 DROP TABLE IF EXISTS tb_client_model;
 
 CREATE TABLE tb_category (
-    id VARCHAR(20) UNIQUE NOT NULL COMMENT '分类编号',
+    id VARCHAR(30) UNIQUE NOT NULL COMMENT '分类编号',
     name VARCHAR(100) DEFAULT '' COMMENT '联邦学习分类名称',
     description VARCHAR(3000) DEFAULT '' COMMENT '分类介绍',
     file VARCHAR(100) DEFAULT '' COMMENT '封面图片地址',
@@ -27,21 +28,21 @@ INSERT INTO tb_category (id,name,description,file)VALUES (3, '语音识别','语
 INSERT INTO tb_category (id,name,description,file)VALUES (4, '自然语言处理','自然语言处理( Natural Language Processing, NLP)是计算机科学领域与人工智能领域中的一个重要方向。它研究能实现人与计算机之间用自然语言进行有效通信的各种理论和方法。自然语言处理是一门融语言学、计算机科学、数学于一体的科学。因此，这一领域的研究将涉及自然语言，即人们日常使用的语言，所以它与语言学的研究有着密切的联系，但又有重要的区别。自然语言处理并不是一般地研究自然语言，而在于研制能有效地实现自然语言通信的计算机系统，特别是其中的软件系统。因而它是计算机科学的一部分 [2]  。','/images/category/4.jpeg');
 
 CREATE TABLE tb_task (
-    id VARCHAR(20) UNIQUE NOT NULL COMMENT '任务编号',
-    category_id VARCHAR(20) NOT NULL COMMENT '分类编号',
+    id VARCHAR(30) UNIQUE NOT NULL COMMENT '任务编号',
+    category_id VARCHAR(30) NOT NULL COMMENT '分类编号',
     name VARCHAR(100) DEFAULT '' COMMENT '联邦学习任务名称',
     description VARCHAR(3000) DEFAULT '' COMMENT '联邦学习描述',
     file VARCHAR(100) DEFAULT '' COMMENT '封面图片地址',
     init_model_file VARCHAR(100) DEFAULT '' COMMENT '初始化文件地址',
     super_params VARCHAR(1000) DEFAULT '' COMMENT '超参数设置',
-    max_times_per_client VARCHAR(20) DEFAULT 2 COMMENT '每个客户端可以参与的训练的次数',
+    max_times_per_client VARCHAR(30) DEFAULT 2 COMMENT '每个客户端可以参与的训练的次数',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE tb_data_format (
-    id VARCHAR(20) NOT NULL COMMENT '数据格式编号',
-    task_id VARCHAR(20)  NOT NULL COMMENT '任务编号',
+    id VARCHAR(30) NOT NULL COMMENT '数据格式编号',
+    task_id VARCHAR(30)  NOT NULL COMMENT '任务编号',
     name VARCHAR(100) DEFAULT '' COMMENT '数据名称',
     type VARCHAR(100) DEFAULT '' COMMENT '数据类型',
     size VARCHAR(100) DEFAULT '28 28' COMMENT 'image数据尺寸',
@@ -50,9 +51,9 @@ CREATE TABLE tb_data_format (
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE tb_global_model (
-    id VARCHAR(20) UNIQUE NOT NULL COMMENT '全局模型编号',
-    last_global_model VARCHAR(20) COMMENT '延续的上一个全局模型',
-    task_id VARCHAR(20) NOT NULL COMMENT '任务名称',
+    id VARCHAR(30) UNIQUE NOT NULL COMMENT '全局模型编号',
+    last_global_model VARCHAR(30) COMMENT '延续的上一个全局模型',
+    task_id VARCHAR(30) NOT NULL COMMENT '任务名称',
     file VARCHAR(100) DEFAULT '' COMMENT '全局模型地址',
     client_model_ids VARCHAR(1000) DEFAULT '' COMMENT '所引用的客户端模型',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -60,19 +61,19 @@ CREATE TABLE tb_global_model (
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE tb_client_model (
-    global_model_id VARCHAR(20) NOT NULL COMMENT '全局模型编号',
-    id VARCHAR(20) UNIQUE NOT NULL COMMENT '客户端模型编号',
-    task_id VARCHAR(20)  NOT NULL COMMENT '任务编号',
+    global_model_id VARCHAR(30) NOT NULL COMMENT '全局模型编号',
+    id VARCHAR(30) UNIQUE NOT NULL COMMENT '客户端模型编号',
+    task_id VARCHAR(30)  NOT NULL COMMENT '任务编号',
     file VARCHAR(100) DEFAULT '' COMMENT '全局模型地址',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE tb_task_user (
-    id VARCHAR(20) UNIQUE NOT NULL COMMENT '任务-用户关系表编号',
-    task_id VARCHAR(20)  NOT NULL COMMENT '任务编号',
+    id VARCHAR(30) UNIQUE NOT NULL COMMENT '任务-用户关系表编号',
+    task_id VARCHAR(30)  NOT NULL COMMENT '任务编号',
     task_name VARCHAR(100) DEFAULT '' COMMENT '联邦学习任务名称',
-    user_id VARCHAR(20) NOT NULL COMMENT '用户编号',
+    user_id VARCHAR(30) NOT NULL COMMENT '用户编号',
     user_name VARCHAR(100) DEFAULT '' COMMENT '用户名称',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -93,7 +94,7 @@ CREATE TABLE `tb_users` (
   `remark` VARCHAR(1000) DEFAULT '' COMMENT '备注',
   `last_login_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `last_login_ip` CHAR(100) DEFAULT '' COMMENT '最近一次登录ip',
-  `login_times` VARCHAR(20) DEFAULT 0 COMMENT '累计登录次数',
+  `login_times` VARCHAR(30) DEFAULT 0 COMMENT '累计登录次数',
   `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -106,7 +107,7 @@ DROP TABLE IF EXISTS `tb_oauth_access_tokens`;
 
 CREATE TABLE `tb_oauth_access_tokens` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `fr_user_id` VARCHAR(20) DEFAULT 0 COMMENT '外键:tb_users表id',
+  `fr_user_id` VARCHAR(30) DEFAULT 0 COMMENT '外键:tb_users表id',
   `client_id` INT(10) UNSIGNED DEFAULT 1 COMMENT '普通用户的授权，默认为1',
   `token` VARCHAR(600) DEFAULT NULL,
   `action_name` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'login|refresh|reset表示token生成动作',
