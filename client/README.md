@@ -91,5 +91,4 @@ https://github.com/tensorflow/tfjs-converter/tree/master/tfjs-converter
 
 3. 将所有本地数据保存在 任务编号-任务名称命名的文件中 xxx_xxx.json
 
-数据格式为 列表
 

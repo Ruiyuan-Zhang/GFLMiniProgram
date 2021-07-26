@@ -2,7 +2,7 @@ import { Component } from 'react'
 // 引入全局的taro-ui样式
 import 'taro-ui/dist/style/index.scss'
 import './app.less'
-
+import { initData, getData,saveData,saveFileListToLocal } from '@/common/data'
 
 // 微信小程序插件
 var fetchWechat = require('fetch-wechat');
@@ -19,8 +19,7 @@ class App extends Component {
   }
  
   componentDidShow () {
-    // global.FormData = require('form-data')
-    // console.log(new FormData())
+
     plugin.configPlugin({
       // polyfill fetch function
       fetchFunc: fetchWechat.fetchFunc(),
@@ -31,6 +30,8 @@ class App extends Component {
       // provide webgl canvas
       canvas: wx.createOffscreenCanvas()
     });
+
+    initData()
 
   }
 

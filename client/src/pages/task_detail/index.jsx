@@ -13,10 +13,10 @@ import { getUser } from '@/common/user'
 
 export default () => {
     const columns = [
-        { title: '名称', dataIndex: 'dataFormatName'},
-        { title: '数据格式', dataIndex: 'dataFormatType'},
-        { title: '数据尺寸', dataIndex: 'dataFormatSize'},
-        { title: '数据格式编号', dataIndex: 'dataFormatTaskId'},
+        { title: '名称', dataIndex: 'name'},
+        { title: '数据格式', dataIndex: 'type'},
+        { title: '数据尺寸', dataIndex: 'size'},
+        { title: '数据格式编号', dataIndex: 'taskId'},
     ]
 
     const [task,setTask] = useState({})
@@ -55,8 +55,6 @@ export default () => {
                 userName:user.user_name,
             }})
             if (res instanceof Error) return
-            // 通过全局变量传递信息
-            globalVariables.nowAddTask = task
             Taro.navigateTo({url:'/pages/get_data/index?id='+task.idStr})
         }else {
             Taro.showToast({icon:'none', title:'请确认阅读《xxx用户数据隐私保护规范》'})

@@ -35,8 +35,8 @@ const Index = () => {
 
     const go_add_data = ()=>{
         globalVariables.get_data_TO_add_data = {
-            task:task,
-            files: files
+            task: task,
+            files: files.map(f=>f.url)
         }
         /*
         Taro传递参数，文档写的真的不咋地！！！
@@ -49,7 +49,7 @@ const Index = () => {
 
     return (
         <View className='get_data'>
-            <Title title='基于机器学习的刀具表面缺陷检测及分类方法' subtitle='选择数据'/>
+            <Title title={task.name} subtitle='选择数据'/>
             <View className='files'>
                 <AtImagePicker multiple="multiple" files={files} onChange={onChange}/>
             </View>

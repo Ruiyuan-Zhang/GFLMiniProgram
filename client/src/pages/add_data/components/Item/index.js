@@ -1,10 +1,14 @@
 import {View} from '@tarojs/components'
+import { type } from 'os'
 import {useCallback, useEffect, useState} from 'react'
 import {AtAvatar, AtInput, AtIcon} from 'taro-ui'
 import './index.less'
 
-const Item = ({index, img, objs, handleLocalDataChange}) => {
-    const [data, setData] = useState({file:img})
+const Item = ({index, img, dataFormats, handleLocalDataChange}) => {
+    const fileName = dataFormats.filter(({type})=>type=='image')[0].englishName
+    let initData = {}
+    initData[fileName] = img
+    const [data, setData] = useState(initData)
     const [ifInput, setIfInput] = useState(false)
     const [ifNeedBack, setIfNeedBack] = useState(false)
     const setInput = () =>{
@@ -24,23 +28,23 @@ const Item = ({index, img, objs, handleLocalDataChange}) => {
             <AtIcon className='icon' value={!ifInput?'chevron-down':'chevron-up'} size='15' onClick={setInput}/>
             <View className={ifInput?'input':'no-input'}>
             {
-            ifInput?objs.map(({name, eglish_name, type, tips}) => (
+            ifInput?dataFormats.filter(({type})=>type!=='image').map(({name, idstr, type, englishName, tips}) => (
                     <AtInput
-                        key={eglish_name}
+                        key={idstr}
                         title={name}
-                        name={eglish_name}
+                        name={englishName}
                         type={type}
                         placeholder={tips}
-                        value={data[eglish_name]}
+                        value={data[englishName]}
                         onChange={v=>{
                             let nd = data
-                            nd[eglish_name] = v 
+                            nd[englishName] = v 
                             setData(nd)
                             handleLocalDataChange({index:index,data:nd})
                         }}
                     />
                 )):<View>
-                    {objs.map(({eglish_name})=>data[eglish_name]||'-').join('；')}
+                    {dataFormats.filter(({type})=>type!=='image').map(({englishName})=>data[englishName]||'-').join('；')}
                 </View>
             }
             </View>

@@ -53,6 +53,8 @@ const rgba2gray = (r,g,b,a) => (r*0.299+g*0.587+b*0.144)*a/255
  * @param {*} params https://taro-docs.jd.com/taro/docs/apis/canvas/canvasPutImageData/
  */
 const showImage = params =>{
+    // 需要视图对象如下
+    // <Canvas style='width: 300px; height: 200px;' canvasId='myCanvas' />
     Taro.canvasPutImageData(params)    
 }
 

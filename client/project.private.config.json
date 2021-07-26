@@ -1,0 +1,24 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "获取本机数据",
+          "pathName": "pages/get_data/index",
+          "query": "id=604359732458692608",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
