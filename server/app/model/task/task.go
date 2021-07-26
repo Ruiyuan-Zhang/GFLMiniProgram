@@ -39,20 +39,23 @@ func (c *TaskModel) TableName() string {
 }
 
 // 新增一项任务
-func (t *TaskModel) InsertData(c *gin.Context) (bool, TaskModel) {
+func (t *TaskModel) InsertData(c *gin.Context) *TaskModel {
 	var tmp TaskModel
 	if err := data_bind.ShouldBindFormDataToModel(c, &tmp); err == nil {
+
+		// 1. 插入任务对象
 		tmp.Id = strconv.FormatInt(variable.SnowFlake.GetId(), 10) // 后面的10表示10进制
 		if res := t.Create(&tmp); res.Error == nil {
-			return true, tmp
+			return &tmp
 		} else {
 			variable.ZapLog.Error("TaskModel 数据新增出错", zap.Error(res.Error))
+			return nil
 		}
-
 	} else {
 		variable.ZapLog.Error("TaskModel 数据绑定出错", zap.Error(err))
+		return nil
 	}
-	return false, tmp
+
 }
 
 // 查询任务列表
