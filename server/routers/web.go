@@ -135,6 +135,13 @@ func InitWebRouter() *gin.Engine {
 				// 添加数据格式
 				dataFormat.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"DataFormatAdd"))
 			}
+
+			// 模型管理
+			model := backend.Group("model/")
+			{
+				// 添加客户端训练的模型
+				model.POST("clientModelAdd", validatorFactory.Create(consts.ValidatorPrefix+"ClientModelAdd"))
+			}
 		}
 	}
 	return router

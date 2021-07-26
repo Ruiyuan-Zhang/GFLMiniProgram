@@ -7,6 +7,7 @@ import (
 	"goskeleton/app/http/validator/common/websocket"
 	"goskeleton/app/http/validator/web/category"
 	"goskeleton/app/http/validator/web/data_format"
+	"goskeleton/app/http/validator/web/model"
 	"goskeleton/app/http/validator/web/task"
 	"goskeleton/app/http/validator/web/users"
 )
@@ -79,5 +80,11 @@ func WebRegisterValidator() {
 	{
 		key = consts.ValidatorPrefix + "DataFormatAdd"
 		containers.Set(key, data_format.Add{})
+	}
+
+	// 模型管理
+	{
+		key = consts.ValidatorPrefix + "ClientModelAdd"
+		containers.Set(key, model.ClientModelAdd{})
 	}
 }

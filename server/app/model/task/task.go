@@ -42,8 +42,6 @@ func (c *TaskModel) TableName() string {
 func (t *TaskModel) InsertData(c *gin.Context) *TaskModel {
 	var tmp TaskModel
 	if err := data_bind.ShouldBindFormDataToModel(c, &tmp); err == nil {
-
-		// 1. 插入任务对象
 		tmp.Id = strconv.FormatInt(variable.SnowFlake.GetId(), 10) // 后面的10表示10进制
 		if res := t.Create(&tmp); res.Error == nil {
 			return &tmp
