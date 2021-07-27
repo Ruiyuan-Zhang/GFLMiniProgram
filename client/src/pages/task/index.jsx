@@ -1,12 +1,21 @@
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import { useState } from 'react'
-import TabBar from '@/components/TabBar'
-
+import Taro,{useDidShow} from '@tarojs/taro'
+import { TabIndexContext } from '../../store/tabIndex'
+import { useContext, useEffect } from 'react'
 import Doing from './components/doing'
 import './index.less'
 
 export default () => {
+  const {tabIndex, dispatch} = useContext(TabIndexContext)
+  useDidShow(() => {
+      dispatch({
+          type:'change',
+          payload: 'task'
+      })
+  })
+
   const tabList = [{ title: '进行中' }, { title: '已完成' }, { title: '已取消' }]
   const [current, setCurrent] = useState(0)
   return (
@@ -23,7 +32,6 @@ export default () => {
           <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'>标签页三的内容</View>
         </AtTabsPane>
       </AtTabs>
-      <TabBar current={2} />
     </View>
   )
 }

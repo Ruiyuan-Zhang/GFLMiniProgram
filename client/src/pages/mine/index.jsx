@@ -1,13 +1,19 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { View, Text } from '@tarojs/components'
 import { AtAvatar, AtInput } from 'taro-ui'
-import TabBar from '@/components/TabBar'
-
+import Taro,{useDidShow} from '@tarojs/taro'
+import { TabIndexContext } from '../../store/tabIndex'
 import user_img from '@/assets/images/user.png'
-
 import './index.less'
 
 export default () => {
+  const {tabIndex, dispatch} = useContext(TabIndexContext)
+  useDidShow(() => {
+      dispatch({
+          type:'change',
+          payload: 'mine'
+      })
+  })
 
   const [ts, setTs] = useState('127.0.0.1')
   const [tp, setTp] = useState('8080')
@@ -22,7 +28,6 @@ export default () => {
       <AtInput name='train_port' title='端口号' type='text' value={tp} onChange={setTp} />
       <AtInput name='aggregation_server' title='聚合服务器' type='text' value={as} onChange={setAs} />
       <AtInput name='aggregation_port' title='端口号' type='text' value={ap} onChange={setAp} />
-      <TabBar current={3}></TabBar>
     </View>
   )
 }

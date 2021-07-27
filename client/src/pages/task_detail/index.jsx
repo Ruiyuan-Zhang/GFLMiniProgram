@@ -110,7 +110,7 @@ export default () => {
             ?<>
                 <View className='goCheck'>
                     <AtButton type='primary' size='normal' onClick={()=>{
-                        Taro.navigateTo({url:'/pages/task/index'})
+                        Taro.switchTab({url:'/pages/task/index'})
                     }}>您已加入该任务，立即查看</AtButton>
                 </View>
             </>

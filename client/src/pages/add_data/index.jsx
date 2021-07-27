@@ -5,7 +5,6 @@ import Title from '@/components/TitleHandleData'
 import {globalVariables} from '@/common/enum'
 import Item from './components/Item'
 import './index.less'
-import test from './test/index'
 import { useState } from 'react'
 import { getData,saveData,saveFileListToLocal } from '@/common/data'
   
@@ -62,7 +61,9 @@ const Index = () => {
         }
         if (!ifHave)data.tasks.push(originTask)
         saveData(data)
-        Taro.navigateBack({delta:1})
+        // 添加训练数据 -> 添加数据（图片）界面 -> 补充数据界面
+        // 所以需要退回2个
+        Taro.navigateBack({delta:2})
     }
     
     return (

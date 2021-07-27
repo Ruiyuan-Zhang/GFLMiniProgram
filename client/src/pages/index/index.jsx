@@ -12,7 +12,7 @@ export default function Index (){
   
   useDidShow(()=>{
     setTimeout(()=>{
-      Taro.redirectTo({
+      Taro.switchTab({
         url: '/pages/home/index'
       })
     },1000)

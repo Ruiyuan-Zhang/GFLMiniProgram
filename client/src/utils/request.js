@@ -60,16 +60,16 @@ export default async function fetch(options) {
                 // token 相关 
                 if (+code === consts.StatusUnauthorized){
                     await shToast({title:'未鉴权'})
-                    Taro.navigateTo({url:'/pages/login/index'})
+                    Taro.reLaunch({url:'/pages/login/index'})
                 }else if (+code === consts.JwtTokenInvalid){
                     await shToast({title: '无效的token'})
-                    Taro.navigateTo({url:'/pages/login/index'})
+                    Taro.reLaunch({url:'/pages/login/index'})
                 }else if (+code === consts.JwtTokenExpired){
                     await shToast({title: '过期的token'})
-                    Taro.navigateTo({url:'/pages/login/index'})
+                    Taro.reLaunch({url:'/pages/login/index'})
                 }else if (+code === consts.JwtTokenFormatErrCode){
                     await shToast({title: 'token格式错误'})
-                    Taro.navigateTo({url:'/pages/login/index'})
+                    Taro.reLaunch({url:'/pages/login/index'})
                 }else{
                     shToast({title: msg||""})
                 }

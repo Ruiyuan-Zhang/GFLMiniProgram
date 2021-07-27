@@ -10,14 +10,19 @@ const index = () =>{
     const [imgUrl,setImgUrl] = useState()
     const [name,setName] = useState()
     const [pass,setPass] = useState()
+
     const login = async ()=>{
         if(name&&pass){
             let user = await fetch({url: '/v1/admin/users/login',data: {user_name:name,pass}})
             if (user instanceof Error)return
             saveUser(user)
-            Taro.navigateTo({url:'/pages/home/index'})
+            // 关闭所有界面 并转到首页界面
+            // 用在这里的原因：
+            // 用户的切换时，需要关闭原用户的界面信息，所以不能用switchTab
+            Taro.reLaunch({url:'/pages/home/index'})
         }
     }
+
     useEffect(async()=>{
         // 必须是在用户已经授权的情况下调用
         let user = await Taro.getUserInfo()
