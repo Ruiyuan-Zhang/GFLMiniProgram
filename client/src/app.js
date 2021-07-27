@@ -1,9 +1,12 @@
 // 引入全局的taro-ui样式
 import 'taro-ui/dist/style/index.scss'
 import './app.less'
+import Taro from '@tarojs/taro'
 import { initData, getData,saveData,saveFileListToLocal } from '@/common/data'
+import { globalVariables } from '@/common/enum'
 import { Component, useEffect, useReducer } from 'react'
 import {TabIndexContext,reducer,initState} from './store/tabIndex'
+
 
 // 微信小程序插件
 var fetchWechat = require('fetch-wechat');
@@ -11,7 +14,10 @@ var tf = require('@tensorflow/tfjs-core');
 // var webgl = require('@tensorflow/tfjs-backend-webgl');
 var plugin = requirePlugin('tfjsPlugin');
 
+// 全局首先执行的文件
 const index = props =>{
+
+  // 初始化
   const [state, dispatch] = useReducer(reducer, initState)
   useEffect(()=>{
     plugin.configPlugin({
@@ -24,9 +30,31 @@ const index = props =>{
       // provide webgl canvas
       canvas: wx.createOffscreenCanvas()
     });
-
     initData()
   },[])
+
+  // 初始化woker变量
+  useEffect(()=>{
+    // 初始化woker
+    const worker = Taro.createWorker('workers/index.js')
+    worker.postMessage({
+        action:'init'
+    })
+    // 监听woker传来的消息
+    worker.onMessage(function ({action,data}) {
+      console.log(action)
+      // 完成了一轮训练
+      if (action == 'doneTrain'){
+        // worker可以把训练的model放在data中
+        // 主线程将model数据放在
+        
+      }
+    }) 
+    globalVariables.worker = worker
+  },[])
+
+
+  
 
   return (
   <TabIndexContext.Provider value={{tabIndex: state, dispatch}}>

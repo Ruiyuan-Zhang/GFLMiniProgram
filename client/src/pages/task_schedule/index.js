@@ -8,11 +8,7 @@ import styles from './index.module.less'
 import { useEffect, useState } from 'react'
 import { getCurrentInstance } from '@tarojs/taro'
 import { getData,saveData,saveFileListToLocal,getDataList } from '@/common/data'
-
-
-const train = ()=>{
-
-}
+import { globalVariables } from '@/common/enum'
 
 
 const Line = ({name,children,tail,mode='start'})=>{
@@ -53,6 +49,14 @@ const Index = () =>{
         let list = getDataList({taskId,data})
         setLocalDataList(list)
     },[])
+
+    // 开始训练
+    const train = ()=>{
+        const worker = globalVariables.worker
+        worker.postMessage({
+            action:'train'
+        })
+    }
 
     // 提交测试数据
     const submitTestData = () => Taro.navigateTo({url:`/pages/get_data/index?id=${taskId}`})

@@ -36,6 +36,7 @@ let globalVariables = {
 
     // 获取数据界面向补充数据界面传递数据，这个传递是单项的
     get_data_TO_add_data: {}, 
+    worker: null,
     
 }
 

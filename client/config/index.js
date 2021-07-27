@@ -51,7 +51,24 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    // https://www.cnblogs.com/madlife/p/14801006.html
+    // taro 没有提供打包功能
+    webpackChain(chain, webpack) {
+      chain.merge({
+        plugin: {
+          copyPlugin: {
+            plugin: require('copy-webpack-plugin'),
+            args: [
+              { patterns: [
+                  { from: resolve(__dirname, '../src/workers'), to: 'workers' },
+                ] 
+              }
+            ],
+          },
+        },
+      });
+    },
   },
   h5: {
     publicPath: '/',

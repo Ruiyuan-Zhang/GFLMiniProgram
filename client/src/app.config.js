@@ -24,7 +24,8 @@ export default {
       "provider": "wx6afed118d9e81df9"
     }
   },
-  tabBar: {
+  "workers": "workers",
+  "tabBar": {
     custom:true,
     color: '#a1a7b3',
     selectedColor: '#1492ff',
