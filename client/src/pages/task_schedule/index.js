@@ -1,24 +1,17 @@
 import { View,Text } from '@tarojs/components'
 import { AtButton, AtProgress } from 'taro-ui'
+import Taro,{useDidShow} from '@tarojs/taro'
 import request from '@/utils/request'
 import Title from '@/components/TitleHandleData'
 import TaskItem from '@/components/TaskItem'
 import styles from './index.module.less'
 import { useEffect, useState } from 'react'
 import { getCurrentInstance } from '@tarojs/taro'
-// import main from './TensorFlow/main'
-// import fit from './fit/index'
-// import layer from './layer'
-// import seq from './sequential'
-// import load_model from './load_model'
+import { getData,saveData,saveFileListToLocal,getDataList } from '@/common/data'
 
 
 const train = ()=>{
-    // main()
-    // fit()
-    // layer()
-    // seq() 
-    // load_model()
+
 }
 
 
@@ -34,10 +27,12 @@ const Line = ({name,children,tail,mode='start'})=>{
 }
 
 const Index = () =>{
+    const taskId = getCurrentInstance().router.params.id
+
+    // 查询该任务的信息
     const [task, setTask] = useState(null)
     useEffect(async()=>{
-        const id = getCurrentInstance().router.params.id
-        let res = await request({url:`/v1/admin/task/detailWithFormat?id=${id}`,method:'get'})
+        let res = await request({url:`/v1/admin/task/detailWithFormat?id=${taskId}`,method:'get'})
         if (res instanceof Error)return
         let task = res.data
         task.id = task.idStr
@@ -47,12 +42,24 @@ const Index = () =>{
         })
         setTask(task)
     },[])
+
+    // 查询本地测试数据情况
+    const [localData,setLocalData] = useState()
+    const [localDataList,setLocalDataList] = useState()
+    useDidShow(() =>{
+        let data = getData()
+        setLocalData(data)
+        console.log(data)
+        let list = getDataList({taskId,data})
+        setLocalDataList(list)
+    },[])
+
+    // 提交测试数据
+    const submitTestData = () => Taro.navigateTo({url:`/pages/get_data/index?id=${taskId}`})
+
     return (
         <View className={styles.index}>
-            <script>
-                console.log(123)
-            </script>
-            <Title title='基于机器学习的刀具表面缺陷检测及分类方法' subtitle='任务进展详情'/>
+            <Title title={task&&task.name} subtitle='任务进展详情'/>
             <View className={styles.section}>
                 <View className={styles.h2}>一、任务介绍</View>
                 {/* 这里需要先查询任务详细信息，然后再补充上 */}
@@ -87,10 +94,10 @@ const Index = () =>{
                 </View>
                 <View className={styles.h3}>2. 贡献测试数据情况</View>
                 <View className={styles.content}>
-                    <Line name='已上传 138份' mode='end'>查看</Line>
-                    <Line name='已提交 11份' mode='end'>查看</Line>
-                    <Line name='已拒绝 11份' mode='end'>查看</Line>
-                    <AtButton className={styles.btn}  type='secondary'>提交测试数据</AtButton>
+                    <Line name={`本地 ${localDataList?localDataList.length:0}份`} mode='end'>查看</Line>
+                    <Line name='已贡献 0份' mode='end'>查看</Line>
+                    <Line name='已拒绝 0份' mode='end'>查看</Line>
+                    <AtButton className={styles.btn}  type='secondary' onClick={submitTestData}>提交测试数据</AtButton>
                 </View>
             </View>
         </View>

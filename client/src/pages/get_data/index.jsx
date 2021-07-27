@@ -42,7 +42,7 @@ const Index = () => {
         Taro传递参数，文档写的真的不咋地！！！
         最终我用的这个 https://www.cnblogs.com/qqcc1388/p/13541154.html
         */
-        Taro.redirectTo({
+        Taro.navigateTo({
             url:'/pages/add_data/index',
         })
     }

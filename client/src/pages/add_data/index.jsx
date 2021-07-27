@@ -31,9 +31,7 @@ const Index = () => {
      * 将新的数据集保存在微信小程序的本地文件中
      */
     const save_local_data_list = ({task,localDataList})=>{
-        console.log(localDataList)
         let data = getData()
-        console.log(data)
         let originTask = null
         data.tasks.forEach(t=>{
             if (t.idStr == task.idStr){

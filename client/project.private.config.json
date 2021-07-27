@@ -17,6 +17,12 @@
           "pathName": "pages/get_data/index",
           "query": "id=604359732458692608",
           "scene": null
+        },
+        {
+          "name": "pages/task_schedule/index",
+          "pathName": "pages/task_schedule/index",
+          "query": "id=604359732458692608",
+          "scene": null
         }
       ]
     }

@@ -36,7 +36,6 @@ export default () => {
         setTaskList(list)
     },[])
 
-   
     return(
         <View className='doing'>
             { taskList.map(e=><Item key={e.id} data={e} />) }
