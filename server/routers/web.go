@@ -139,8 +139,19 @@ func InitWebRouter() *gin.Engine {
 			// 模型管理
 			model := backend.Group("model/")
 			{
-				// 添加客户端训练的模型
-				model.POST("clientModelAdd", validatorFactory.Create(consts.ValidatorPrefix+"ClientModelAdd"))
+				// 客户端模型管理
+				clientModel := model.Group("client/")
+				{
+					// 添加客户端训练的模型
+					clientModel.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"ClientModelAdd"))
+				}
+
+				// 全局模型管理
+				globalModel := model.Group("global/")
+				{
+					// 获取全局模型列表
+					globalModel.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"GlobalModelList"))
+				}
 			}
 		}
 	}

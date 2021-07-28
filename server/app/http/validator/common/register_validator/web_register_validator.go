@@ -84,7 +84,11 @@ func WebRegisterValidator() {
 
 	// 模型管理
 	{
+		// 客户端模型 添加
 		key = consts.ValidatorPrefix + "ClientModelAdd"
 		containers.Set(key, model.ClientModelAdd{})
+		// 全局模型 查询列表
+		key = consts.ValidatorPrefix + "GlobalModelList"
+		containers.Set(key, model.GlobalModelList{})
 	}
 }

@@ -8,6 +8,7 @@ package model
 import (
 	"github.com/gin-gonic/gin"
 	"goskeleton/app/global/consts"
+	"goskeleton/app/http/controller/model"
 	"goskeleton/app/http/validator/core/data_transfer"
 	"goskeleton/app/utils/response"
 )
@@ -29,5 +30,8 @@ func (cm ClientModelAdd) CheckParams(c *gin.Context) {
 	if ec := data_transfer.DataAddContext(cm, consts.ValidatorPrefix, c); ec == nil {
 		response.ErrorSystem(c, "ClientModelAdd 表单验证器json化失败", "")
 		return
+	} else {
+		(&model.ClientModel{}).Add(ec)
 	}
+
 }

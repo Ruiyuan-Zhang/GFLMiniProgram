@@ -106,3 +106,14 @@ func (g *GlobalModel) ListWithClient(taskId string) (*[]GlobalModelView, error) 
 		return nil, errors.New("DetailWithClient 查询出错")
 	}
 }
+
+func (g *GlobalModel) List(taskId string, limitStart, limit int) []GlobalModelView {
+	sql := `select * from tb_global_model where task_id = ? limit ?, ?`
+	var gms []GlobalModelView
+	if res := g.Raw(sql, taskId, limitStart, limit).First(&gms); res.Error == nil {
+		return gms
+	} else {
+		variable.ZapLog.Error("GlobalModel List 查询出错", zap.Error(res.Error))
+		return nil
+	}
+}
