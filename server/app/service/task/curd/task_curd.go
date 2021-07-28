@@ -18,7 +18,7 @@ func (t *TaskCurd) Add(c *gin.Context) *task.TaskModel {
 	// 1. 插入任务对象
 	if tmp := task.CreatTaskFactory("").InsertData(c); tmp != nil {
 		// 2. 插入全局模型对象 首次插入时，上一个globalModel编号为taskId
-		if e := model2.CreatGlobalFactory("").Add(tmp.Id, tmp.Id, tmp.File); e == nil {
+		if e := model2.CreatGlobalFactory("").Add(tmp.Id, tmp.Id, tmp.InitModelFile); e == nil {
 			return tmp
 		} else {
 			return nil
