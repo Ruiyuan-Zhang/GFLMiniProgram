@@ -33,41 +33,41 @@
 data.json结构如下
 ```json
 {
-    userName: 'zhangruiyuan',
-    tasks:[
+    "userName": "zhangruiyuan",
+    "tasks":[
         {
-            id:'0001',
-            name:'mnist',
-            categoryId:'10001',
-            categoryName:'机器学习',
-            file:'/images/xxx.png',
-            description:'xxx',
-            initModelFile:'/files/xxx.json',
-            superParams:'lr=0.1',
-            maxTimesPerClient:'3',
-            createdAt:'2021-07-02',
-            dataFormats:[
+            "id":"0001",
+            "name":"mnist",
+            "categoryId":"10001",
+            "categoryName":"机器学习",
+            "file":"/images/xxx.png",
+            "description":"xxx",
+            "initModelFile":"/files/xxx.json",
+            "superParams":"lr=0.1",
+            "maxTimesPerClient":"3",
+            "createdAt":"2021-07-02",
+            "dataFormats":[
                 {
-                    taskId:'0001',
-                    id:'20001',
-                    type:'image',
-                    name:'image',
-                    size:'28 28',
-                    values: [                         // image/file文件地址，由前端生成
-                        '/task_taskId/data/xxxx.png',
-                        '/task_taskId/data/xxxx.jpg',
-                        '/task_taskId/data/xxxx.png',
+                    "taskId":"0001",
+                    "id":"20001",
+                    "type":"image",
+                    "name":"image",
+                    "size":"28 28",
+                    "values": [                         // image/file文件地址，由前端生成
+                        "/task_taskId/data/xxxx.png",
+                        "/task_taskId/data/xxxx.jpg",
+                        "/task_taskId/data/xxxx.png",
                     ]        
                 },{
-                    taskId:'0001',
-                    id:'20002',
-                    type:'number',
-                    name:'value',
-                    size:'-',
-                    value: [                          // number/string值，由前端生成
-                        '9',                   
-                        '8',                   
-                        '7',  
+                    "taskId":"0001",
+                    "id":"20002",
+                    "type":"number",
+                    "name":"value",
+                    "size":"-",
+                    "values": [                          // number/string值，由前端生成
+                        "9",                   
+                        "8",                   
+                        "7",  
                     ]              
                 }
             ]
@@ -88,11 +88,11 @@ data.json结构如下
 ```js
 // 使用数据文件获取数据进行训练
 const getDataList = (taskId) =>{
-    let res = require('./data.json')
+    let res = require("./data.json")
     let list = []
     let task = res.tasks.filter(t.id === taskId )
     if (task.length == 0){
-        return new Error('未找到该任务')
+        return new Error("未找到该任务")
     }
     task = task[0]
     // `task.dataFormats.length == 0` 表示研究者只使用用户本地的计算资源，而不是用数据资源，具体的逻辑还没有设计
@@ -110,11 +110,11 @@ const getDataList = (taskId) =>{
 
 // 返回样例如下
 list = [{
-    image:'/task_taskId/data/xxx.png',
-    value:'8'
+    image:"/task_taskId/data/xxx.png",
+    value:"8"
 },{
-    image:'/task_taskId/data/xxx.png',
-    value:'7'
+    image:"/task_taskId/data/xxx.png",
+    value:"7"
 }]
 
 ```
@@ -127,7 +127,7 @@ const dataDir = `${Taro.env.USER_DATA_PATH}/data.json`
 // 读取文件
 const getData = () =>{
     const fs = Taro.getFileSystemManager()
-    let data = fs.readFileSync(dataDir,'utf8')
+    let data = fs.readFileSync(dataDir,"utf8")
     data = JSON.parse(data)
     return data
 }
@@ -138,7 +138,7 @@ const saveData = data =>{
     fs.writeFileSync(
         dataDir,
         JSON.stringify(data),
-        'utf-8'
+        "utf-8"
     ) 
 }
 ```
