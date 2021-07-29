@@ -43,7 +43,7 @@ const imageCategory = async ({task,dataList,globalModelFile,onLoadModel,onIndexE
     })
 
     // 4. 使用回调函数 在每轮训练结束之后通过全局变量告知任务训练的情况
-    for (let i=0;i<100;i++){
+    for (let i=0;i<10;i++){
         const {history} = await model.fit(x_train,y_train,{
             batchSize:16,
             epochs:3,

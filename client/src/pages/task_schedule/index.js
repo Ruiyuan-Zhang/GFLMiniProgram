@@ -62,15 +62,13 @@ const Index = () =>{
 
     // 开始训练
     const train = async()=>{
-        const globalModelFile = globalModelList[globalModelList.length-1].file
+        const globalModel = globalModelList[globalModelList.length-1]
         globalVariables.task_schedule_TO_train={
             task:task,
             dataList:localDataList,
-            globalModelFile,
+            globalModel,
         }
         Taro.navigateTo({url:'/pages/train/index'})
-       
-        
     }
 
     // 提交测试数据

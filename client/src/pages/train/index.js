@@ -3,13 +3,18 @@ import { useEffect, useState } from 'react'
 import { AtTimeline } from 'taro-ui'
 import { init, train as doTrain } from '@/train'
 import { globalVariables } from '@/common/enum'
+import request from '@/utils/request'
 import Chart from './components/chart'
 import styles from './index.module.less'
 
 const index = () =>{
-    const {task,dataList,globalModelFile} = globalVariables.task_schedule_TO_train
+    const {task,dataList,globalModel} = globalVariables.task_schedule_TO_train
+    // console.log(globalModel)
+    const globalModelFile = globalModel.file
     const [chartData,setChartData] = useState([])
     const [timeLineData,setTimeLineData] = useState([])
+
+    // console.log(task)
 
     useEffect(async()=>{
         const addChartData = (index,loss) => {
@@ -24,7 +29,7 @@ const index = () =>{
         addTimeLineData("正在启动训练...")
         addTimeLineData("正在加载远程全局模型...")
         
-        let res = await doTrain({
+        let file = await doTrain({
             task,dataList,globalModelFile,
             onLoadModel: ()=>{
                 addTimeLineData("远程全局模型加载完毕")
@@ -40,12 +45,23 @@ const index = () =>{
         })
         addTimeLineData("训练结束")
         addTimeLineData(`客户端模型上传成功`)
+
+        // 提交本轮训练
+        let res = await request({
+            url:'/v1/admin/model/client/add',
+            data:{
+                globalModelId:globalModel.id,
+                taskId:task.id,
+                file
+            }
+        })
+        if (res instanceof Error)return
+        addTimeLineData(`客户端模型提交成功`)
     },[])
 
     return (
         <View className={styles.index}>
             <Chart data={chartData} name={task.name}/>
-            {/* https://taro-ui.jd.com/#/docs/timeline */}
             <View className={styles.timeLine}>
                 <AtTimeline items={timeLineData} />
             </View>
