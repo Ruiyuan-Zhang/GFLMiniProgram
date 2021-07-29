@@ -50,9 +50,9 @@ func (g *GlobalModel) Add(lastGlobalModel, taskId, file string) error {
 /**
 获取一个GlobalModel信息
 */
-func (g *GlobalModel) GetOne(id string) *GlobalModelView {
+func (g *GlobalModel) GetOne(id string) *GlobalModel {
 	sql := `select * from tb_global_model where id = ?`
-	var gm GlobalModelView
+	var gm GlobalModel
 	if res := g.Exec(sql, id).First(&gm); res.Error == nil {
 		return &gm
 	} else {
@@ -110,7 +110,7 @@ func (g *GlobalModel) ListWithClient(taskId string) (*[]GlobalModelView, error) 
 func (g *GlobalModel) List(taskId string, limitStart, limit int) []GlobalModelView {
 	sql := `select * from tb_global_model where task_id = ? limit ?, ?`
 	var gms []GlobalModelView
-	if res := g.Raw(sql, taskId, limitStart, limit).First(&gms); res.Error == nil {
+	if res := g.Raw(sql, taskId, limitStart, limit).Find(&gms); res.Error == nil {
 		return gms
 	} else {
 		variable.ZapLog.Error("GlobalModel List 查询出错", zap.Error(res.Error))

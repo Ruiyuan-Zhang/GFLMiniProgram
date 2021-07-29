@@ -17,7 +17,7 @@ type ClientModelCurd struct {
 // 添加一条客户端模型
 func (cm *ClientModelCurd) InsertData(c *gin.Context) error {
 	// 1. 插入一条clientModel数据
-	if tmp := model.CreatClientModelFactory("").InsertData(c); tmp == nil {
+	if tmp := model.CreatClientModelFactory("").InsertData(c); tmp != nil {
 		// 2. 获取globalModel信息
 		if gm := model.CreatGlobalFactory("").GetOne(tmp.GlobalModelId); gm != nil {
 			// 3. 更改全局对象信息

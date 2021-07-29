@@ -11,8 +11,8 @@ type GlobalClient struct {
 }
 
 type GlobalModelView struct {
-	Id              string            `json:"id" primaryKey:"yes"`
-	LastGlobalModel string            `json:"categoryName" gorm:"column:last_global_model"`
+	Id              string            `json:"id" gorm:"column:id" primaryKey:"yes"`
+	LastGlobalModel string            `json:"lastGlobalModel" gorm:"column:last_global_model"`
 	TaskId          string            `json:"taskId" gorm:"column:task_id"`
 	File            string            `json:"file" gorm:"file"`
 	ClientModelIds  string            `json:"clientModelIds" gorm:"column:client_model_ids"`
