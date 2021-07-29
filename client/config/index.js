@@ -17,7 +17,9 @@ const config = {
     '@/components': resolve(__dirname, '..', 'src/components'),
     '@/config': resolve(__dirname, '..', 'src/config'),
     '@/utils': resolve(__dirname, '..', 'src/utils'),
-    '@/common': resolve(__dirname, '..', 'src/common')
+    '@/common': resolve(__dirname, '..', 'src/common'),
+    '@/train': resolve(__dirname, '..', 'src/train'),
+    '@/store': resolve(__dirname, '..', 'src/store')
   },
 
   defineConstants: {

@@ -5,12 +5,21 @@ const dataDir = `${Taro.env.USER_DATA_PATH}/data.json`
 
 // 初始化文件
 const initData = () =>{
-    let data = getData()
-    if (data)return
-    data = {
+    let data = ifHas(dataDir)?getData():{
         tasks: []
     }
     saveData(data)
+}
+
+// 判断文件是不是存在
+const ifHas = file =>{
+    const fs = Taro.getFileSystemManager()
+    try{
+        fs.accessSync(file)
+        return true
+    }catch(e){
+        return false
+    }
 }
 
 // 读取文件
@@ -71,7 +80,7 @@ const getDataList = ({taskId,data}) =>{
     }
     task.dataFormats.forEach((df,i)=>{
         df.values.forEach((v,j)=>{
-            list[j][df.name] = v
+            list[j][df.englishName] = v
         })
     })
     return list

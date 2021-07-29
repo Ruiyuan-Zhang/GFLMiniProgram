@@ -6,12 +6,12 @@ import { initData, getData,saveData,saveFileListToLocal } from '@/common/data'
 import { globalVariables } from '@/common/enum'
 import { Component, useEffect, useReducer } from 'react'
 import {TabIndexContext,reducer,initState} from './store/tabIndex'
-
+import { init, train } from '@/train'
 
 // 微信小程序插件
 var fetchWechat = require('fetch-wechat');
 var tf = require('@tensorflow/tfjs-core');
-// var webgl = require('@tensorflow/tfjs-backend-webgl');
+var webgl = require('@tensorflow/tfjs-backend-webgl');
 var plugin = requirePlugin('tfjsPlugin');
 
 // 全局首先执行的文件
@@ -26,11 +26,18 @@ const index = props =>{
       // inject tfjs runtime
       tf,
       // inject webgl backend
-      // webgl,
+      webgl,
       // provide webgl canvas
       canvas: wx.createOffscreenCanvas()
     });
+    
+  },[])
+
+  useEffect(()=>{
+    // 初始化任务文件
     initData()
+    // 初始化训练所需环境
+    init()
   },[])
 
   // 初始化woker变量
@@ -43,12 +50,6 @@ const index = props =>{
     // 监听woker传来的消息
     worker.onMessage(function ({action,data}) {
       console.log(action)
-      // 完成了一轮训练
-      if (action == 'doneTrain'){
-        // worker可以把训练的model放在data中
-        // 主线程将model数据放在
-        
-      }
     }) 
     globalVariables.worker = worker
   },[])

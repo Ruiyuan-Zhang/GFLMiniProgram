@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import IndexItem from '@/components/TaskItem/index'
 import icon_more from './icon_more.svg'
@@ -10,8 +10,7 @@ import request from '@/utils/request'
 const Index = ({title,more_url}) => {
 
     const [list, setList] = useState([])
-    useEffect(async()=>{
-        console.log(title)
+    useDidShow(async()=>{
         // if (title === '为您推荐任务'){
             let res = await request({
                 url: '/v1/admin/task/list?page=1&limit=3',

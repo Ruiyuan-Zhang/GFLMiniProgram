@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { getCurrentInstance } from '@tarojs/taro'
 import { getData,saveData,saveFileListToLocal,getDataList } from '@/common/data'
 import { globalVariables } from '@/common/enum'
+import { init, train as doTrain } from '@/train'
 
 
 const Line = ({name,children,tail,mode='start'})=>{
@@ -39,23 +40,36 @@ const Index = () =>{
         setTask(task)
     },[])
 
+    // 查询该任务的全局模型情况
+    const [globalModelList,setGlobalModelList] = useState([])
+    useEffect(async()=>{
+        let res = await request({method:'get',url:'/v1/admin/model/global/list',data:{
+            taskId, page:1, limit:100
+        }})
+        if (res instanceof Error) return
+        setGlobalModelList(res.list)
+    },[])
+
     // 查询本地测试数据情况
     const [localData,setLocalData] = useState()
     const [localDataList,setLocalDataList] = useState()
     useDidShow(() =>{
         let data = getData()
         setLocalData(data)
-        console.log(data)
         let list = getDataList({taskId,data})
         setLocalDataList(list)
     },[])
 
     // 开始训练
-    const train = ()=>{
+    const train = async()=>{
         const worker = globalVariables.worker
-        worker.postMessage({
-            action:'train'
+        const globalModelFile = globalModelList[globalModelList.length-1].file
+        doTrain({
+            task:task,
+            dataList:localDataList,
+            globalModelFile
         })
+        
     }
 
     // 提交测试数据

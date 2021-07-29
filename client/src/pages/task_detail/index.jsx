@@ -55,7 +55,7 @@ export default () => {
                 userName:user.user_name,
             }})
             if (res instanceof Error) return
-            Taro.navigateTo({url:'/pages/get_data/index?id='+task.idStr})
+            Taro.redirectTo({url:'/pages/get_data/index?id='+task.idStr})
         }else {
             Taro.showToast({icon:'none', title:'请确认阅读《xxx用户数据隐私保护规范》'})
         }

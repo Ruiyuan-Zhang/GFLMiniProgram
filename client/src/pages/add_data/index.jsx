@@ -30,7 +30,18 @@ const Index = () => {
     /**
      * 将新的数据集保存在微信小程序的本地文件中
      */
-    const save_local_data_list = ({task,localDataList})=>{
+    const save_local_data_list = async ({task,localDataList})=>{
+        console.log(localDataList)
+        // 将本地临时文件保存为本地缓存文件（可读不可写）
+        for (let ld of localDataList){
+            let url = ld.image
+            if (!url) break
+            let fs = Taro.getFileSystemManager()
+            let savedFilePath = await fs.saveFileSync(url)
+            ld.image = savedFilePath
+        }
+
+        
         let data = getData()
         let originTask = null
         data.tasks.forEach(t=>{
@@ -58,6 +69,9 @@ const Index = () => {
             }
         }
         if (!ifHave)data.tasks.push(originTask)
+
+        console.log(localDataList)
+        console.log(data)
         saveData(data)
         // 添加训练数据 -> 添加数据（图片）界面 -> 补充数据界面
         // 所以需要退回2个
