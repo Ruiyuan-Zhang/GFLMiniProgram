@@ -36,7 +36,15 @@ let globalVariables = {
 
     // 获取数据界面向补充数据界面传递数据，这个传递是单项的
     get_data_TO_add_data: {}, 
+
+    // 训练进行界面 点击开始训练进入 训练界面
+    task_schedule_TO_train: {},
+
+    // 本想用来用多线程的方式来处理本地训练，因为在woker中无法使用wx环境，所以放弃
     worker: null,
+
+
+
     
 }
 

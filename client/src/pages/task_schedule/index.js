@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { getCurrentInstance } from '@tarojs/taro'
 import { getData,saveData,saveFileListToLocal,getDataList } from '@/common/data'
 import { globalVariables } from '@/common/enum'
-import { init, train as doTrain } from '@/train'
+
 
 
 const Line = ({name,children,tail,mode='start'})=>{
@@ -62,13 +62,14 @@ const Index = () =>{
 
     // 开始训练
     const train = async()=>{
-        const worker = globalVariables.worker
         const globalModelFile = globalModelList[globalModelList.length-1].file
-        doTrain({
+        globalVariables.task_schedule_TO_train={
             task:task,
             dataList:localDataList,
-            globalModelFile
-        })
+            globalModelFile,
+        }
+        Taro.navigateTo({url:'/pages/train/index'})
+       
         
     }
 

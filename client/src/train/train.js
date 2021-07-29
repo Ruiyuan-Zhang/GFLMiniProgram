@@ -5,7 +5,9 @@ import { file_url } from '@/config'
 import stringRandom from 'string-random'
 
 // 执行图像分类任务
-const imageCategory = async ({task,dataList,globalModelFile}) =>{
+const imageCategory = async ({task,dataList,globalModelFile,onLoadModel,onIndexEpochEnd,onTrainEnd}) =>{
+    // 0. 数据预处理
+
     // 1. 处理数据集 转换成灰度的图片
     let x_train=[],y_train=[]
     let dfi = task.dataFormats.filter(df=>df.englishName=='image')[0]
@@ -31,6 +33,7 @@ const imageCategory = async ({task,dataList,globalModelFile}) =>{
     // 2. 获取在线的模型 进行训练
     let model = await tf_layers.loadLayersModel(file_url+globalModelFile)
     model.summary()
+    onLoadModel()
 
     // 3. 配置网络
     model.compile({
@@ -40,7 +43,7 @@ const imageCategory = async ({task,dataList,globalModelFile}) =>{
     })
 
     // 4. 使用回调函数 在每轮训练结束之后通过全局变量告知任务训练的情况
-    for (let i=0;i<10;i++){
+    for (let i=0;i<100;i++){
         const {history} = await model.fit(x_train,y_train,{
             batchSize:16,
             epochs:3,
@@ -52,8 +55,9 @@ const imageCategory = async ({task,dataList,globalModelFile}) =>{
                 }
             }]
         })
-        console.log("Loss after Epoch " + i + " : " + history.loss[0]);
+        onIndexEpochEnd({index:i,history})
     }
+    onTrainEnd()
 
     // 5. 将模型上传到互联网中
     let path = stringRandom(20)
@@ -61,6 +65,9 @@ const imageCategory = async ({task,dataList,globalModelFile}) =>{
         'http://localhost:3000/upload?path='+path, {requestInit: {method: 'post'}}
     ))
     path = '/models/clientModel/' + path + '/model.json'
+
+    // 6. 返回新client模型地址
+    return path
 }
 
 export  { imageCategory }

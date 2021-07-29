@@ -9,6 +9,7 @@ export default {
     'pages/get_data/index',
     'pages/add_data/index',
     'pages/task_schedule/index',
+    'pages/train/index',
     'pages/login/index'
 
   ],

@@ -22,11 +22,11 @@ const init = () =>{
 }
 
 const train = async data =>{
-    const {task,dataList,globalModelFile} = data
+    const {task} = data
     if (ifImageCategory(task)){
         // 图像分类任务
-        let res = await imageCategory({task,dataList,globalModelFile})
-        console.log(res)
+        let res = await imageCategory(data)
+        return res
         
     }else if (ifValuesValue(task)){
         // values-value 形式的数据格式

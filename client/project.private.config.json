@@ -35,6 +35,18 @@
           "pathName": "pages/task_schedule/index",
           "query": "id=605181607879385088",
           "scene": null
+        },
+        {
+          "name": "pages/Line/Line",
+          "pathName": "pages/Line/Line",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/train/index",
+          "pathName": "pages/train/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
