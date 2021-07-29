@@ -17,10 +17,10 @@ const uploadServer = (app, url, dir) =>{
     app.use(url ,uploadImage.single('file'),(req,res,next)=>{
         // res.send('shagnchuanchenggong ')
         // console.log(req.file, req.body)
-        res.json([{
+        res.json({
             ok: 200,
             url: `/${dir}/${fileName}`
-        }])
+        })
     })
 }
 

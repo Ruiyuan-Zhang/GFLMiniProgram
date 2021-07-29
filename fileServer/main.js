@@ -24,6 +24,9 @@ init(app)
 // 模型管理静态服务器
 app.use('/models', express.static('models'))
 
+// 客户端上传模型
+upload(app)
+
 // 图片文件静态服务器
 app.use('/images', express.static('images'))
 

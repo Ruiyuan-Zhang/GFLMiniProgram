@@ -16,7 +16,6 @@ const uploadServerSameDir = (app, url, dir) =>{
             cb(null, dirName)
         },
         filename: function (req, file, cb) {
-            console.log(file)
             fileName = file.originalname
             cb(null, fileName)
         }
@@ -24,10 +23,10 @@ const uploadServerSameDir = (app, url, dir) =>{
     app.use(url ,upload.fields([{name:'json',maxCount:1},{name:'bin',maxCount:10}]),
         (req,res,next)=>{
             // 只返回模型文件地址
-            res.json([{
+            res.json({
                 ok: 200,
                 url: `/${dirName}/model.json`
-            }])
+            })
         }
     )
 }
