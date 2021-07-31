@@ -37,8 +37,7 @@ const upload = app =>{
         res.json({
             ok: 200,
             status: 200,
-            statusText: "成功添加",
-            url: 'http://henqiang.com'
+            statusText: "成功添加"
         })
     })
 }
