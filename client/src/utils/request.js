@@ -23,8 +23,8 @@ export default async function fetch(options) {
         url
     } = options
 
-    url = url.replace(/^\/v1/, 'http://localhost:20201')
-    url = url.replace(/^\/file/, 'http://localhost:3000')
+    url = url.replace(/^\/v1/, 'http://192.168.124.10:20201')
+    url = url.replace(/^\/file/, 'http://192.168.124.10:3000')
 
     const { token } = getUser()
     const header = token
@@ -60,16 +60,16 @@ export default async function fetch(options) {
                 // token 相关 
                 if (+code === consts.StatusUnauthorized){
                     await shToast({title:'未鉴权'})
-                    Taro.reLaunch({url:'/pages/login/index'})
+                    Taro.reLaunch({url:'/packageUser/pages/login/index'})
                 }else if (+code === consts.JwtTokenInvalid){
                     await shToast({title: '无效的token'})
-                    Taro.reLaunch({url:'/pages/login/index'})
+                    Taro.reLaunch({url:'/packageUser/pages/login/index'})
                 }else if (+code === consts.JwtTokenExpired){
                     await shToast({title: '过期的token'})
-                    Taro.reLaunch({url:'/pages/login/index'})
+                    Taro.reLaunch({url:'/packageUser/pages/login/index'})
                 }else if (+code === consts.JwtTokenFormatErrCode){
                     await shToast({title: 'token格式错误'})
-                    Taro.reLaunch({url:'/pages/login/index'})
+                    Taro.reLaunch({url:'/packageUser/pages/login/index'})
                 }else{
                     shToast({title: msg||""})
                 }

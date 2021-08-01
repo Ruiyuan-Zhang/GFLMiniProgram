@@ -52,10 +52,7 @@ const index = props =>{
       console.log(action)
     }) 
     globalVariables.worker = worker
-  },[])
-
-
-  
+  },[]) 
 
   return (
   <TabIndexContext.Provider value={{tabIndex: state, dispatch}}>

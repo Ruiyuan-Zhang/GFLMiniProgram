@@ -1,17 +1,31 @@
 export default {
   pages: [
-    'pages/index/index',
     'pages/home/index',
     'pages/category/index',
     'pages/task/index',
-    'pages/task_detail/index',
     'pages/mine/index',
-    'pages/get_data/index',
-    'pages/add_data/index',
-    'pages/task_schedule/index',
-    'pages/train/index',
-    'pages/login/index'
-
+  ],
+  "subpackages":[
+    {
+      "root": "packageData",
+      "pages": [
+        'pages/get_data/index',
+        'pages/add_data/index',
+      ]
+    },{
+      "root": "packageTask",
+      "pages": [
+        'pages/task_detail/index',
+        'pages/task_schedule/index',
+        'pages/train/index',
+      ]
+    },{
+      "root": "packageUser",
+      "pages": [
+        'pages/login/index',
+        'pages/index/index',
+      ]
+    } 
   ],
   window: {
     backgroundTextStyle: 'light',

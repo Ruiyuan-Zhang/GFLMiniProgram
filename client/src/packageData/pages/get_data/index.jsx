@@ -43,7 +43,7 @@ const Index = () => {
         最终我用的这个 https://www.cnblogs.com/qqcc1388/p/13541154.html
         */
         Taro.navigateTo({
-            url:'/pages/add_data/index',
+            url:'/packageData/pages/add_data/index',
         })
     }
 

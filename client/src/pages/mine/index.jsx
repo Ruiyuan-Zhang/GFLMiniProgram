@@ -3,7 +3,7 @@ import { View, Text } from '@tarojs/components'
 import { AtAvatar, AtInput } from 'taro-ui'
 import Taro,{useDidShow} from '@tarojs/taro'
 import { TabIndexContext } from '../../store/tabIndex'
-import user_img from '@/assets/images/user.png'
+import {file_url} from '@/config'
 import './index.less'
 
 export default () => {
@@ -22,7 +22,7 @@ export default () => {
 
   return (
     <View className='mine'>
-      <AtAvatar circle size='large' image={user_img} />
+      <AtAvatar circle size='large' image={file_url+'/images/client/user.png'} />
       <Text className='name'> 张瑞元的大大大世界 </Text>
       <AtInput name='train_server' title='训练服务器' type='text' value={ts} onChange={setTs} />
       <AtInput name='train_port' title='端口号' type='text' value={tp} onChange={setTp} />

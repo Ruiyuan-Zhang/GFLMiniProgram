@@ -43,7 +43,7 @@ const imageCategory = async ({task,dataList,globalModelFile,onLoadModel,onIndexE
     })
 
     // 4. 使用回调函数 在每轮训练结束之后通过全局变量告知任务训练的情况
-    for (let i=0;i<10;i++){
+    for (let i=0;i<100;i++){
         const {history} = await model.fit(x_train,y_train,{
             batchSize:16,
             epochs:3,
@@ -62,7 +62,7 @@ const imageCategory = async ({task,dataList,globalModelFile,onLoadModel,onIndexE
     // 5. 将模型上传到互联网中
     let path = stringRandom(20)
     await model.save(tf_core.io.http(
-        'http://localhost:3000/upload?path='+path, {requestInit: {method: 'post'}}
+        file_url+'/upload?path='+path, {requestInit: {method: 'post'}}
     ))
     path = '/models/clientModel/' + path + '/model.json'
 

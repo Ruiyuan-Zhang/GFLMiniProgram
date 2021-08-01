@@ -1,9 +1,7 @@
 
 import { View } from '@tarojs/components'
 import Taro, {useDidShow} from '@tarojs/taro'
-
-import bg from '@/assets/images/index_bg.png'
-
+import {file_url} from '@/config'
 import "taro-ui/dist/style/components/button.scss" // 按需引入
 import './index.less'
 
@@ -20,7 +18,7 @@ export default function Index (){
 
   return (
     <View className='index'>
-      <image className='bg' src={bg}></image>
+      <image className='bg' src={file_url+'/images/client/index_bg'}></image>
     </View>
   )
 }

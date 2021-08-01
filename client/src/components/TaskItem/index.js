@@ -18,7 +18,7 @@ function IndexItem({data={}}){
     return(
         <View className={styles.item}
             onClick = {()=>{
-                Taro.navigateTo({url:`/pages/task_detail/index?id=${id}`})
+                Taro.navigateTo({url:`/packageTask/pages/task_detail/index?id=${id}`})
             }}
         >
             <Image className={styles.img} mode='widthFix' src={file_url+file}></Image>

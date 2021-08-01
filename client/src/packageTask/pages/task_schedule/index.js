@@ -68,11 +68,11 @@ const Index = () =>{
             dataList:localDataList,
             globalModel,
         }
-        Taro.navigateTo({url:'/pages/train/index'})
+        Taro.navigateTo({url:'/packageTask/pages/train/index'})
     }
 
     // 提交测试数据
-    const submitTestData = () => Taro.navigateTo({url:`/pages/get_data/index?id=${taskId}`})
+    const submitTestData = () => Taro.navigateTo({url:`/packageData/pages/get_data/index?id=${taskId}`})
 
     return (
         <View className={styles.index}>
