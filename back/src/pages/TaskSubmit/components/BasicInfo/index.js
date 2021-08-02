@@ -19,8 +19,6 @@ const index = ({next}) =>{
     // 添加任务的基本信息
     const addTask = async e=>{
         e.categoryId = categoryId
-        
-
         // 进入下一步
         next(e)
     }

@@ -14,6 +14,7 @@ import tips from './services/tips.js'
 import upload from './services/upload.js'
 import uploadServer from './services/uploadServer.js'
 import uploadServerSameDir from './services/uploadServerSameDir.js'
+import uploadTestData from './services/uploadTestData.js'
 import {getIPAdress,toArrayBuffer,toBuffer} from './utils/index.js'
 
 // 初始化
@@ -30,13 +31,19 @@ upload(app)
 // 图片文件静态服务器
 app.use('/images', express.static('images'))
 
+// 测试数据文件静态服务器
+app.use('/tests', express.static('testDatas'))
+
 // 实例化文件上传路由
 uploadServer(app, '/uploadImage','images/back')
 uploadServer(app, '/uploadGlobalModel','models/globalModel')
 uploadServer(app, '/uploadClientModel','models/clentModel')
 
 // 同文件夹全局模型上传
-uploadServerSameDir(app, '/uploadGlobalModelSameDir','models/globalModelSameDir')
+uploadServerSameDir(app, '/uploadGlobalMo delSameDir','models/globalModelSameDir')
+
+// 后台用户测试集存储
+uploadTestData(app,'/uploadTestData','testDatas')
 
 // 启动服务
 app.listen(port)

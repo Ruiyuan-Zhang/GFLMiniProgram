@@ -12,19 +12,25 @@ const index = ({basicInfo,dataFormat})=>{
         const fileKeys = ['file','initModelFile','initModelFileBin']
         for (let k of fileKeys){
             e[k]=e[k].file.originFileObj
-            let f = new FormData()
-            f.append('file',e[k])
-            e[k] = f
         }
         
         // 2. 开始提交
-        e.file = await requestWrap({type:'file'}).post('/file/uploadImage',{data:e.file})
-        e.initModelFile = await requestWrap({type:'file'}).post('/file/uploadGlobalModel',{data:e.initModelFile})
-        e.initModelFileBin = await requestWrap({type:'file'}).post('/file/uploadGlobalModel',{data:e.initModelFileBin})
-        fileKeys.forEach(k=>e[k]=e[k][0].url)  
-        
+        // 2.1 封面文件
+        let formData = new FormData()
+        formData.append('file',e['file'])
+        e.file = await requestWrap({type:'file'}).post('/file/uploadImage',{data:formData})
+        e.file = e.file.url
+        // 2.2 模型文件
+        formData = new FormData()
+        formData.append('json',e['initModelFile'])
+        formData.append('bin',e['initModelFileBin'])
+        e.initModelFile = await requestWrap({type:'file'}).post('/file/uploadGlobalModelSameDir',{data:formData})
+        e.initModelFile = e.initModelFile.url
+        console.log(e)
+
         // 3. 返回数据
         let res = await requestWrap({}).post('/v1/admin/task/add',{data:e})
+        if (res instanceof Error)return
         return res.data.id
     }
 

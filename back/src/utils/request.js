@@ -68,15 +68,14 @@ const iniRequest = request=>{
 //*********************************************   导出部分   *********************************************//
 
 // 构造一个request对象
-const requestWrap = ({errorHandler, type='json' })=>{
+const requestWrap = ({errorHandler, type='json', showMassage=true, options ={} })=>{
   
   if (!errorHandler) errorHandler = e =>{
     // 处理错误信息
     console.log('请在src/utils/request.js文件中配置：处理出错');
     const { request,response,data } = e;
     if (response && response.status) {
-      console.log(response)
-      message.error(data.msg)
+      if(showMassage)message.error(data.msg)
 
       // token过期
       if(response.status == 401){
@@ -96,6 +95,7 @@ const requestWrap = ({errorHandler, type='json' })=>{
 
   // 创建一个umi-request实例
   let request = extend({
+    ...options,
     timeout: 5000,
     errorHandler,
     headers,
@@ -105,17 +105,17 @@ const requestWrap = ({errorHandler, type='json' })=>{
 }
 
 // 只是一个使用的语法糖而已
-const request = async ({method='post',url, data})=>{
-  let type = data instanceof FormData ?'file': 'json'
+const request = async ({method='post',url, data, options ={}})=>{
+  let type = (data instanceof FormData) ?'file': 'json'
   let isErr = false
   let res
 
   addLoading()
 
   if (method==='post'){
-    res = await requestWrap({type}).post(url,{data})
+    res = await requestWrap({type,options}).post(url,{data})
   }else if (method === 'get'){
-    res = await requestWrap({type}).get(url,{data})
+    res = await requestWrap({type,options}).get(url,{data})
   }
 
   deleteLoading()

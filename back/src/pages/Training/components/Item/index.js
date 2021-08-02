@@ -1,5 +1,6 @@
 import { List, Image, Tag } from 'antd'
 import { FieldTimeOutlined } from '@ant-design/icons'
+import { history } from 'umi'
 import styles from './index.less'
 
 const index = ({data}) =>{
@@ -16,6 +17,14 @@ const index = ({data}) =>{
             actions={[
                 <div><FieldTimeOutlined /> 创建于 {createAt} </div>,
             ]}
+            onClick = {()=>{
+                history.push({
+                    pathname:"/training/detail",
+                    query:{
+                        id
+                    }
+                })
+            }}
         >
             <List.Item.Meta
                 title={name}
