@@ -83,4 +83,17 @@ func main() {
 	} else {
 		log.Println(stdout.String(), stderr.String())
 	}
+
+	// 4. 计算模型准确率
+	cmd = exec.Command("node", "/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/api/predict.js")
+	stdout = &bytes.Buffer{}
+	stderr = &bytes.Buffer{}
+	cmd.Stdout = stdout
+	cmd.Stderr = stderr
+	if err := cmd.Run(); err == nil {
+		log.Println("4. 计算模型准确率")
+		log.Println(stdout.String(), stderr.String())
+	} else {
+		log.Println(stdout.String(), stderr.String())
+	}
 }

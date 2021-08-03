@@ -23,6 +23,7 @@ type ClientModel struct {
 	Id            string `json:"id"`
 	GlobalModelId string `json:"globalModelId" gorm:"column:global_model_id"`
 	TaskId        string `json:"taskId" gorm:"column:task_id"`
+	UserName      string `json:"userName" gorm:"column:user_name"`
 	File          string `json:"file" gorm:"file"`
 }
 

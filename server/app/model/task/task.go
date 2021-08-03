@@ -84,7 +84,7 @@ func (t *TaskModel) Detail(id string) (tv TaskModelView, err error) {
 // 任务详情信息查询 包含format信息
 func (t *TaskModel) DetailWithFormat(id string) (TaskModelViewWithDataFormat, error) {
 	sql := `
-		SELECT  c.name as category_name, t.*, 
+		SELECT  c.name as category_name, t.*,
 		d.id as data_format_id, d.type as data_format_type, d.name as data_format_name, 
 		d.size as data_format_size, d.task_id as data_format_task_id,
 		d.english_name as data_format_english_name,

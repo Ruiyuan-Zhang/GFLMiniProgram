@@ -27,3 +27,16 @@ func (g *GlobalModel) List(c *gin.Context) {
 		response.Fail(c, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
 	}
 }
+
+func (g *GlobalModel) ListWithClient(c *gin.Context) {
+	var taskId = c.GetString(consts.ValidatorPrefix + "taskId")
+	var limit = c.GetFloat64(consts.ValidatorPrefix + "limit")
+	var limitStart = (c.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
+	if list := model.CreatGlobalFactory("").ListWithClient(taskId, int(limitStart), int(limit)); list != nil {
+		response.Success(c, consts.CurdStatusOkMsg, gin.H{
+			"list": list,
+		})
+	} else {
+		response.Fail(c, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
+	}
+}

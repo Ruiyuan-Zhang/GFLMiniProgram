@@ -85,25 +85,36 @@ func (g *GlobalModel) insertData(c *gin.Context) error {
 获取某个任务下的所有GlobalModelList已经他们的clientModel，
 还没有clientModel的globalModel是没有的
 */
-func (g *GlobalModel) ListWithClient(taskId string) (*[]GlobalModelView, error) {
+func (g *GlobalModel) ListWithClient(taskId string, limitStart, limit int) *[]GlobalModelView {
 	sql := `
-		select g.*, c.global_model_id as c_global_model_id, c.id as c_id, c.task_id as c_task_id,  c.user_id as c_user_id, c.file as c_file, c.created_at as c_created_at 
-		from tb_global_model as g, tb_client_model as c
-		where g.id = c.global_model_id and g.task_id = ? 
+		select 
+			g.*, g.id as id_str,
+			c.global_model_id as c_global_model_id, 
+			c.id as c_id, c.id as c_id_str,
+			c.user_name as c_user_name, 
+			c.task_id as c_task_id, 
+			c.file as c_file, 
+			c.created_at as c_created_at 
+		from 
+			tb_global_model as g, tb_client_model as c
+		where 
+			g.id = c.global_model_id and g.task_id = ?  
+		limit ?, ?
  	`
-	var gcs []GlobalClient
-	if res := g.Raw(sql, taskId).Find(&gcs); res.Error == nil {
+	var gcs []GlobalModelWithClientsList
+	if res := g.Raw(sql, taskId, limitStart, limit).Find(&gcs); res.Error == nil {
 		var gs = make([]GlobalModelView, 0)
 		if err := sql_res_to_tree.CreateSqlResFormatFactory().ScanToTreeData(gcs, &gs); err == nil {
-			return &gs, nil
+			println(len(gs))
+			return &gs
 		} else {
 			variable.ZapLog.Error("DetailWithClient 属性化出错" + err.Error())
-			return nil, err
+			return nil
 		}
 
 	} else {
 		variable.ZapLog.Error("DetailWithClient 查询出错", zap.Error(res.Error))
-		return nil, errors.New("DetailWithClient 查询出错")
+		return nil
 	}
 }
 

@@ -151,6 +151,8 @@ func InitWebRouter() *gin.Engine {
 				{
 					// 获取全局模型列表
 					globalModel.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"GlobalModelList"))
+					// 全局模型列表 带clients
+					globalModel.GET("listWithClients", validatorFactory.Create(consts.ValidatorPrefix+"GlobalModelWithClientsList"))
 				}
 			}
 		}
