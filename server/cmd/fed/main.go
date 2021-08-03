@@ -9,9 +9,12 @@ import (
 	"bytes"
 	"goskeleton/app/utils/rand"
 	"log"
+	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -22,12 +25,18 @@ func main() {
 	cmd.Stdout = stdout
 	cmd.Stderr = stderr
 	if err := cmd.Run(); err == nil {
-		log.Println(stdout.String(), stderr.String())
+		log.Println(stdout.String())
+	} else {
+		log.Println(stderr.String())
 	}
 
 	// 1. 将node模型转换成python模型
-	clientModels := [2]string{"/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/models/clientModel/2LeG7TJBo3R3nbhJ6in2", "/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/models/clientModel/6vpmNkXeF8IfT149pef5"}
+	clientModels := [2]string{
+		"/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/models/clientModel/6mTdSBRy8sxXabgQO3vv",
+		"/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/models/clientModel/B8CBNEmbzv4G5gCHDnU3",
+	}
 	tmpPath := "/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/models/tmp"
+	log.Println("1. 将node模型转换成python模型")
 	for i := 0; i < len(clientModels); i++ {
 		lastDir := tmpPath + "/" + filepath.Base(clientModels[i])
 		cmd := exec.Command("tensorflowjs_converter",
@@ -91,9 +100,23 @@ func main() {
 	cmd.Stdout = stdout
 	cmd.Stderr = stderr
 	if err := cmd.Run(); err == nil {
-		log.Println("4. 计算模型准确率")
-		log.Println(stdout.String(), stderr.String())
+		ans := stdout
+		reg, _ := regexp.Compile("准确率为:([0-9\\.])*\n")
+		res := string(reg.Find(ans.Bytes()))
+		res = strings.Replace(res, "准确率为:", "", -1)
+		res = strings.Replace(res, "\n", "", -1)
+		log.Println("4. 计算模型准确率为：", res)
 	} else {
 		log.Println(stdout.String(), stderr.String())
 	}
+
+	// 5. 清理临时文件夹
+	log.Println("5. 清理临时文件")
+	for i := 0; i < len(clientModels); i++ {
+		lastDir := tmpPath + "/" + filepath.Base(clientModels[i])
+		os.RemoveAll(lastDir)
+		log.Println("5." + strconv.Itoa(i) + " 清理临时文件")
+	}
+	os.RemoveAll(globalModelDir)
+	log.Println("5." + strconv.Itoa(len(clientModels)) + " 清理临时文件")
 }
