@@ -22,3 +22,7 @@ tensorflowjs_converter \
 	mnistModel_keras/
 ```
 
+3. 图片处理测试
+```shell
+node image_test.js
+```
