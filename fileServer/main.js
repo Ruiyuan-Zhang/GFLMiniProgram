@@ -32,7 +32,7 @@ upload(app)
 app.use('/images', express.static('images'))
 
 // 测试数据文件静态服务器
-app.use('/tests', express.static('testDatas'))
+app.use('/tests', express.static('tests'))
 
 // 实例化文件上传路由
 uploadServer(app, '/uploadImage','images/back')
@@ -40,10 +40,10 @@ uploadServer(app, '/uploadGlobalModel','models/globalModel')
 uploadServer(app, '/uploadClientModel','models/clentModel')
 
 // 同文件夹全局模型上传
-uploadServerSameDir(app, '/uploadGlobalMo delSameDir','models/globalModelSameDir')
+uploadServerSameDir(app, '/uploadGlobalModelSameDir','models/globalModelSameDir')
 
 // 后台用户测试集存储
-uploadTestData(app,'/uploadTestData','testDatas')
+uploadTestData(app,'/uploadTestData','tests')
 
 // 启动服务
 app.listen(port)

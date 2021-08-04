@@ -9,6 +9,6 @@ back/node_modules/
 fileServer/models/
 fileServer/images/
 fileServer/files/
-fileServer/testDatas/
+fileServer/tests/
 fileServer/node_modules/
 tensorFlowExperiment/node.js/node/node_modules

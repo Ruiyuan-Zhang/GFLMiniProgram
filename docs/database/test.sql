@@ -57,6 +57,8 @@ CREATE TABLE tb_global_model (
     last_global_model VARCHAR(30) COMMENT '延续的上一个全局模型',
     task_id VARCHAR(30) NOT NULL COMMENT '任务名称',
     file VARCHAR(100) DEFAULT '' COMMENT '全局模型地址',
+    test_data VARCHAR(100) DEFAULT '' COMMENT '测试数据',
+    acc VARCHAR(30) DEFAULT '' COMMENT '模型准确率',
     client_model_ids VARCHAR(1000) DEFAULT '' COMMENT '所引用的客户端模型',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -65,6 +67,7 @@ CREATE TABLE tb_global_model (
 CREATE TABLE tb_client_model (
     global_model_id VARCHAR(30) NOT NULL COMMENT '全局模型编号',
     id VARCHAR(30) UNIQUE NOT NULL COMMENT '客户端模型编号',
+    user_name VARCHAR(30) NOT NULL COMMENT '客户端名称',
     task_id VARCHAR(30)  NOT NULL COMMENT '任务编号',
     file VARCHAR(100) DEFAULT '' COMMENT '全局模型地址',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,

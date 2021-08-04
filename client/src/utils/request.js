@@ -5,6 +5,7 @@ import Taro from '@tarojs/taro'
 import { AtIcon } from 'taro-ui'
 import {saveUser, getUser, removeUser} from '@/common/user'
 import {consts} from '@/common/enum'
+import {file_url,server_url} from '@/config'
 
 /**
  * 简易封装网络请求
@@ -23,8 +24,8 @@ export default async function fetch(options) {
         url
     } = options
 
-    url = url.replace(/^\/v1/, 'http://192.168.124.10:20201')
-    url = url.replace(/^\/file/, 'http://192.168.124.10:3000')
+    url = url.replace(/^\/v1/, server_url)
+    url = url.replace(/^\/file/, file_url)
 
     const { token } = getUser()
     const header = token

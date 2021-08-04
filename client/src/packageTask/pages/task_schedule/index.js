@@ -62,6 +62,7 @@ const Index = () =>{
 
     // 开始训练
     const train = async()=>{
+        // 最后一个globalModel就是要继续训练的全局模型
         const globalModel = globalModelList[globalModelList.length-1]
         globalVariables.task_schedule_TO_train={
             task:task,

@@ -30,6 +30,9 @@ const imageCategory = async ({task,dataList,globalModelFile,onLoadModel,onIndexE
     y_train = tf_core.tensor1d(y_train,'int32')
     y_train = tf_core.oneHot(y_train,oneHot)
 
+    x_train.print()
+    y_train.print()
+
     // 2. 获取在线的模型 进行训练
     let model = await tf_layers.loadLayersModel(file_url+globalModelFile)
     model.summary()

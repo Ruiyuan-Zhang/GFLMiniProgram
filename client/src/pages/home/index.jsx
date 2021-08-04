@@ -23,6 +23,6 @@ export default function Home() {
             <Task title='今日份有趣任务' more_url='/pages/index/index'/>
             <Task title='当前火热任务' more_url='/pages/index/index'/>
             <AtDivider content='没有更多了'/>
-        </View>
+        </View> 
     )
 }

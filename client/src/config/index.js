@@ -7,4 +7,5 @@
  * 更多请看 https://developers.weixin.qq.com/miniprogram/dev/framework/ability/file-system.html
  * */ 
 export const local_data_path = '/local_data'
-export const file_url = 'http://192.168.124.10:3000'
+export const file_url = 'http://127.0.0.1:3000'
+export const server_url = 'http://127.0.0.1:20201'  

@@ -70,4 +70,8 @@ const (
 	//CaptchaCheckOkCode            int    = 200
 	CaptchaCheckFailCode int    = -400355
 	CaptchaCheckFailMsg  string = "验证码校验失败"
+
+	// 文件管理服务器地址
+	FileServerDir string = "/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer"
+	FileServerIp  string = "http://localhost:3000"
 )

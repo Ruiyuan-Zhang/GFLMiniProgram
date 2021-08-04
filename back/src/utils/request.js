@@ -106,6 +106,9 @@ const requestWrap = ({errorHandler, type='json', showMassage=true, options ={} }
 
 // 只是一个使用的语法糖而已
 const request = async ({method='post',url, data, options ={}})=>{
+
+  console.log(data)
+
   let type = (data instanceof FormData) ?'file': 'json'
   let isErr = false
   let res
@@ -115,7 +118,18 @@ const request = async ({method='post',url, data, options ={}})=>{
   if (method==='post'){
     res = await requestWrap({type,options}).post(url,{data})
   }else if (method === 'get'){
-    res = await requestWrap({type,options}).get(url,{data})
+    let params = url.indexOf('?')>=0?"&":'?'
+    if(data){
+      Object.keys(data).forEach(key=>{
+        try{
+          let kv = key+"="+data[key]+'&'
+          params+=kv
+        }catch(e){
+          console.log(e)
+        }
+      })
+    }
+    res = await requestWrap({type,options}).get(url+params)
   }
 
   deleteLoading()

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { AtTimeline } from 'taro-ui'
 import { init, train as doTrain } from '@/train'
 import { globalVariables } from '@/common/enum'
+import {saveUser, getUser, removeUser} from '@/common/user'
 import request from '@/utils/request'
 import Chart from './components/chart'
 import styles from './index.module.less'
@@ -13,8 +14,6 @@ const index = () =>{
     const globalModelFile = globalModel.file
     const [chartData,setChartData] = useState([])
     const [timeLineData,setTimeLineData] = useState([])
-
-    // console.log(task)
 
     useEffect(async()=>{
         const addChartData = (index,loss) => {
@@ -52,7 +51,8 @@ const index = () =>{
             data:{
                 globalModelId:globalModel.id,
                 taskId:task.id,
-                file
+                userName:getUser().user_name,
+                file,
             }
         })
         if (res instanceof Error)return

@@ -6,10 +6,12 @@
 package model
 
 import (
+	"encoding/json"
 	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/qifengzhang007/sql_res_to_tree"
 	"go.uber.org/zap"
+	"goskeleton/app/global/consts"
 	"goskeleton/app/global/variable"
 	"goskeleton/app/model"
 	"strconv"
@@ -36,10 +38,10 @@ func (g *GlobalModel) TableName() string {
 /**
 第一次插入数据时，last_global_model等于task_id的值，可以用这个特性找到第一个全局模型
 */
-func (g *GlobalModel) Add(lastGlobalModel, taskId, file string) error {
-	sql := `insert into tb_global_model (id,last_global_model,task_id,file) values (?,?,?,?)`
+func (g *GlobalModel) Add(lastGlobalModel, taskId, file, testData, acc string) error {
+	sql := `insert into tb_global_model (id,last_global_model,task_id,file,test_data,acc) values (?,?,?,?,?,?)`
 	id := strconv.FormatInt(variable.SnowFlake.GetId(), 10)
-	if res := g.Exec(sql, id, lastGlobalModel, taskId, file); res.Error == nil {
+	if res := g.Exec(sql, id, lastGlobalModel, taskId, file, testData, acc); res.Error == nil {
 		return nil
 	} else {
 		variable.ZapLog.Error("GlobalModel 数据插入出错", zap.Error(res.Error))
@@ -83,7 +85,7 @@ func (g *GlobalModel) insertData(c *gin.Context) error {
 
 /**
 获取某个任务下的所有GlobalModelList已经他们的clientModel，
-还没有clientModel的globalModel是没有的
+这里是一个必须要使用左连接的案例
 */
 func (g *GlobalModel) ListWithClient(taskId string, limitStart, limit int) *[]GlobalModelView {
 	sql := `
@@ -96,9 +98,9 @@ func (g *GlobalModel) ListWithClient(taskId string, limitStart, limit int) *[]Gl
 			c.file as c_file, 
 			c.created_at as c_created_at 
 		from 
-			tb_global_model as g, tb_client_model as c
+			tb_global_model as g left outer join tb_client_model as c on (g.id = c.global_model_id)
 		where 
-			g.id = c.global_model_id and g.task_id = ?  
+			g.task_id = ?  
 		limit ?, ?
  	`
 	var gcs []GlobalModelWithClientsList
@@ -119,12 +121,67 @@ func (g *GlobalModel) ListWithClient(taskId string, limitStart, limit int) *[]Gl
 }
 
 func (g *GlobalModel) List(taskId string, limitStart, limit int) []GlobalModelView {
-	sql := `select * from tb_global_model where task_id = ? limit ?, ?`
+	sql := `select *, g.id as id_str from tb_global_model as g where task_id = ? limit ?, ?`
 	var gms []GlobalModelView
 	if res := g.Raw(sql, taskId, limitStart, limit).Find(&gms); res.Error == nil {
 		return gms
 	} else {
 		variable.ZapLog.Error("GlobalModel List 查询出错", zap.Error(res.Error))
 		return nil
+	}
+}
+
+/**
+使用FedAvg算法进行聚合。
+
+需要传递的参数是：
+testData: '/testD',
+globalModel:{
+	id: '898989878',file:'/models/globalModelSameDir/h3L59ZGldUa745RyOLwx/model.json'
+},
+clients:[
+	{id:'47987946876',file:'/models/clientModel/PAp6X0dTeF1jfHtzoNiK/model.json'},
+	{id:'47987946876',file:'/models/clientModel/PAp6X0dTeF1jfHtzoNiK/model.json'},
+	{id:'47987946876',file:'/models/clientModel/PAp6X0dTeF1jfHtzoNiK/model.json'},
+]
+
+处理逻辑：
+	file,acc,testData = 传入客户端模型地址列表，获取新的全局模型地址
+    id = snow生成
+	lastGlobalModelId = globalModel.id
+
+	在数据库添加一条该数据
+*/
+
+func (g *GlobalModel) FedAvg(c *gin.Context) error {
+	// 1. 读取数据
+	testData := c.GetString(consts.ValidatorPrefix + "testData")
+
+	globalModelStr := c.GetString(consts.ValidatorPrefix + "globalModel")
+	var globalModel GlobalModel
+	if err := json.Unmarshal([]byte(globalModelStr), &globalModel); err != nil {
+		variable.ZapLog.Error("FedAvg globalModel json解析出错", zap.Error(err))
+		return err
+	}
+
+	clientModelsStr := c.GetString(consts.ValidatorPrefix + "clients")
+	clientModels := []ClientModel{}
+	if err := json.Unmarshal([]byte(clientModelsStr), &clientModels); err != nil {
+		variable.ZapLog.Error("FedAvg clientModels json解析出错", zap.Error(err))
+		return err
+	}
+
+	// 2. 处理聚合
+	if newTestData, newGlobalModel, acc, err := (&Train{}).FedAvg(globalModel, clientModels, testData); err == nil {
+		// 3. 新globalModel创建
+		if err := g.Add(globalModel.Id, globalModel.TaskId, newGlobalModel, newTestData, acc); err == nil {
+			return nil
+		} else {
+			variable.ZapLog.Error("FedAvg globalModel 数据库添加出错", zap.Error(err))
+			return err
+		}
+	} else {
+		variable.ZapLog.Error("FedAvg globalModel 模型聚合出错", zap.Error(err))
+		return err
 	}
 }

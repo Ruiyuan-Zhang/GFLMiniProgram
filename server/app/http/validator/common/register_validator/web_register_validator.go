@@ -93,5 +93,8 @@ func WebRegisterValidator() {
 		// 全局模型 查询列表 带客户端上传模型信息
 		key = consts.ValidatorPrefix + "GlobalModelWithClientsList"
 		containers.Set(key, model.GlobalModelWithClientsList{})
+		// 全局模型 聚合
+		key = consts.ValidatorPrefix + "FedAvg"
+		containers.Set(key, model.FedAvg{})
 	}
 }

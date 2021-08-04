@@ -25,7 +25,7 @@ export default ({data, name}) => {
             }]
         };
         if (barChart) barChart.refresh(defautOption);
-    },[data])
+    },[data]) 
 
     return (
       <View className='bar-chart'>

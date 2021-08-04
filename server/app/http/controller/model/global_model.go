@@ -40,3 +40,11 @@ func (g *GlobalModel) ListWithClient(c *gin.Context) {
 		response.Fail(c, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
 	}
 }
+
+func (g *GlobalModel) FedAvg(c *gin.Context) {
+	if err := model.CreatGlobalFactory("").FedAvg(c); err == nil {
+		response.Success(c, consts.CurdStatusOkMsg, "")
+	} else {
+		response.Fail(c, consts.CurdCreatFailCode, consts.CurdCreatFailMsg, "")
+	}
+}

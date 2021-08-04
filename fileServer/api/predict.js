@@ -1,18 +1,26 @@
+/**
+node predict.js /Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/models/globalModelSameDir/1Si9K40CBEPITncMxGHp/model.json\
+ /Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/tests/607191994552295424.json\
+ /Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/tests/test.json
+ */
+
 import * as tf from '@tensorflow/tfjs'
 import '@tensorflow/tfjs-node'
 import fs from 'fs'
 import images from 'images'
 import PNG from 'png-js'
+import { argv } from 'process'
 
-let model = 'http://localhost:3000/models/clientModel/B8CBNEmbzv4G5gCHDnU3/model.json'
-const imgs = [
-    {image:'/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/images/back/1PuwyAj5k44vXQBJZ2Ex.jpeg',value:'2'},
-    {image:'/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/images/back/5qivuFWe8gqMIKPml5xY.jpeg',value:'1'},
-    {image:'/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer/images/back/RRBbESdm1C1i9Dx54dYP.jpeg',value:'4'},   
-]
+let globalModelPath =  argv[2]
+let testDataPath = argv[3]
+let newTestDataPath = argv[4]
+let fileServer = argv[5]
+
+let imgs = fs.readFileSync(testDataPath,{encoding:'utf-8'})
+imgs = JSON.parse(imgs)
 
 // 下载模型
-model = await tf.loadLayersModel(model)
+let model = await tf.loadLayersModel("file://" + globalModelPath)
 // model.summary()
 
 //转换模型尺寸
@@ -34,13 +42,26 @@ const resize = ({url,width=28,height=28}) =>{
 
 // 计算预测结果
 let right = 0
+let rs = []
 for (let {image,value} of imgs){
+    image = fileServer + image
     let res = await resize({url:image})
     res = Float32Array.from(res) 
     res = tf.tensor2d(res,[1,784])
     let preY = model.predict(res)
+    preY.print()
+    console.log(value)
     preY = preY.dataSync()
     preY = preY.indexOf(Math.max(...preY))
+    rs.push({
+        value,
+        preY
+    })
     if (value==preY)right++
 }
 console.log(`准确率为:${right/imgs.length}`)
+
+// 将测试集保存下来
+fs.writeFileSync(newTestDataPath, JSON.stringify(imgs))
+
+console.log(rs)

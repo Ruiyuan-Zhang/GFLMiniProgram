@@ -24,7 +24,7 @@ const index = (props) =>{
         <div className={styles.index}>
             <BasicInfo task={task}/>
             <TestData task={task}/>
-            <TrainCondition/>
+            <TrainCondition task={task}/>
         </div>
     )
 }

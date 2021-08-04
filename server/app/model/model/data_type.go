@@ -12,6 +12,8 @@ type GlobalModelWithClientsList struct {
 	LastGlobalModel     string `gorm:"column:last_global_model"`
 	TaskId              string `gorm:"column:task_id"`
 	File                string `gorm:"column:file"`
+	TestData            string `json:"testData" gorm:"column:test_data"`
+	Acc                 string `json:"acc" gorm:"column:acc"`
 	ClientModelIds      string `gorm:"column:client_model_ids"`
 	CreatedAt           string `gorm:"column:created_at"`
 	ClientId            int64  `primaryKey:"yes" gorm:"column:c_id"`
@@ -34,6 +36,8 @@ type GlobalModelView struct {
 	LastGlobalModel string `json:"lastGlobalModel" gorm:"column:last_global_model"`
 	TaskId          string `json:"taskId" gorm:"column:task_id"`
 	File            string `json:"file" gorm:"column:file"`
+	TestData        string `json:"testData" gorm:"column:test_data"`
+	Acc             string `json:"acc" gorm:"column:acc"`
 	ClientModelIds  string `json:"clientModelIds" gorm:"column:client_model_ids"`
 	CreatedAt       string `json:"createdAt" gorm:"column:created_at"`
 	Children        []struct {

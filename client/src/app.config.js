@@ -41,7 +41,7 @@ export default {
   },
   "workers": "workers",
   "tabBar": {
-    custom:true,
+    custom: true,
     color: '#a1a7b3',
     selectedColor: '#1492ff',
     backgroundColor: '#ffffff',
