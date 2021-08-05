@@ -41,7 +41,7 @@ let globalVariables = {
     task_schedule_TO_train: {},
 
     // 本想用来用多线程的方式来处理本地训练，因为在woker中无法使用wx环境，所以放弃
-    worker: null,
+    // worker: null,
 
 
 

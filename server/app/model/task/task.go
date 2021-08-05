@@ -68,6 +68,30 @@ func (c *TaskModel) List(limitStart, limit int) (list []TaskModelView) {
 	return
 }
 
+// 查询任务列表
+func (c *TaskModel) Select(limitStart, limit int, kind, categoryId, keyword string) (list []TaskModelView) {
+
+	sql := `
+		SELECT  c.name as category_name, t.*
+		FROM tb_task as t, tb_category as c 
+		where t.category_id =c.id
+	`
+	if categoryId != "" {
+		sql += " and c.id = " + categoryId
+	}
+	if keyword != "" {
+		sql += " and ( t.name like '%" + keyword + "%' or t.description like '%" + keyword + "%' or t.id like '%" + keyword + "%' or c.name like '%" + keyword + "%')"
+	}
+	sql += " LIMIT ?, ?;"
+
+	if res := c.Raw(sql, limitStart, limit).Find(&list); res.Error != nil {
+		variable.ZapLog.Error("TaskModel 查询出错", zap.Error(res.Error))
+		return nil
+	} else {
+		return
+	}
+}
+
 // 任务详情信息查询
 func (t *TaskModel) Detail(id string) (tv TaskModelView, err error) {
 	sql := `

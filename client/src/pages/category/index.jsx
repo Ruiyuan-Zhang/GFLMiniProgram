@@ -16,7 +16,7 @@ const Item = ({src, children, id}) => {
                 background: `url(${src}) no-repeat center`,
                 backgroundSize: 'cover'
             }}
-            onClick={() => Taro.navigateTo({url: `/pages/category/details/id=${id}`})}>
+            onClick={() => Taro.navigateTo({url: `/packageTask/pages/task_list/index?categoryId=${id}`})}>
             {children}
         </View>
     )
@@ -32,7 +32,7 @@ const index = () => {
     const [list, setList] = useState([])
     useEffect(async () => {
         let res = await fetch(
-            {url: '/v1/admin/category/list?page=1&limit=5', method: 'get'}
+            {url: '/v1/admin/category/list?page=1&limit=100', method: 'get'}
         )
         if (res instanceof Error) 
             return

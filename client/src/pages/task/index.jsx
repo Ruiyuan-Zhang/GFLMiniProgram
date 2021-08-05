@@ -1,9 +1,9 @@
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import { useState } from 'react'
-import Taro,{useDidShow} from '@tarojs/taro'
+import {useDidShow} from '@tarojs/taro'
 import { TabIndexContext } from '../../store/tabIndex'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import Doing from './components/doing'
 import './index.less'
 

@@ -1,11 +1,11 @@
 import {View} from '@tarojs/components'
 import {AtDivider} from 'taro-ui'
-import Taro, {useDidShow} from '@tarojs/taro'
+import {useDidShow} from '@tarojs/taro'
 import {TabIndexContext} from '../../store/tabIndex'
 import Header from './components/header'
 import Search from './components/search'
 import Task from './components/task'
-import {useContext, useEffect} from 'react'
+import {useContext} from 'react'
 import './index.less'
 
 export default function Home() {
@@ -19,9 +19,9 @@ export default function Home() {
         <View className='home'>
             <Header/>
             <Search/>
-            <Task title='为您推荐任务' more_url='/pages/index/index'/>
-            <Task title='今日份有趣任务' more_url='/pages/index/index'/>
-            <Task title='当前火热任务' more_url='/pages/index/index'/>
+            <Task title='为您推荐任务' more_url='/packageTask/pages/task_list/index?kind=推荐'/>
+            <Task title='今日份有趣任务' more_url='/packageTask/pages/task_list/index?kind=有趣'/>
+            <Task title='当前火热任务' more_url='/packageTask/pages/task_list/index?kind=火热'/>
             <AtDivider content='没有更多了'/>
         </View> 
     )

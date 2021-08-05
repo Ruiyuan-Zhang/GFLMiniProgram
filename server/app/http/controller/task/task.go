@@ -41,6 +41,23 @@ func (t *Task) List(context *gin.Context) {
 	}
 }
 
+// 查询任务
+func (t *Task) Select(context *gin.Context) {
+	var limit = context.GetFloat64(consts.ValidatorPrefix + "limit")
+	var limitStart = (context.GetFloat64(consts.ValidatorPrefix+"page") - 1) * limit
+	var kind = context.GetString(consts.ValidatorPrefix + "kind")
+	var categoryId = context.GetString(consts.ValidatorPrefix + "categoryId")
+	var keyword = context.GetString(consts.ValidatorPrefix + "keyword")
+	list := task.CreatTaskFactory("").Select(int(limitStart), int(limit), kind, categoryId, keyword)
+	if list != nil {
+		response.Success(context, consts.CurdStatusOkMsg, gin.H{
+			"list": list,
+		})
+	} else {
+		response.Fail(context, consts.CurdSelectFailCode, consts.CurdSelectFailMsg, "")
+	}
+}
+
 // 获取任务详情信息
 func (t *Task) Detail(context *gin.Context) {
 	var id = context.GetString(consts.ValidatorPrefix + "id")

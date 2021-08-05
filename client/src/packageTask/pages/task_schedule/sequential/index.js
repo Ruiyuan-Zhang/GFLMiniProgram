@@ -3,7 +3,7 @@
 import * as tf_core from '@tensorflow/tfjs-core'
 import * as tf_layers from '@tensorflow/tfjs-layers'
 
-import { resize } from '@/utils/image_tools'
+import { resize } from '../../../utils/image_tools'
 import { tensor } from '@tensorflow/tfjs-core'
 
 

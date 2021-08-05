@@ -109,6 +109,11 @@ CREATE TABLE `tb_users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 INSERT INTO `tb_users` (id, user_name, pass) VALUES (1, 'zhangruiyuan', 'a53ec42f2a2914067f6119599cae318b');
+INSERT INTO `tb_users` (id, user_name, pass) VALUES (2, 'wuchao', '87d9bb400c0634691f0e3baaf1e2fd0d');
+INSERT INTO `tb_users` (id, user_name, pass) VALUES (3, 'lizexi', '87d9bb400c0634691f0e3baaf1e2fd0d');
+INSERT INTO `tb_users` (id, user_name, pass) VALUES (4, 'zhouyuhang', '87d9bb400c0634691f0e3baaf1e2fd0d');
+INSERT INTO `tb_users` (id, user_name, pass) VALUES (5, 'tangzuoqi', '87d9bb400c0634691f0e3baaf1e2fd0d');
+INSERT INTO `tb_users` (id, user_name, pass) VALUES (6, 'zhangjie', '87d9bb400c0634691f0e3baaf1e2fd0d');
 
 /* oauth 表，主要控制一个用户可以同时拥有几个有效的token，通俗地说就是允许一个账号同时有几个人登录，超过将会导致最前面的人的token失效，而退出登录*/
 DROP TABLE IF EXISTS `tb_oauth_access_tokens`;

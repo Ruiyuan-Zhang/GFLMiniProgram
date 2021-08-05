@@ -1,12 +1,31 @@
-// 引入全局的taro-ui样式
-import 'taro-ui/dist/style/index.scss'
 import './app.less'
-import Taro from '@tarojs/taro'
-import { initData, getData,saveData,saveFileListToLocal } from '@/common/data'
-import { globalVariables } from '@/common/enum'
-import { Component, useEffect, useReducer } from 'react'
+import { initData, } from '@/common/data'
+import { useEffect, useReducer } from 'react'
 import {TabIndexContext,reducer,initState} from './store/tabIndex'
-import { init, train } from '@/train'
+
+// 引入全局的taro-ui样式
+// import 'taro-ui/dist/style/index.scss'
+// 我是大贪官，一点一点存储省着点用
+import "taro-ui/dist/style/components/icon.scss"
+import "taro-ui/dist/style/components/button.scss";
+import "taro-ui/dist/style/components/loading.scss";
+import "taro-ui/dist/style/components/avatar.scss";
+import "taro-ui/dist/style/components/tag.scss";
+import "taro-ui/dist/style/components/timeline.scss";
+import "taro-ui/dist/style/components/divider.scss";
+import "taro-ui/dist/style/components/steps.scss";
+import "taro-ui/dist/style/components/progress.scss";
+import "taro-ui/dist/style/components/toast.scss";
+import "taro-ui/dist/style/components/message.scss";
+import "taro-ui/dist/style/components/form.scss";
+import "taro-ui/dist/style/components/input.scss";
+import "taro-ui/dist/style/components/input-number.scss";
+import "taro-ui/dist/style/components/radio.scss";
+import "taro-ui/dist/style/components/switch.scss";
+import "taro-ui/dist/style/components/textarea.scss";
+import "taro-ui/dist/style/components/search-bar.scss";
+import "taro-ui/dist/style/components/image-picker.scss";
+import "taro-ui/dist/style/components/tabs.scss";
 
 // 微信小程序插件
 var fetchWechat = require('fetch-wechat');
@@ -36,23 +55,7 @@ const index = props =>{
   useEffect(()=>{
     // 初始化任务文件
     initData()
-    // 初始化训练所需环境
-    init()
   },[])
-
-  // 初始化woker变量
-  useEffect(()=>{
-    // 初始化woker
-    const worker = Taro.createWorker('workers/index.js')
-    worker.postMessage({
-        action:'init'
-    })
-    // 监听woker传来的消息
-    worker.onMessage(function ({action,data}) {
-      console.log(action)
-    }) 
-    globalVariables.worker = worker
-  },[]) 
 
   return (
   <TabIndexContext.Provider value={{tabIndex: state, dispatch}}>

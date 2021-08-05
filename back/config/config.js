@@ -10,12 +10,12 @@ const Config = defineConfig({
   fastRefresh: {},
   proxy: {
     '/v1': {
-      target: 'http://localhost:20201/',
+      target: 'http://10.72.100.15:20201/',
       changeOrigin: true,
       pathRewrite: { '^/v1': '' },
     },
     '/file':{
-      target: 'http://localhost:3000/',
+      target: 'http://10.72.100.15:3000/',
       changeOrigin:true,
       pathRewrite: { '^/file': '' },
     }

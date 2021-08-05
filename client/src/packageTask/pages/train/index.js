@@ -16,6 +16,9 @@ const index = () =>{
     const [timeLineData,setTimeLineData] = useState([])
 
     useEffect(async()=>{
+        // 初始化训练环境
+        init()
+
         const addChartData = (index,loss) => {
             chartData.push([index,loss])
             setChartData([...chartData])

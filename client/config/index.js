@@ -18,7 +18,7 @@ const config = {
     '@/config': resolve(__dirname, '..', 'src/config'),
     '@/utils': resolve(__dirname, '..', 'src/utils'),
     '@/common': resolve(__dirname, '..', 'src/common'),
-    '@/train': resolve(__dirname, '..', 'src/train'),
+    '@/train': resolve(__dirname, '..', 'src/packageTask/train'),
     '@/store': resolve(__dirname, '..', 'src/store')
   },
 
@@ -54,23 +54,27 @@ const config = {
         }
       }
     },
+    webpackChain (chain, webpack) {
+      chain.plugin('analyzer')
+        .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
+    },
     // https://www.cnblogs.com/madlife/p/14801006.html
     // taro 没有提供打包功能
-    webpackChain(chain, webpack) {
-      chain.merge({
-        plugin: {
-          copyPlugin: {
-            plugin: require('copy-webpack-plugin'),
-            args: [
-              { patterns: [
-                  { from: resolve(__dirname, '../src/workers'), to: 'workers' },
-                ] 
-              }
-            ],
-          },
-        },
-      });
-    },
+    // webpackChain(chain, webpack) {
+    //   chain.merge({
+    //     plugin: {
+    //       copyPlugin: {
+    //         plugin: require('copy-webpack-plugin'),
+    //         args: [
+    //           { patterns: [
+    //               { from: resolve(__dirname, '../src/workers'), to: 'workers' },
+    //             ] 
+    //           }
+    //         ],
+    //       },
+    //     },
+    //   });
+    // },
   },
   h5: {
     publicPath: '/',

@@ -30,16 +30,16 @@ const index = ({next}) =>{
                     onFinish={ addTask }
                     labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}
                 >
-                    <Form.Item label="联邦学习分类" name='categoryId'> <Select onChange={setCategoryId}>
+                    <Form.Item label="联邦学习分类" name='categoryId' rules={[{required:true, }]}> <Select onChange={setCategoryId}>
                     {catagoryList.map(({id, name})=> <Select.Option key={id} value={id}>{name}</Select.Option>)}
                     </Select></Form.Item>
-                    <Form.Item label='任务名称' name='name'><Input/></Form.Item>
-                    <Form.Item label='任务描述' name='description'><Input.TextArea/></Form.Item>
-                    <Form.Item label='上传封面文件' name='file'><Upload maxCount={1}><Button>上传</Button></Upload></Form.Item>
-                    <Form.Item label='初始化模型文件' name='initModelFile'><Upload maxCount={1}><Button>上传</Button></Upload></Form.Item>
-                    <Form.Item label='二进制参数文件' name='initModelFileBin'><Upload maxCount={1}><Button>上传</Button></Upload></Form.Item>
-                    <Form.Item label='超参数' name='superParams'><Input/></Form.Item>
-                    <Form.Item label='最多参与次数' name='maxTimesPerClient'><InputNumber min={1}/></Form.Item>
+                    <Form.Item label='任务名称' name='name' rules={[{required:true, }]}><Input/></Form.Item>
+                    <Form.Item label='任务描述' name='description' rules={[{required:true, }]}><Input.TextArea/></Form.Item>
+                    <Form.Item label='上传封面文件' name='file' rules={[{required:true, }]}><Upload maxCount={1}><Button>上传</Button></Upload></Form.Item>
+                    <Form.Item label='初始化模型文件' name='initModelFile' rules={[{required:true, }]}><Upload maxCount={1}><Button>上传</Button></Upload></Form.Item>
+                    <Form.Item label='二进制参数文件' name='initModelFileBin' rules={[{required:true, }]}><Upload maxCount={1}><Button>上传</Button></Upload></Form.Item>
+                    <Form.Item label='超参数' name='superParams' rules={[{required:true, }]}><Input/></Form.Item>
+                    <Form.Item label='最多参与次数' name='maxTimesPerClient' rules={[{required:true, }]}><InputNumber min={1}/></Form.Item>
                     {/* 富文本框的事情太多了 就放弃了 <RichEditor/> */}
                     <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
                     <Button type="primary" htmlType="submit">

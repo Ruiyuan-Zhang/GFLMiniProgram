@@ -1,10 +1,11 @@
 import { View, Image } from '@tarojs/components'
-import Taro from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import { AtProgress, AtDivider } from 'taro-ui'
 import request from '@/utils/request'
 import { file_url } from '@/config'
 import './index.less'
-import { useEffect, useState } from 'react'
+import { getUser } from '@/common/user'
+import { useState } from 'react'
 
 const Item = ({data}) =>{
     const {id, file, name} = data
@@ -28,8 +29,8 @@ export default () => {
     const [taskList, setTaskList] = useState([])
 
     // 请求加入的任务列表
-    useEffect(async()=>{
-        let res = await request({url:'/v1/admin/task/taskJoinList',method:'get',data:{page:1,limit:100,userName:"zhangruiyuan"}})
+    useDidShow(async()=>{
+        let res = await request({url:'/v1/admin/task/taskJoinList',method:'get',data:{page:1,limit:100,userName:getUser().user_name}})
         if (res instanceof Error)return
         let list = res.data
         setTaskList(list)

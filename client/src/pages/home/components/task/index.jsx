@@ -13,7 +13,7 @@ const Index = ({title,more_url}) => {
     useDidShow(async()=>{
         // if (title === '为您推荐任务'){
             let res = await request({
-                url: '/v1/admin/task/list?page=1&limit=3',
+                url: '/v1/admin/task/list?page=1&limit=10',
                 method: 'get'
             })
             if (res instanceof Error) return

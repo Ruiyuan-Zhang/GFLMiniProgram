@@ -116,6 +116,8 @@ func InitWebRouter() *gin.Engine {
 				task.POST("add", validatorFactory.Create(consts.ValidatorPrefix+"TaskAdd"))
 				// 任务列表
 				task.GET("list", validatorFactory.Create(consts.ValidatorPrefix+"TaskList"))
+				// 任务查询
+				task.GET("select", validatorFactory.Create(consts.ValidatorPrefix+"TaskSelect"))
 				// 任务详情
 				task.GET("detail", validatorFactory.Create(consts.ValidatorPrefix+"TaskDetail"))
 				// 任务详情 包含格式

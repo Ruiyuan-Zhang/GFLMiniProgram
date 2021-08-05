@@ -2,8 +2,7 @@
  * 请求方法封装
 */
 import Taro from '@tarojs/taro'
-import { AtIcon } from 'taro-ui'
-import {saveUser, getUser, removeUser} from '@/common/user'
+import { getUser} from '@/common/user'
 import {consts} from '@/common/enum'
 import {file_url,server_url} from '@/config'
 

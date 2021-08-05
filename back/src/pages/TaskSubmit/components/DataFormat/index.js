@@ -71,7 +71,11 @@ const index = ({next}) =>{
                     确认
                 </Button>
             </div>
-            
+            <div>
+                <div>注：当前只支持一种形式的输入，即「一张图片+一个值表示」的形式。</div>
+                <div>未来将支持「多输入组合+多输出组合」形式。</div>
+                <div>更多自定义修改请访问<a target='_blank' href="https://github.com/zju-zry/GFLMiniProgram">GitHub</a>。\ (•◡•) /</div>
+            </div>
         </div>
     )
 }

@@ -16,6 +16,7 @@ export default {
       "root": "packageTask",
       "pages": [
         'pages/task_detail/index',
+        'pages/task_list/index',
         'pages/task_schedule/index',
         'pages/train/index',
         'pages/fed_avg/index', 
@@ -40,9 +41,8 @@ export default {
       "provider": "wx6afed118d9e81df9"
     }
   },
-  "workers": "workers",
   "tabBar": {
-    custom: true,
+    custom: false,
     color: '#a1a7b3',
     selectedColor: '#1492ff',
     backgroundColor: '#ffffff',

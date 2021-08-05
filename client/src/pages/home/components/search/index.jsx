@@ -1,14 +1,14 @@
 import { View } from '@tarojs/components'
 import { useState } from 'react'
 import { AtSearchBar } from 'taro-ui'
-
-
-
+import Taro from '@tarojs/taro'
 import './index.less'
 
 export default function Index (){
 
     const [value, setValue] = useState('')
+
+    const select = () => Taro.navigateTo({url:'/packageTask/pages/task_list/index?keyword='+value})
 
     return (
       <View className='index'>
@@ -17,7 +17,7 @@ export default function Index (){
           actionName='搜索'
           value={value}
           onChange={setValue}
-          onActionClick={()=>console.log(value)}
+          onActionClick={select}
         />
       </View>
     )

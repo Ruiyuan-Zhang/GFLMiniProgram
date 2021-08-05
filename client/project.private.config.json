@@ -59,6 +59,12 @@
           "pathName": "packageTask/pages/fed_avg/index",
           "query": "id=607810728253988864",
           "scene": null
+        },
+        {
+          "name": "packageTask/pages/task_list/index",
+          "pathName": "packageTask/pages/task_list/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
