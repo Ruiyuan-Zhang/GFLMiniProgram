@@ -1,7 +1,7 @@
 import styles from './index.less'
 import {history} from 'umi'
 import { Image } from 'antd'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { request } from '@/utils/request'
 import BasicInfo from './components/BasicInfo'
 import TestData from './components/TestData'
@@ -19,12 +19,14 @@ const index = (props) =>{
         setTask(res.data.data)
     },[])
 
+    const [tls,setTls] = useState([])
+    const getTestList = tls => setTls(tls)
 
     return (
         <div className={styles.index}>
             <BasicInfo task={task}/>
-            <TestData task={task}/>
-            <TrainCondition task={task}/>
+            <TestData task={task} getTestList={getTestList}/>
+            <TrainCondition task={task} testDataList={tls}/>
         </div>
     )
 }

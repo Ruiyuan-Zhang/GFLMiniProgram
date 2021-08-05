@@ -59,7 +59,9 @@ CREATE TABLE tb_global_model (
     file VARCHAR(100) DEFAULT '' COMMENT '全局模型地址',
     test_data VARCHAR(100) DEFAULT '' COMMENT '测试数据',
     acc VARCHAR(30) DEFAULT '' COMMENT '模型准确率',
-    client_model_ids VARCHAR(1000) DEFAULT '' COMMENT '所引用的客户端模型',
+    time VARCHAR(30) DEFAULT '' COMMENT '模型聚合消耗的时间',
+    client_model_ids VARCHAR(1000) DEFAULT '' COMMENT '引用它的客户端模型',
+    fed_avg_with_clients VARCHAR(1000) DEFAULT '' COMMENT '所引用的客户端模型',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 )DEFAULT CHARSET=utf8;
@@ -70,6 +72,7 @@ CREATE TABLE tb_client_model (
     user_name VARCHAR(30) NOT NULL COMMENT '客户端名称',
     task_id VARCHAR(30)  NOT NULL COMMENT '任务编号',
     file VARCHAR(100) DEFAULT '' COMMENT '全局模型地址',
+    time VARCHAR(30) DEFAULT '' COMMENT '模型训练消耗的时间',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 )DEFAULT CHARSET=utf8;

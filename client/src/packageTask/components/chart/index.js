@@ -4,7 +4,7 @@ import { View } from "@tarojs/components";
 import { EChart } from "echarts-taro3-react";
 import "./index.less";
 
-export default ({data, name}) => {
+export default ({data, name, subtext}) => {
 
     let barChart
     const refBarChart = (node) => (barChart = node);
@@ -12,7 +12,7 @@ export default ({data, name}) => {
         const defautOption = {
             animation:false,
             title: {
-                text:name, subtext:"本地模型训练情况（损失率）", x: 'center'
+                text:name, subtext, x: 'center'
             },
             xAxis: {
                 type: 'category',

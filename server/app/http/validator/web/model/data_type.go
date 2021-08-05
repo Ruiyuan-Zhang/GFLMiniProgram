@@ -11,4 +11,5 @@ type ClientModelBaseField struct {
 	UserName      string `json:"userName" form:"userName" binding:"required"`
 	TaskId        string `json:"taskId" form:"taskId" binding:"required"`
 	File          string `json:"file" form:"file" binding:"required"`
+	Time          string `json:"time" form:"time"`
 }

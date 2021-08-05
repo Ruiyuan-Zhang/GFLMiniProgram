@@ -5,7 +5,7 @@ import { init, train as doTrain } from '@/train'
 import { globalVariables } from '@/common/enum'
 import {saveUser, getUser, removeUser} from '@/common/user'
 import request from '@/utils/request'
-import Chart from './components/chart'
+import Chart from '../../components/chart'
 import styles from './index.module.less'
 
 const index = () =>{
@@ -25,6 +25,7 @@ const index = () =>{
             setTimeLineData([...timeLineData])
         }
         let beginTime = (new Date()).getTime()
+        let endTime
         addTimeLineData("正在启动训练...")
         addTimeLineData("正在加载远程全局模型...")
         
@@ -38,7 +39,7 @@ const index = () =>{
                 addTimeLineData("Loss after Epoch " + index + " : " + history.loss[0])
             },
             onTrainEnd: ()=>{
-                let endTime = (new Date()).getTime()
+                endTime = (new Date()).getTime()
                 addTimeLineData(`本次训练总耗时长${endTime-beginTime}ms`)
             }
         })
@@ -53,6 +54,7 @@ const index = () =>{
                 taskId:task.id,
                 userName:getUser().user_name,
                 file,
+                time:endTime-beginTime+"",
             }
         })
         if (res instanceof Error)return
@@ -61,7 +63,7 @@ const index = () =>{
 
     return (
         <View className={styles.index}>
-            <Chart data={chartData} name={task.name}/>
+            <Chart data={chartData} name={task.name} subtext="本地模型训练情况（损失率）"/>
             <View className={styles.timeLine}>
                 <AtTimeline items={timeLineData} />
             </View>

@@ -13,7 +13,7 @@ const Index = ({ children }) => {
         <Header className={styles.header}>GFL移动设备训练「管理系统」</Header>
         <Content className={styles.content}>{children}</Content>
         <Footer className={styles.footer}>
-          Ant Design ©2021 Created by Zhang Ruiyuan
+        <a href="https://github.com/zju-zry/GFLMiniProgram" target='_blank'>≧◔◡◔≦ zhangruiyuan@zju.edu.cn ≧◔◡◔≦</a>
         </Footer>
       </Layout>
     </Layout>

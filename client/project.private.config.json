@@ -47,6 +47,18 @@
           "pathName": "pages/train/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "packageTask/pages/task_schedule/index",
+          "pathName": "packageTask/pages/task_schedule/index",
+          "query": "id=607810728253988864",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/fed_avg/index",
+          "pathName": "packageTask/pages/fed_avg/index",
+          "query": "id=607810728253988864",
+          "scene": null
         }
       ]
     }

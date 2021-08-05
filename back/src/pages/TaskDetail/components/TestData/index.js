@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { request, requestWrap, addLoading, deleteLoading } from '@/utils/request'
 import styles from './index.less'
 
-const index = ({task={}}) =>{
+const index = ({task={},getTestList}) =>{
 
     const {dataFormats} = task
     const [testList,setTestList] = useState([])
@@ -18,6 +18,9 @@ const index = ({task={}}) =>{
             setTestList(res)
         }
     },[task])
+
+    // 返回测试集
+    useEffect(()=>getTestList(testList),[testList])
 
     const handleAddTestData = async data =>{
         let ifes = dataFormats.filter(df => df.type == 'image' || df.type == 'file').map(df=>df.englishName)
@@ -52,7 +55,7 @@ const index = ({task={}}) =>{
                     <div>1. 用户贡献测试数据 0份</div>
                 </div>
                 <div className={styles.right}>
-                    <Button onClick={()=>setAddTestData(true)}>添加测试数据</Button>
+                    <Button type='primary' onClick={()=>setAddTestData(true)}>添加测试数据</Button>
                 </div>
             </div>
             <Modal

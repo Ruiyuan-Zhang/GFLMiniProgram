@@ -15,6 +15,7 @@ import (
 	"goskeleton/app/global/variable"
 	"goskeleton/app/model"
 	"strconv"
+	"time"
 )
 
 func CreatGlobalFactory(sqlType string) *GlobalModel {
@@ -24,11 +25,15 @@ func CreatGlobalFactory(sqlType string) *GlobalModel {
 type GlobalModel struct {
 	model.BaseModel
 	// 这个id已经相当于globalModelId了
-	Id              string `json:"id"`
-	LastGlobalModel string `json:"lastGlobalModel" gorm:"column:last_global_model"`
-	TaskId          string `json:"taskId" gorm:"column:task_id"`
-	File            string `json:"file" gorm:"file"`
-	ClientModelIds  string `json:"clientModelIds" gorm:"column:client_model_ids"`
+	Id                string `json:"id"`
+	LastGlobalModel   string `json:"lastGlobalModel" gorm:"column:last_global_model"`
+	TaskId            string `json:"taskId" gorm:"column:task_id"`
+	File              string `json:"file" gorm:"file"`
+	Time              string `json:"time" gorm:"column:time"`
+	Acc               string `json:"acc" gorm:"column:acc"`
+	TestData          string `json:"testData" gorm:"column:test_data"`
+	ClientModelIds    string `json:"clientModelIds" gorm:"column:client_model_ids"`
+	FedAvgWithClients string `json:"fedAvgWithClients" gorm:"column:fed_avg_with_clients"`
 }
 
 func (g *GlobalModel) TableName() string {
@@ -38,10 +43,10 @@ func (g *GlobalModel) TableName() string {
 /**
 第一次插入数据时，last_global_model等于task_id的值，可以用这个特性找到第一个全局模型
 */
-func (g *GlobalModel) Add(lastGlobalModel, taskId, file, testData, acc string) error {
-	sql := `insert into tb_global_model (id,last_global_model,task_id,file,test_data,acc) values (?,?,?,?,?,?)`
+func (g *GlobalModel) Add(lastGlobalModel, taskId, file, testData, acc, time, fedClients string) error {
+	sql := `insert into tb_global_model (id,last_global_model,task_id,file,test_data,acc,time,fed_avg_with_clients) values (?,?,?,?,?,?,?,?)`
 	id := strconv.FormatInt(variable.SnowFlake.GetId(), 10)
-	if res := g.Exec(sql, id, lastGlobalModel, taskId, file, testData, acc); res.Error == nil {
+	if res := g.Exec(sql, id, lastGlobalModel, taskId, file, testData, acc, time, fedClients); res.Error == nil {
 		return nil
 	} else {
 		variable.ZapLog.Error("GlobalModel 数据插入出错", zap.Error(res.Error))
@@ -95,7 +100,7 @@ func (g *GlobalModel) ListWithClient(taskId string, limitStart, limit int) *[]Gl
 			c.id as c_id, c.id as c_id_str,
 			c.user_name as c_user_name, 
 			c.task_id as c_task_id, 
-			c.file as c_file, 
+			c.file as c_file, c.time as c_time,
 			c.created_at as c_created_at 
 		from 
 			tb_global_model as g left outer join tb_client_model as c on (g.id = c.global_model_id)
@@ -172,9 +177,16 @@ func (g *GlobalModel) FedAvg(c *gin.Context) error {
 	}
 
 	// 2. 处理聚合
+
+	startTime := time.Now().UnixNano() / 1e6
 	if newTestData, newGlobalModel, acc, err := (&Train{}).FedAvg(globalModel, clientModels, testData); err == nil {
+		endTime := time.Now().UnixNano() / 1e6
 		// 3. 新globalModel创建
-		if err := g.Add(globalModel.Id, globalModel.TaskId, newGlobalModel, newTestData, acc); err == nil {
+		fedClients := "" // 参与聚合的模型的编号
+		for i := 0; i < len(clientModels); i++ {
+			fedClients += clientModels[i].Id + " "
+		}
+		if err := g.Add(globalModel.Id, globalModel.TaskId, newGlobalModel, newTestData, acc, strconv.FormatInt(endTime-startTime, 10), fedClients); err == nil {
 			return nil
 		} else {
 			variable.ZapLog.Error("FedAvg globalModel 数据库添加出错", zap.Error(err))

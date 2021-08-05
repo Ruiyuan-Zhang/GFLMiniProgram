@@ -2,7 +2,7 @@ import { fetchToken, removeToken } from '@/common/token';
 import Loading from '@/components/Loading';
 import { extend } from 'umi-request';
 import ReactDOM from 'react-dom';
-import { message } from 'ppfish';
+import { message } from 'antd';
 import { history } from 'umi';
 
 //*********************************************   拦截器部分   *********************************************//
@@ -95,10 +95,10 @@ const requestWrap = ({errorHandler, type='json', showMassage=true, options ={} }
 
   // 创建一个umi-request实例
   let request = extend({
-    ...options,
     timeout: 5000,
     errorHandler,
     headers,
+    ...options,
   })
   iniRequest(request)
   return request

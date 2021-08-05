@@ -18,6 +18,7 @@ export default {
         'pages/task_detail/index',
         'pages/task_schedule/index',
         'pages/train/index',
+        'pages/fed_avg/index', 
       ]
     },{
       "root": "packageUser",
