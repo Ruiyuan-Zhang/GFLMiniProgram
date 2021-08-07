@@ -1,4 +1,5 @@
 -- mysql -h 127.0.0.1 -P 3306 -u root   < /Users/zhangruiyuan/TaroProjects/GFLMiniProgram/docs/database/test.sql
+-- mysql -h 1.117.153.221 -P 3306 -u root  -p < /Users/zhangruiyuan/TaroProjects/GFLMiniProgram/docs/database/test.sql
 -- mysqldump --opt -h 127.0.0.1 -u root --skip-lock-tables test>/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/docs/database/test_out.sql
 
 
