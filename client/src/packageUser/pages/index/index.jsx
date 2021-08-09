@@ -13,7 +13,7 @@ export default function Index (){
       Taro.switchTab({
         url: '/pages/home/index'
       })
-    },1000)
+    },3000)
   })
 
   return (
