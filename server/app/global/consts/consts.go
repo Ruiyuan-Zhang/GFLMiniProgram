@@ -72,5 +72,6 @@ const (
 	CaptchaCheckFailMsg  string = "验证码校验失败"
 
 	// 文件管理服务器地址
-	FileServerDir string = "/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer"
+	FileServerDir string = "/home/zhangruiyuan/gfmini/file"
+	// FileServerDir string = "/Users/zhangruiyuan/TaroProjects/GFLMiniProgram/fileServer"
 )
