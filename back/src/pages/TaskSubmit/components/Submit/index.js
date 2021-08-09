@@ -26,7 +26,6 @@ const index = ({basicInfo,dataFormat})=>{
         formData.append('bin',e['initModelFileBin'])
         e.initModelFile = await requestWrap({type:'file'}).post('/file/uploadGlobalModelSameDir',{data:formData})
         e.initModelFile = e.initModelFile.url
-        console.log(e)
 
         // 3. 返回数据
         let res = await requestWrap({}).post('/v1/admin/task/add',{data:e})
@@ -53,7 +52,6 @@ const index = ({basicInfo,dataFormat})=>{
                     async()=>{
                         addLoading()
                         let taskId = await subitBasicInfo(basicInfo)
-                        console.log(taskId)
                         await submitDataFormat(taskId,dataFormat)
                         deleteLoading()
                         history.push({pathname:'/training'})

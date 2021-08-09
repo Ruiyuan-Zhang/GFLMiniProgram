@@ -1,4 +1,5 @@
 export default {
+  entryPagePath:'packageUser/pages/index/index',
   pages: [
     'pages/home/index',
     'pages/category/index',
@@ -42,7 +43,7 @@ export default {
     }
   },
   "tabBar": {
-    custom: false,
+    // custom: true,
     color: '#a1a7b3',
     selectedColor: '#1492ff',
     backgroundColor: '#ffffff',

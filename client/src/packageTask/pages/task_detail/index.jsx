@@ -55,7 +55,9 @@ export default () => {
                 userName:user.user_name,
             }})
             if (res instanceof Error) return
-            Taro.redirectTo({url:'/packageData/pages/get_data/index?id='+task.idStr})
+            Taro.redirectTo({
+                url:`/packageData/pages/get_data/index?id=${task.idStr}&ret=taskDetail`
+            })
         }else {
             Taro.showToast({icon:'none', title:'请确认阅读《xxx用户数据隐私保护规范》'})
         }
@@ -68,7 +70,7 @@ export default () => {
             <View className='task'>
                 <View className='title'>一、任务介绍</View>
                 <View className='image'>
-                    <Image src={file_url+task.file} mode='widthFix'></Image>
+                    <Image src={task.file&&file_url+task.file} mode='widthFix'></Image>
                 </View>
                 <View className='content'>{task.description} </View>
             </View>
@@ -127,7 +129,6 @@ export default () => {
             </View>
             </>
             }
-            
         </View>
     )
 }

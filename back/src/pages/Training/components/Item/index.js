@@ -37,7 +37,9 @@ const index = ({data}) =>{
                     </>
                 }
             />
-            {description}
+            <div className={styles.desc}>
+                {description}
+            </div>
         </List.Item>
     )
 }

@@ -4,7 +4,7 @@
   "description": "GFL小程序",
   "appid": "wxa8da2aa9ce5f587d",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "enhance": false,
     "postcss": false,

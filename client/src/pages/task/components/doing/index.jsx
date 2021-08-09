@@ -8,7 +8,7 @@ import { getUser } from '@/common/user'
 import { useState } from 'react'
 
 const Item = ({data}) =>{
-    const {id, file, name} = data
+    const {id, file, name, tuCreateAt, description} = data
     return (
     <View className='item' onClick={()=>{
         Taro.navigateTo({
@@ -18,8 +18,9 @@ const Item = ({data}) =>{
         <Image className='image' mode='widthFix' src={file_url+file}></Image>
         <View className='content'>
             <View className='name'>{name}</View>
-            <View className='progress'>训练进度：<View className='progress_bar'><AtProgress percent={40} status='progress' /></View></View>
-            <View className='train_time'>训练时间：{1.0}h</View>
+            {/* <View className='progress'>训练进度：<View className='progress_bar'><AtProgress percent={40} status='progress' /></View></View> */}
+            <View className='description'>{description}</View>
+            <View className='tuCreateAt'>加入时间：{tuCreateAt&&tuCreateAt.substr(0,19).replace("T"," ")}</View>
         </View>
     </View>
     )

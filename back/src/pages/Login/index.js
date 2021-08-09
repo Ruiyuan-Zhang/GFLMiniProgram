@@ -3,6 +3,7 @@ import { history } from 'umi';
 import { RightCircleOutlined } from '@ant-design/icons';
 import {requestWrap} from '@/utils/request';
 import {saveToken} from '@/common/token'
+import {saveUser} from '@/common/user'
 import styles from './index.less';
 
 
@@ -11,10 +12,13 @@ const index = () => {
     const login = async data => {
         const errorHandler = e => {
             message.error('请检查您的登录信息是否正确')
-            return
+            return new Error()
         }
         const res = await requestWrap({errorHandler}).post('/v1/admin/users/login', {data})
-        if(res) saveToken(res.data.token)
+        if (res instanceof Error)return 
+
+        saveUser(res.data)
+        saveToken(res.data.token)
         message.success('登录成功',0.5)
         history.push({pathname:'/'})
     }
@@ -48,7 +52,11 @@ const index = () => {
         </div>
         <div className={styles.reg}>
             <p>联邦学习研究者注册</p> 
-            <a href="">注册
+            {/* 这种方法也是网上很常见的代码，# 是标签内置的一个方法，代表 top 的作用。所以用这种方法点击后网页返回到页面的最顶端，但是对于一个很长的页面而言，可能会在跳转时产生页面滑动的效果。 */}
+            {/* https://www.cnblogs.com/hjbky/p/6217369.html */}
+            <a href="#" onClick={()=>{
+                message.info("sorry, we don't provide you ways ro register.")
+            }}>注册
                 <RightCircleOutlined />
             </a> 
         </div>

@@ -103,6 +103,8 @@ func (u *userToken) IsEffective(token string) bool {
 	if consts.JwtTokenOK == code {
 		//if user_item := Model.CreateUserFactory("").ShowOneItem(customClaims.UserId); user_item != nil {
 		if model.CreateUserFactory("").OauthCheckTokenIsOk(customClaims.UserId, token) {
+			//fmt.Println("有效的token")
+			//fmt.Println(token)
 			return true
 		}
 	}

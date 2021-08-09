@@ -65,6 +65,36 @@
           "pathName": "packageTask/pages/task_list/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "packageData/pages/get_data/index",
+          "pathName": "packageData/pages/get_data/index",
+          "query": "id=609391704507686912&ret=%22%2FpackageTask%2Fpages%2Ftask_schedule%2Findex",
+          "scene": null
+        },
+        {
+          "name": "packageData/pages/get_data/index",
+          "pathName": "packageData/pages/get_data/index",
+          "query": "id=609402432274833408&ret=%2FpackageTask%2Fpages%2Ftask_schedule%2Findex",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/task_schedule/index",
+          "pathName": "packageTask/pages/task_schedule/index",
+          "query": "id=609402432274833408",
+          "scene": null
+        },
+        {
+          "name": "packageTask/pages/task_schedule/index",
+          "pathName": "packageTask/pages/task_schedule/index",
+          "query": "id=609402432274833408",
+          "scene": null
+        },
+        {
+          "name": "packageUser/pages/index/index",
+          "pathName": "packageUser/pages/index/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

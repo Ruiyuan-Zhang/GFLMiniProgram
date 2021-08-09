@@ -1,4 +1,4 @@
 export default {
-  navigationBarTitleText: '索引页',
+  navigationBarTitleText: '登录页',
   navigationStyle:'custom'
 }

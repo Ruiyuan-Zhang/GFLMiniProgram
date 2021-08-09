@@ -10,16 +10,25 @@ const Config = defineConfig({
   fastRefresh: {},
   proxy: {
     '/v1': {
-      target: 'http://1.117.153.221:8888/v1/',
+      target: 'http://localhost/v1/',
       changeOrigin: true,
       pathRewrite: { '^/v1': '' },
     },
     '/file':{
-      target: 'http://1.117.153.221:3000/',
+      target: 'http://localhost/file/',
       changeOrigin:true,
       pathRewrite: { '^/file': '' },
     }
   },
+  // 配置layout，以后可以尝试一下。
+  // layout:{
+  //   name:'ping',
+  //   locale: false,
+  //   logo:'./logo.png'
+  // },
+  title:'GFLmini',
+  favicon: './logo.gif'
+
 });
 
 export default Config;

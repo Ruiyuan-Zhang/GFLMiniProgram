@@ -15,6 +15,7 @@ import { getData,saveData,saveFileListToLocal } from '@/common/data'
 const Index = () => {
 
     const { task, files } = globalVariables.get_data_TO_add_data
+    
 
     /**
      *  因动画ui而附加的处理列表文件数据及逻辑。
@@ -73,16 +74,23 @@ const Index = () => {
         console.log(localDataList)
         console.log(data)
         saveData(data)
-        // 添加训练数据 -> 添加数据（图片）界面 -> 补充数据界面
-        // 所以需要退回2个
-        Taro.navigateBack({delta:2})
+
+        const {ret} = getCurrentInstance().router.params
+
+        if (ret&&ret=='taskDetail'){
+            Taro.reLaunch({url:'/packageTask/pages/task_schedule/index?id='+task.idStr})
+        }else{
+            // 添加训练数据 -> 添加数据（图片）界面 -> 补充数据界面
+            // 所以需要退回2个
+            Taro.navigateBack({delta:2})
+        }
     }
     
     return (
         <View className='addItem'>
             <Title title='基于机器学习的刀具表面缺陷检测及分类方法' subtitle='补充数据'/>
             {files.map((f, i)=><Item key={f} index={i} img={f} dataFormats={task.dataFormats} handleLocalDataChange={handleLocalDataChange}/>)}
-            <AtButton type='primary' className='btn' onClick={()=>save_local_data_list({task,localDataList})}>加入任务</AtButton>
+            <AtButton type='primary' className='btn' onClick={()=>save_local_data_list({task,localDataList})}>提交测试数据</AtButton>
             <AtDivider content='没有更多了' />
         </View>
     ) 

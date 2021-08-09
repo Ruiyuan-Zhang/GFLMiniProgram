@@ -23,11 +23,12 @@ const Index = () => {
     
     // 获取任务详情信息
     useEffect( async()=>{
-        const id = getCurrentInstance().router.params.id
+        const {id,ret} = getCurrentInstance().router.params
         if (!id) {
             Taro.showToast({title:'请传入任务编号', icon:'none'})
             return
         }
+        
         let res = await request({url:`/v1/admin/task/detailWithFormat?id=${id}`,method:'get'})
         if (res instanceof Error)return
         setTask(res.data)
@@ -42,8 +43,10 @@ const Index = () => {
         Taro传递参数，文档写的真的不咋地！！！
         最终我用的这个 https://www.cnblogs.com/qqcc1388/p/13541154.html
         */
+        let {id,ret} = getCurrentInstance().router.params
+        ret = ret ? "?ret="+ret : ""
         Taro.navigateTo({
-            url:'/packageData/pages/add_data/index',
+            url:'/packageData/pages/add_data/index'+ret,
         })
     }
 
@@ -54,7 +57,7 @@ const Index = () => {
                 <AtImagePicker multiple="multiple" files={files} onChange={onChange}/>
             </View>
             <View className='btn'>
-                <AtButton type='primary' onClick={go_add_data}>提交数据</AtButton>
+                <AtButton type='primary' onClick={go_add_data}>下一步</AtButton>
             </View>
         </View>
     )

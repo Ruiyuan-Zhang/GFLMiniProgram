@@ -70,7 +70,7 @@ func (t *TaskUserModel) Have(user_name, task_id string) *TaskUserModel {
 // 查询某用户加入的任务列表
 func (c *TaskUserModel) JoinList(user_name string, limitStart, limit int) (list []TaskModelView) {
 	sql := `
-		SELECT  t.*  FROM tb_task as t, tb_task_user as tu
+		SELECT  t.*, tu.created_at as tu_created_at  FROM tb_task as t, tb_task_user as tu
 		where t.id = tu.task_id and tu.user_name = ?
  		LIMIT ?,?
 	`

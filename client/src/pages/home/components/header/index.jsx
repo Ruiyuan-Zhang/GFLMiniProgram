@@ -1,6 +1,6 @@
 import { View, Image, Swiper, SwiperItem } from '@tarojs/components'
 import {file_url} from '@/config'
-import './index.less'
+import styles from './index.module.less'
 
 export default function Index (){
 
@@ -11,7 +11,7 @@ export default function Index (){
     file_url+'/images/client/home_bg_4.png',
   ]
     return (
-      <View className='index'>
+      <View className={styles.index}>
         <Swiper
           autoplay 
           indicatorDots
@@ -19,8 +19,8 @@ export default function Index (){
         >
           {
             urls.map(url=>(
-              <SwiperItem className='image-wrap' key={url}>
-                  <Image className='image' src={url}></Image>
+              <SwiperItem className={styles.imageWrap} key={url}>
+                  <Image className={styles.image} src={url}></Image>
               </SwiperItem>
             ))
           }

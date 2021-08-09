@@ -54,6 +54,7 @@ const config = {
         }
       }
     },
+    // 打包大小检查 http://localhost:8888/
     webpackChain (chain, webpack) {
       chain.plugin('analyzer')
         .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])

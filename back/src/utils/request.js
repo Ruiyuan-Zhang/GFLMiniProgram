@@ -107,8 +107,6 @@ const requestWrap = ({errorHandler, type='json', showMassage=true, options ={} }
 // 只是一个使用的语法糖而已
 const request = async ({method='post',url, data, options ={}})=>{
 
-  console.log(data)
-
   let type = (data instanceof FormData) ?'file': 'json'
   let isErr = false
   let res

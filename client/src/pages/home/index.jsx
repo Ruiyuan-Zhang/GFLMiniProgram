@@ -19,9 +19,9 @@ export default function Home() {
         <View className='home'>
             <Header/>
             <Search/>
-            <Task title='为您推荐任务' more_url='/packageTask/pages/task_list/index?kind=推荐'/>
-            <Task title='今日份有趣任务' more_url='/packageTask/pages/task_list/index?kind=有趣'/>
-            <Task title='当前火热任务' more_url='/packageTask/pages/task_list/index?kind=火热'/>
+            <Task title='为您推荐任务' logo='tui' more_url='/packageTask/pages/task_list/index?kind=推荐'/>
+            <Task title='今日份有趣任务' logo='fun' more_url='/packageTask/pages/task_list/index?kind=有趣'/>
+            <Task title='当前火热任务' logo='hot' more_url='/packageTask/pages/task_list/index?kind=火热'/>
             <AtDivider content='没有更多了'/>
         </View> 
     )

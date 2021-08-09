@@ -18,7 +18,7 @@ export default function Index (){
 
   return (
     <View className='index'>
-      <image className='bg' src={file_url+'/images/client/index_bg'}></image>
+      <image className='bg' src={file_url+'/images/client/index_bg.png'}></image>
     </View>
   )
 }

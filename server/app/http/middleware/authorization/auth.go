@@ -31,10 +31,10 @@ func CheckTokenAuth() gin.HandlerFunc {
 
 		if len(headerParams.Authorization) >= 20 {
 			token := strings.Split(headerParams.Authorization, " ")
-			if len(token) == 2 && len(token[1]) >= 20 {
-				tokenIsEffective := userstoken.CreateUserFactory().IsEffective(token[1])
+			if len(token) == 1 && len(token[0]) >= 20 {
+				tokenIsEffective := userstoken.CreateUserFactory().IsEffective(token[0])
 				if tokenIsEffective {
-					if customeToken, err := userstoken.CreateUserFactory().ParseToken(token[1]); err == nil {
+					if customeToken, err := userstoken.CreateUserFactory().ParseToken(token[0]); err == nil {
 						key := variable.ConfigYml.GetString("Token.BindContextKeyName")
 						// token验证通过，同时绑定在请求上下文
 						context.Set(key, customeToken)

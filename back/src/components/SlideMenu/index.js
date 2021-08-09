@@ -1,6 +1,7 @@
 import React from 'react';
 import { history } from 'umi';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Image } from 'antd';
+import logo from '@/assets/logo.png'
 
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -56,7 +57,11 @@ const index = () => {
 
   return (
     <Sider className={styles.sider} width={200}>
-      <div className={styles.logo} />
+      <div className={styles.logo} >
+        <Image className={styles.img} src={logo}>
+        </Image>
+        <div className={styles.title}>联邦学习「移动」</div>
+      </div>
       <Menu
         defaultOpenKeys={menu.map(({ key }) => key)}
         mode="inline"

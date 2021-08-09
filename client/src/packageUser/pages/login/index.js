@@ -15,6 +15,7 @@ const index = () =>{
         if(name&&pass){
             let user = await fetch({url: '/v1/admin/users/login',data: {user_name:name,pass}})
             if (user instanceof Error)return
+            // console.log(user)
             saveUser(user)
             // 关闭所有界面 并转到首页界面
             // 用在这里的原因：
@@ -22,11 +23,23 @@ const index = () =>{
             Taro.reLaunch({url:'/pages/home/index'})
         }
     }
-
+ 
     useEffect(async()=>{
+
+        // 请求授权的信息
+        let set = await Taro.getSetting()
+        if (!set.authSetting['scope.userInfo']) {
+            let res = await Taro.authorize({
+                scope: 'scope.userInfo'
+            })
+            if (res.errMsg.indexOf('ok')<0){
+                Taro.showToast({icon:'none',title:'授权失败'})
+                return 
+            }
+        }
+
         // 必须是在用户已经授权的情况下调用
         let user = await Taro.getUserInfo()
-        console.log(user.userInfo.avatarUrl)
         setImgUrl(user.userInfo.avatarUrl)
     },[])
     return (

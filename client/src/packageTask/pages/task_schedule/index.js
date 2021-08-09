@@ -1,5 +1,5 @@
 import { View,Text, Button } from '@tarojs/components'
-import { AtButton, AtProgress } from 'taro-ui'
+import { AtButton, AtProgress, message } from 'taro-ui'
 import Taro,{useDidShow} from '@tarojs/taro'
 import request from '@/utils/request'
 import Title from '@/components/TitleHandleData'
@@ -63,6 +63,12 @@ const Index = () =>{
 
     // 开始训练
     const train = async()=>{
+        // 检查本地是否有数据
+        if (localDataList.length<2){
+            await Taro.showToast({icon:'none',title:'训练之前请先添加至少2份数据哟~'})
+            return
+        }
+
         // 最后一个globalModel就是要继续训练的全局模型
         const globalModel = globalModelList[globalModelList.length-1]
         globalVariables.task_schedule_TO_train={
@@ -178,7 +184,7 @@ const Index = () =>{
                 <View className={styles.h3}>1. 本地训练</View>
                 <View className={styles.content}>
                     <Line name='训练进度' tail={clientProgressStr()} ><AtProgress percent={clientProgress()} isHidePercent/></Line>
-                    <Line name='训练时间（不包含未被采纳的训练）'>{joinTime(globalModelList)}ms</Line>
+                    <Line name='训练时间'>{joinTime(globalModelList)}ms</Line>
                     <Line name='总本地训练时间'>{joinAllTime(globalModelList)}ms</Line>
                     <Line name='占用CPU时间'>{joinTime(globalModelList)}ms</Line>
                     <Line name='开始时间'>{globalModelList.length>0&&globalModelList[globalModelList.length-1].createdAt.substr(0,19).replace("T"," ")}</Line>
@@ -190,7 +196,7 @@ const Index = () =>{
                 </View>
                 <View className={styles.h3}>3. 聚合情况</View>
                 <View className={styles.content}>
-                    <AtButton className={styles.btn} type='secondary'  onClick={()=>Taro.navigateTo({url:'/packageTask/pages/fed_avg/index?id='+task.idStr})}>查看全局模型情况</AtButton>
+                    <AtButton className={styles.btn} type='primary'  onClick={()=>Taro.navigateTo({url:'/packageTask/pages/fed_avg/index?id='+task.idStr})}>查看全局模型情况</AtButton>
                 </View>
             </View>
 
@@ -202,14 +208,14 @@ const Index = () =>{
                         <Line key={clientId} name={`第${index}轮训练`} mode='end'><View>查看</View></Line>
                     )}
                     {/* 点击参与训练，就能完成训练的任务 */}
-                    <AtButton className={styles.btn} onClick={train} type='secondary'>参与训练</AtButton>
+                    <AtButton className={styles.btn} onClick={train} type='primary'>参与训练</AtButton>
                 </View>
                 <View className={styles.h3}>2. 贡献测试数据情况</View>
                 <View className={styles.content}>
                     <Line name={`本地 ${localDataList?localDataList.length:0}份`} mode='end'>查看</Line>
                     <Line name='已贡献 0份' mode='end'>查看</Line>
                     <Line name='已拒绝 0份' mode='end'>查看</Line>
-                    <AtButton className={styles.btn}  type='secondary' onClick={submitTestData}>提交测试数据</AtButton>
+                    <AtButton className={styles.btn}  type='primary' onClick={submitTestData}>在本地提交测试数据</AtButton>
                 </View>
             </View>
         </View>

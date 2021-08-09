@@ -17,7 +17,6 @@ const imageCategory = async ({task,dataList,globalModelFile,onLoadModel,onIndexE
     let width = size[0]
     let height = size[1]
     for (let i in dataList){
-        console.log(i)
         let {data} = await resize({width,height,src:dataList[i].image})
         data = data.filter((v,i)=>i%4===0)
         data = data.map(v=>v/255)
@@ -46,7 +45,7 @@ const imageCategory = async ({task,dataList,globalModelFile,onLoadModel,onIndexE
     })
 
     // 4. 使用回调函数 在每轮训练结束之后通过全局变量告知任务训练的情况
-    for (let i=0;i<10;i++){
+    for (let i=0;i<5;i++){
         const {history} = await model.fit(x_train,y_train,{
             batchSize:16,
             epochs:1,

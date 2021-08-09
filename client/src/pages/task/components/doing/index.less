@@ -1,6 +1,8 @@
 .doing{
     .item{
-        border: 2rpx solid rgba(187, 187, 187, 100);
+        border-radius: 12rpx;
+        background-color: white;
+        border: 2rpx solid rgba(16, 16, 16, 0.1);
         margin: 12rpx 20rpx;
         display: flex;
         align-items: center;
@@ -8,6 +10,7 @@
         .image{
             width: 200rpx;
             flex-shrink: 0;
+            
         }
         .content{
             width: 100%;
@@ -19,6 +22,15 @@
             justify-content: space-between;
             .name{
                 color: rgba(16, 16, 16, 100);
+            }
+            .description{
+                width: 480rpx;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+            }
+            .tuCreateAt{
+                // font-size: 25rpx;
             }
             .progress{
                 display: flex;

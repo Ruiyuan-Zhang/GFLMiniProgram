@@ -17,7 +17,7 @@ function IndexItem({data={}}){
                 <View className={styles.content}>{description}</View>
                 <View className={styles.footer}> 
                     <View >浙江大学</View>
-                    <View >{createAt}发布</View>
+                    <View >{createAt&&createAt.substr(0,19).replace("T"," ")} 发布</View>
                 </View>
             </View>
         </View>

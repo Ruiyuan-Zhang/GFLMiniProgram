@@ -43,7 +43,7 @@ const index = () =>{
                 onActionClick={async ()=>{ await select({keyword:value}) }}
             />
             <View>
-                {list.map(item =><View key={item.id} className='item'><IndexItem data={item}></IndexItem></View>) }
+                {list.map(item =><View key={item.id} className={styles.item}><IndexItem data={item}></IndexItem></View>) }
             </View>
             
             <AtDivider content='没有更多了'/>

@@ -16,6 +16,7 @@ type TaskModelView struct {
 	SuperParams       string `json:"superParams" gorm:"column:super_params"`
 	MaxTimesPerClient int32  `json:"maxTimesPerClient" gorm:"column:max_times_per_client"`
 	CreatedAt         string `json:"createAt" gorm:"column:created_at"`
+	TUCreatedAt       string `json:"tuCreateAt" gorm:"column:tu_created_at"`
 }
 
 type TaskModelViewWithDataFormatList struct {

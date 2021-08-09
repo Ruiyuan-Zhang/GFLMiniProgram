@@ -15,7 +15,7 @@ const Index = () => {
 
  return (
   <div className={styles.index}>
-    <Steps size='small' current={si} onChange={setStepIndex}>
+    <Steps size='small' current={si} >
       <Step title='基本信息'/>
       <Step title='数据格式'/>
       <Step title='提交'/>
