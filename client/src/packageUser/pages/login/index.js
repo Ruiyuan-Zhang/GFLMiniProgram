@@ -33,8 +33,8 @@ const index = () =>{
         <View className={styles.index}>
             <AtAvatar image={imgUrl} size='large' circle></AtAvatar>
             <View className={styles.form}>
-                <AtInput title='用户名' type='text' placeholder='请输入您的用户名' name='name' value={name} onChange={setName}/>
-                <AtInput title='密码' type='password' placeholder='请输入您的密码' name='pass' value={pass} onChange={setPass}/>
+                <AtInput title='用户名' type='text' placeholder='请输入您的用户名' name='name' value={name} onChange={setName} cursorSpacing={100}/>
+                <AtInput title='密码' type='password' placeholder='请输入您的密码' name='pass' value={pass} onChange={setPass} cursorSpacing={100}/>
                 <AtButton type='primary' onClick={login}>登录</AtButton>
             </View>
         </View>

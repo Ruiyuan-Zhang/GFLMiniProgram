@@ -4,6 +4,7 @@ import stringRandom from 'string-random'
 
 // 在同一文件夹下放置自己的模型文件
 // https://blog.csdn.net/weisubao/article/details/76799572
+// 这里有一个问题，如果图片没有上传，就会回传上一次上传的图片地址。
 const uploadServerSameDir = (app, url, dir) =>{
     let dirName
     let fileName

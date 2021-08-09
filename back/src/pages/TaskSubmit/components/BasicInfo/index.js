@@ -36,11 +36,11 @@ const index = ({next}) =>{
                     </Select></Form.Item>
                     <Form.Item label='任务名称' name='name' rules={[{required:true, }]}><Input/></Form.Item>
                     <Form.Item label='任务描述' name='description' rules={[{required:true, }]}><Input.TextArea/></Form.Item>
-                    <Form.Item label='上传封面文件' name='file' rules={[{required:true, }]}><Upload maxCount={1} >
+                    <Form.Item label='上传封面文件' name='file' rules={[{required:true, }]}><Upload maxCount={1}>
                         <Button>上传</Button>
                     </Upload></Form.Item>
 
-                    <Form.Item label='初始化模型文件' name='initModelFile' rules={[{required:true, }]}><Upload maxCount={1}>
+                    <Form.Item label='初始化模型文件' name='initModelFile' rules={[{required:true, }]}><Upload maxCount={1} >
                         <Button>上传</Button>
                     </Upload></Form.Item>
 
