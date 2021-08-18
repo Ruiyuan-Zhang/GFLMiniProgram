@@ -1,6 +1,6 @@
 import {View} from '@tarojs/components'
 import {AtDivider} from 'taro-ui'
-import {useDidShow} from '@tarojs/taro'
+import {useDidShow, usePullDownRefresh} from '@tarojs/taro'
 import {TabIndexContext} from '../../store/tabIndex'
 import Header from './components/header'
 import Search from './components/search'
@@ -14,6 +14,8 @@ export default function Home() {
     useDidShow(() => {
         dispatch({type: 'change', payload: 'home'})
     })
+
+    
 
     return (
         <View className='home'>

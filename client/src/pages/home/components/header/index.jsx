@@ -1,5 +1,6 @@
 import { View, Image, Swiper, SwiperItem } from '@tarojs/components'
 import {file_url} from '@/config'
+
 import styles from './index.module.less'
 
 export default function Index (){
@@ -10,6 +11,7 @@ export default function Index (){
     file_url+'/images/client/home_bg_3.png',
     file_url+'/images/client/home_bg_4.png',
   ]
+  
     return (
       <View className={styles.index}>
         <Swiper

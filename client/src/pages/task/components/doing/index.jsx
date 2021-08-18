@@ -1,5 +1,5 @@
 import { View, Image } from '@tarojs/components'
-import Taro, { useDidShow } from '@tarojs/taro'
+import Taro, { useDidShow, usePullDownRefresh } from '@tarojs/taro'
 import { AtProgress, AtDivider } from 'taro-ui'
 import request from '@/utils/request'
 import { file_url } from '@/config'
@@ -29,13 +29,20 @@ const Item = ({data}) =>{
 export default () => {
     const [taskList, setTaskList] = useState([])
 
-    // 请求加入的任务列表
-    useDidShow(async()=>{
+    // // 请求加入的任务列表
+    const getTaskList = async () =>{
         let res = await request({url:'/v1/admin/task/taskJoinList',method:'get',data:{page:1,limit:100,userName:getUser().user_name}})
         if (res instanceof Error)return
         let list = res.data
         setTaskList(list)
-    },[])
+    }
+
+    useDidShow(getTaskList)
+    usePullDownRefresh(async()=>{
+        await getTaskList()
+        Taro.stopPullDownRefresh()
+    })
+
 
     return(
         <View className='doing'>

@@ -20,12 +20,12 @@ echo ""
 
 # 清空原有的目录中的内容
 echo "start to delete old file..."
-rm -r $nowPath"/tmp/"*
-rm -r $nowPath"/test/"*
-rm -r $nowPath"/images/back/"*
-rm -r $nowPath"/models/clientModel/"*
-rm -r $nowPath"/models/globalModel/"*
-rm -r $nowPath"/models/globalModelSameDir/"*
+rm -r $nowPath"/fileServer/tmp/"*
+rm -r $nowPath"/fileServer/test/"*
+rm -r $nowPath"/fileServer/images/back/"*
+rm -r $nowPath"/fileServer/models/clientModel/"*
+rm -r $nowPath"/fileServer/models/globalModel/"*
+rm -r $nowPath"/fileServer/models/globalModelSameDir/"*
 echo ""
 
 # 初始化mysql

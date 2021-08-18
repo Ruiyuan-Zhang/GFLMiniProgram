@@ -10,5 +10,5 @@ export const local_data_path = '/local_data'
 // export const file_url = 'http://127.0.0.1/file'
 // export const server_url = 'http://127.0.0.1/v1'  
 
-export const file_url = 'https://malanore.cn/file'
-export const server_url = 'https://malanore.cn/v1'  
+export const file_url = 'https://gflmini.zju-zry.club/file'
+export const server_url = 'https://gflmini.zju-zry.club/v1'  
