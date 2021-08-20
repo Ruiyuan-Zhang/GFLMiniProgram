@@ -1,4 +1,5 @@
 # 联邦学习应用
+```
 +
 |-- client               前台-微信小程序
 |-- clientManager        用户本地数据管理服务器（已放弃）
@@ -10,6 +11,7 @@
 |-- tensorFlowExperiment tensorFlow实验
 |-- testData             测试数据
 |-- .gitignore           git提交忽略文件
+```
 
 关于模型所需要的数据
 
