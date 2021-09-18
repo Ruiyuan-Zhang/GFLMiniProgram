@@ -7,8 +7,27 @@
  * 更多请看 https://developers.weixin.qq.com/miniprogram/dev/framework/ability/file-system.html
  * */ 
 export const local_data_path = '/local_data'
-export const file_url = 'http://127.0.0.1/file'
-export const server_url = 'http://127.0.0.1/v1'  
+// export const file_url = 'http://127.0.0.1/file'
+// export const server_url = 'http://127.0.0.1/v1'  
 
-// export const file_url = 'https://malanore.cn/file'
-// export const server_url = 'https://malanore.cn/v1'  
+export const file_url = 'https://gflmini.zju-zry.club/file'
+export const server_url = 'https://gflmini.zju-zry.club/v1'  
+
+export const appName = 'GFLmini 联邦学习「移动」'
+export const shareImages = [
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825180512.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825180703.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825180902.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825181032.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825181220.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825181317.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825181432.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825181458.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825181530.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825181621.png',
+    'https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210825181647.png',
+]
+export const getShareImage = () =>{
+    const i = Math.floor(Math.random()*shareImages.length)
+    return shareImages[i]
+}

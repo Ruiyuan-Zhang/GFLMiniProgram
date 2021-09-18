@@ -1,11 +1,13 @@
 import {View} from '@tarojs/components'
 import {AtDivider} from 'taro-ui'
-import {useDidShow} from '@tarojs/taro'
+import {useDidShow, useShareAppMessage, useShareTimeline} from '@tarojs/taro'
 import {TabIndexContext} from '../../store/tabIndex'
 import Header from './components/header'
 import Search from './components/search'
 import Task from './components/task'
-import {useContext} from 'react'
+import {useContext } from 'react'
+import {appName,shareImages,getShareImage} from '../../config/index'
+
 import './index.less'
 
 export default function Home() {
@@ -13,6 +15,24 @@ export default function Home() {
 
     useDidShow(() => {
         dispatch({type: 'change', payload: 'home'})
+    })
+
+      // 转发
+    useShareAppMessage(res=>{
+        return {
+            title: `${appName} 微信小程序也能做联邦学习啦！！！`,
+            path: '/pages/home/index',
+            imageUrl: getShareImage()
+        }
+    })
+
+    // 朋友圈
+    useShareTimeline(()=>{
+        return {
+            title: `${appName} 微信小程序也能做联邦学习啦！！！`,
+            path: '/pages/home/index',
+            imageUrl: getShareImage()
+        }
     })
 
     return (

@@ -6,6 +6,9 @@ import { getUser} from '@/common/user'
 import {consts} from '@/common/enum'
 import {file_url,server_url} from '@/config'
 
+
+let loading = 0
+
 /**
  * 简易封装网络请求
  * // NOTE 需要注意 RN 不支持 *StorageSync，此处用 async/await 解决
@@ -16,7 +19,8 @@ export default async function fetch(options) {
         data,
         method = 'POST',
         showToast = true,
-        autoLogin = true
+        autoLogin = true,
+        showLoading = true
     } = options
 
     let {
@@ -49,7 +53,16 @@ export default async function fetch(options) {
         }
     }
 
-    return Taro
+    if (showLoading){
+        loading ++
+        if (loading == 1){
+            Taro.showLoading({
+                title:'加载中'
+            })
+        }
+    }
+
+    let res = await Taro
         .request({url, method, data, header})
         .then(async (res) => {
             if (res.data instanceof Object){
@@ -85,4 +98,12 @@ export default async function fetch(options) {
             shToast({title: `${errMsg}`})
             return new Error()
         })
+        
+    if(showLoading){
+        loading --
+        if (loading == 0){
+            Taro.hideLoading()
+        }
     }
+    return res
+}
