@@ -1,14 +1,18 @@
 # GFLmini 联邦学习「移动」
+(本篇持续更新)
+https://github.com/zju-zry/GFLMiniProgram/tree/develop
 
 目前已发布微信小程序`GFLmini`，管理网站请访问：https://gflmini.zju-zry.club/。
 
 > 微信小程序
 
-<img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E5%BE%AE%E4%BF%A1%E6%A0%87%E5%87%86%E7%BB%BF%E7%89%88.png" style="zoom:20%;" /> 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/9dd6cf1d889b41e493d5cc61dae3ed50.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAemp1LXpyeQ==,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 
 > 管理后台
 
-<img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210918115144.png" style="zoom:20%;" /> 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/4c18c3313b8348b7941dc88debef5eac.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAemp1LXpyeQ==,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 
 
 
@@ -45,22 +49,21 @@
 
 产品在首页中展示了`为您推荐任务`、`今日份有趣任务`、`当前火热任务`等推荐内容，用户也可以通过`搜索`来对任务进行检索。
 
-<img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210918120133.png" style="zoom:25%;" /> <img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210918120205.png" style="zoom:25%;" />
+![在这里插入图片描述](https://img-blog.csdnimg.cn/c11066ef0de04bb2acb3f76e8e88e254.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAemp1LXpyeQ==,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 
 
 
 > 第二步：加入到一项任务当中去
 
 用户选择一项任务，阅读该任务的`隐私数据使用声明`，即可加入到该任务的训练中。每个任务需要图片、文件、字符串、数值等多种格式的数据输入，用户需要根据要求输入数据，你也可以先退出当前界面，稍后在`Task`中查看任务、追加数据。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/132f2e14c3994e598361f693836c7323.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAemp1LXpyeQ==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-<img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210918122550.png" style="zoom:25%;" /> 
 
 
 
 接下来，你可以在`Task`下看到进行中的任务列表，可以查看所参与任务的训练情况。您可以点击进去，观察全局任务的训练情况，并利用本地的数据参与训练。
-
-<img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210918123049.png" style="zoom:25%;" />  <img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210918123103.png" style="zoom:25%;" /> <img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210918123121.png" style="zoom:25%;" /> <img src="https://zhangruiyuan.oss-cn-hangzhou.aliyuncs.com/picGo/images/20210918123211.png" style="zoom:25%;" />
-
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a47a5b21ea094b438743e7aeebcdc67e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAemp1LXpyeQ==,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 
 #### 2. GFLmini管理后台
@@ -402,4 +405,5 @@ nohup node main &!
 
 
 ### License
+
 [Apache License 2.0](LICENSE)
