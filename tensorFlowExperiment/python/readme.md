@@ -22,7 +22,7 @@ python load_tfjs_converter_model.py
 tensorflowjs_converter \
     --input_format keras \
     --output_format tfjs_layers_model \
-    mnistModel.h5 \
+    model.h5 \
     mnistModel_keras
 ```
 

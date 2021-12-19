@@ -40,8 +40,12 @@ func (c *TaskModel) TableName() string {
 
 // 新增一项任务
 func (t *TaskModel) InsertData(c *gin.Context) *TaskModel {
+
+	// 校验一下上传的参数是否正确
 	var tmp TaskModel
 	if err := data_bind.ShouldBindFormDataToModel(c, &tmp); err == nil {
+
+		// 用雪花算法生成了一下id
 		tmp.Id = strconv.FormatInt(variable.SnowFlake.GetId(), 10) // 后面的10表示10进制
 		if res := t.Create(&tmp); res.Error == nil {
 			return &tmp

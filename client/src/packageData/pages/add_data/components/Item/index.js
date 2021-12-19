@@ -9,7 +9,7 @@ const Item = ({index, img, dataFormats, handleLocalDataChange}) => {
     let initData = {}
     initData[fileName] = img
     const [data, setData] = useState(initData)
-    const [ifInput, setIfInput] = useState(false)
+    const [ifInput, setIfInput] = useState(true)
     const [ifNeedBack, setIfNeedBack] = useState(false)
     const setInput = () =>{
         // 只要用户曾点击了展开，那之后要想回到原始状态就需要使用下面这个变量进行切换回去

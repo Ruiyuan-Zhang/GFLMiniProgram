@@ -6,7 +6,6 @@ import (
 	"goskeleton/app/global/consts"
 	"goskeleton/app/global/variable"
 	"goskeleton/app/http/controller/chaptcha"
-	"goskeleton/app/http/middleware/authorization"
 	"goskeleton/app/http/middleware/cors"
 	validatorFactory "goskeleton/app/http/validator/core/factory"
 	"io"
@@ -79,7 +78,7 @@ func InitWebRouter() *gin.Engine {
 		}
 
 		// 【需要token+Casbin】中间件验证的路由
-		backend.Use(authorization.CheckTokenAuth())
+		//backend.Use(authorization.CheckTokenAuth())
 		{
 			// 用户组路由
 			users := backend.Group("users/")

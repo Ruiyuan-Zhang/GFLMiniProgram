@@ -23,7 +23,7 @@ const Index = () => {
     
     // 获取任务详情信息
     useEffect( async()=>{
-        const {id,ret} = getCurrentInstance().router.params
+        const {id} = getCurrentInstance().router.params
         if (!id) {
             Taro.showToast({title:'请传入任务编号', icon:'none'})
             return

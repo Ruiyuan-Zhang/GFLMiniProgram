@@ -35,7 +35,8 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": false,
-    "showES6CompileOption": false
+    "showES6CompileOption": false,
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
   "simulatorType": "wechat",
